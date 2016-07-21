@@ -688,7 +688,8 @@ width: 10px;
   padding: 50px 0;color: #fff;
 }
 
-.single-product-area .zigzag-bottom {background-color: #f4f4f4}
+.single-product-area .zigzag-bottom {
+	background-color: #f4f4f4}
 
 .single-product-area {
   padding: 80px 0 130px;
@@ -704,9 +705,9 @@ width: 10px;
     margin-bottom: 30px;
     text-transform: uppercase;
 }
-.single-sidebar {
+/* .single-sidebar {
     margin-bottom: 50px;
-}
+} */
 input[type="text"], input[type="password"], input[type="email"], textarea {
     border: 1px solid #ddd;
     padding: 10px;
@@ -720,7 +721,7 @@ input[type="submit"], button[type=submit], input[type="button"]{
 }
 input[type="submit"]:hover, button[type=submit]:hover {background-color: #222}
 #checkDelete:hover, #allDelete:hover, #checkOrder:hover, #allOrder:hover, #shopping:hover {background-color: #222}
-.single-sidebar input[type="text"] {
+/* .single-sidebar input[type="text"] */ {
     margin-bottom: 10px;
     width: 100%;
 }
@@ -747,18 +748,18 @@ input[type="submit"]:hover, button[type=submit]:hover {background-color: #222}
     margin-right: 10px;
     text-decoration: none;
 }
-.single-sidebar > ul {
+/* .single-sidebar > ul {
     list-style: outside none none;
     margin: 0;
     padding: 0;
-}
-.single-sidebar li {
+} */
+/* .single-sidebar li {
     border-bottom: 1px solid #f1f1f1;
     padding: 10px 0;
-}
-.single-sidebar a {
+} */
+/* .single-sidebar a {
     display: block;
-}
+} */
 .product-breadcroumb {
     margin-bottom: 20px;
 }
@@ -1121,4 +1122,37 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
 
 .pagination > li > a, .pagination > li > span {
   color: #5a88ca;
+}
+
+
+
+
+
+/* 장바구니 스타일 추가 */
+.col-md-20 {
+	padding : 50px;
+	margin-left : 100px;
+	margin-right : 80px;
+	width : 90%;
+}
+
+#checkDelete {
+	position : relative;
+	left : -300px;
+}
+#allDelete {
+	position : relative;
+	left : -290px;
+}
+#checkOrder {
+	position : relative;
+	left : -280px;
+}
+#shopping {
+	position : relative;
+	right : -300px;
+}
+#allOrder {
+	position : relative;
+	right : -310px;
 }
