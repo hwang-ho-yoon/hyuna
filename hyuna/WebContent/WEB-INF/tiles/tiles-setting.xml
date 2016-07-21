@@ -8,9 +8,9 @@
 		<put-attribute name="footer" value="/WEB-INF/jsp/template/footer.jsp"></put-attribute>
 	</definition>
 	
-<!-- 	<definition name="order/*" extends="main">
+ 	<definition name="order/*" extends="main">
 		<put-attribute name="body" value="/WEB-INF/jsp/order/{1}.jsp"></put-attribute>
-	</definition> -->
+	</definition>
 <!-- 	<definition name="replies/*" extends="board/*">
 		<put-attribute name="body" value="/board/{1}.jsp"></put-attribute>
 	</definition> -->
