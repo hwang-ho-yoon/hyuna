@@ -33,9 +33,9 @@
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+<!-- 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage">
-			<value>com.spring.**.dao</value>
+			<value>com.hyuna.**.dao</value>
 		</property>
-	</bean>
+	</bean> -->
 </beans>

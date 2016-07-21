@@ -13,15 +13,15 @@
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
     
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="include/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/include/css/bootstrap.min.css">
     
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="include/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/include/css/font-awesome.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="include/css/owl.carousel.css">
-    <link rel="stylesheet" href="include/css/style.css">
-    <link rel="stylesheet" href="include/css/responsive.css">
+    <link rel="stylesheet" href="/include/css/owl.carousel.css">
+    <link rel="stylesheet" href="/include/css/style.css">
+    <link rel="stylesheet" href="/include/css/responsive.css">
 </head>
 <body>
 	<div>
@@ -45,17 +45,17 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     
     <!-- jQuery sticky menu -->
-    <script src="include/js/owl.carousel.min.js"></script>
-    <script src="include/js/jquery.sticky.js"></script>
+    <script src="/include/js/owl.carousel.min.js"></script>
+    <script src="/include/js/jquery.sticky.js"></script>
     
     <!-- jQuery easing -->
-    <script src="include/js/jquery.easing.1.3.min.js"></script>
+    <script src="/include/js/jquery.easing.1.3.min.js"></script>
     
     <!-- Main Script -->
-    <script src="include/js/main.js"></script>
+    <script src="/include/js/main.js"></script>
     
     <!-- Slider -->
-    <script type="text/javascript" src="include/js/bxslider.min.js"></script>
-	<script type="text/javascript" src="include/js/script.slider.js"></script>
+    <script type="text/javascript" src="/include/js/bxslider.min.js"></script>
+	<script type="text/javascript" src="/include/js/script.slider.js"></script>
 </body>
 </html>
