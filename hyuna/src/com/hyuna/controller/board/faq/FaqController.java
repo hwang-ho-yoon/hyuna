@@ -1,5 +1,5 @@
 package com.hyuna.controller.board.faq;
 
-public class FaqList {
+public class FaqController {
 
 }
