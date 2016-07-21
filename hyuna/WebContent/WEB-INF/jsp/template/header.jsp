@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="./"><img src="include/image/logo.png"></a></h1>
+                        <h1><a href="./"><img src="/include/image/logo.png"></a></h1>
                     </div>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                                 <li><a href="#">옵티머스</a></li>
                             </ul>
 						</li>
-                        <li><a href="checkout.html">주문조회</a></li>
+                        <li><a href="/order/orderWrite.do">주문조회</a></li>
                         <li><a href="#">Q&A</a></li>
                         <li><a href="#">FAQ</a></li>
 						 
