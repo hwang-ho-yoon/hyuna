@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="/include/css/style.css">
     <link rel="stylesheet" href="/include/css/responsive.css">
     <link rel="stylesheet" href="/include/css/common.css">
+    <link rel="stylesheet" href="/include/css/element.css">
     
     
     <!-- board css-->
