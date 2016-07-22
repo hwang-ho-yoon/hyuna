@@ -52,7 +52,7 @@
 		    </thead>
 		    <tbody>
 		     	<c:choose>
-						<c:when test="${not empty faqList }">
+						<%-- <c:when test="${not empty faqList }">
 							<c:forEach var = "faq" items="${faqList}" varStatus="status">
 							<tr data-num="${faq.b_num }">
 								<td>${faq.faq_no }</td> <!-- 번호 -->
@@ -62,7 +62,7 @@
 								<td>${faq.faq_content}</td>
 								<td>${faq.faq_writedate }</td>
 								<td>${faq.faq_hit }</td>
-							</tr>
+							</tr> --%>
 							</c:forEach>
 						</c:when>
 						<c:otherwise>
