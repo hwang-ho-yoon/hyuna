@@ -11,18 +11,10 @@
 <script type="text/javascript" src="/include/js/jquery-1.12.2.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$("#all").click(function() {
-			for(var i=0; i<document.frm1.length; i++) {
-				document.frm1.elements[i].checked=true;
-			}
+		$("#shopping").click(function() {
+			location.href="index.jsp";
 		});
 	});
-
-	/* function check_onclick() {
-		for(var i=0; i<document.frm1.length; i++) {
-			document.frm1.elements[i].checked=true;
-		}
-	} */
 </script>
 <body>
 	<div class="single-product-area">
@@ -58,7 +50,7 @@
                                            </td>
 
                                            <td class="product-thumbnail">
-                                               <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="/hyuna/include/image/product-thumb-2.jpg"></a>
+                                               <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="/include/image/product-thumb-2.jpg"></a>
                                            </td>
 
                                            <td class="product-name">
@@ -77,9 +69,9 @@
                                                <div class="quantity buttons_added">
                                                    <!-- <input type="button" class="minus" value="-"> -->
                                                		<div class="col-xs-2">
-													    <input type="number" size="4" class="form-control" min="0" value="1">
-													</div>
-                                               		<button type="button" class="btn btn-default">수정</button>                                                    
+													    <input type="number" class="form-control" value="1" size="4" min="0">
+													    <button type="button" class="btn btn-default">수정</button>
+													</div>                                             
                                                    <!-- <input type="button" class="plus" value="+"> -->
                                                </div>
                                            </td>
