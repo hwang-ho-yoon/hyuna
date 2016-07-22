@@ -196,7 +196,15 @@ div.coupon input[type="text"] {
   margin-bottom: 40px;
   width: 100%;
 }  
-    
+/*프로덕트테이블
+table.product_table th, table.product_table td {
+  font-size: 12px;
+  padding: 5px;
+}
+table.product_table th {
+  font-size: 12px;
+}    
+    */
     
 }
 /* Wide Mobile Layout: 480px. */
