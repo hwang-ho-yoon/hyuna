@@ -2,42 +2,8 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<!-- Latest compiled and minified CSS -->
- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<style>
-		#list{
-		 width:100%;
-		}
-		#container{
-		margin-left:20%;
-		margin-right:20%;
-		margin-top:5%;
-		margin-bottom:5%;
-		}
-		.col-md-2 col-md-offset-4{
-		margin-right:0px;
-		}
-		
-		#write{
-		width:60px;
-		}
-		#page{
-		
-		}
-	</style>
-  
-  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  
-</head>
+	 <%@ page trimDirectiveWhitespaces="true" %>
 
-<body>
 	<div id="container">
 		<form>
 			<table class="table table-bordered">
@@ -51,8 +17,8 @@
 		      </tr>
 		    </thead>
 		    <tbody>
-		     	<c:choose>
-						<%-- <c:when test="${not empty faqList }">
+		     	<%-- <c:choose>
+						<c:when test="${not empty faqList }">
 							<c:forEach var = "faq" items="${faqList}" varStatus="status">
 							<tr data-num="${faq.b_num }">
 								<td>${faq.faq_no }</td> <!-- 번호 -->
@@ -62,15 +28,15 @@
 								<td>${faq.faq_content}</td>
 								<td>${faq.faq_writedate }</td>
 								<td>${faq.faq_hit }</td>
-							</tr> --%>
+							</tr>
 							</c:forEach>
 						</c:when>
-						<c:otherwise>
+						<c:otherwise> --%>
 							<tr>
 								<td colspan="6">등록된 게시물이 존재하지 않습니다</td>
 							</tr>
-						</c:otherwise>
-					</c:choose>
+					<%-- 	</c:otherwise>
+					</c:choose> --%>
 		    </tbody>
 		  </table>
 		</form>
@@ -100,6 +66,5 @@
 			</div>
 		</form>
 	</div>
-</body>
-</html>
+
 
