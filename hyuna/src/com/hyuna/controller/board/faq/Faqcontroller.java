@@ -10,6 +10,6 @@ public class Faqcontroller {
 	@RequestMapping("/faqList.do")
 	public String listDepartment() {
 		System.out.println("TESST");
-		return "board/faqList.do";
+		return "board/faqList";
 	}
 }

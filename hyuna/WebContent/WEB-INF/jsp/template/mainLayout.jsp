@@ -23,6 +23,36 @@
     <link rel="stylesheet" href="/include/css/style.css">
     <link rel="stylesheet" href="/include/css/responsive.css">
     <link rel="stylesheet" href="/include/css/common.css">
+    
+    
+    <!-- board css-->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<style>
+		#list{
+		 width:100%;
+		}
+		#container{
+		margin-left:20%;
+		margin-right:20%;
+		margin-top:5%;
+		margin-bottom:5%;
+		}
+		.col-md-2 col-md-offset-4{
+		margin-right:0px;
+		}
+		
+		#write{
+		width:60px;
+		}
+		#page{
+		
+		}
+	</style>
+  
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <!-- ---- -->
 </head>
 <body>
 	<div>
