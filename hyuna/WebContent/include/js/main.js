@@ -21,7 +21,25 @@ jQuery(document).ready(function($){
                 items:5,
             }
         }
-    });  
+    }); 
+    /*prdList상 상품개수.*/
+    $('.product-carousel-prd').owlCarousel({
+        loop:false,
+        nav:false,
+        margin:20,
+        responsiveClass:false,
+        responsive:{
+            0:{
+                items:1,
+            },
+            600:{
+                items:3,
+            },
+            1000:{
+                items:4,
+            }
+        }
+    }); 
     
     $('.related-products-carousel').owlCarousel({
         loop:true,
