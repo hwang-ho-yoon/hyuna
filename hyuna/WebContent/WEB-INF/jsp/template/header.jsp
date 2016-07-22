@@ -80,7 +80,7 @@
 						</li>
                         <li><a href="/order/orderWrite.do">주문조회</a></li>
                         <li><a href="#">Q&A</a></li>
-                        <li><a href="#">FAQ</a></li>
+                        <li><a href="/board/faqList.do">FAQ</a></li>
 						 
 						 
 <!-- 						 <button type="button" class="btn btn-info">PHP</button>
