@@ -23,10 +23,18 @@
     <link rel="stylesheet" href="/include/css/style.css">
     <link rel="stylesheet" href="/include/css/responsive.css">
     <link rel="stylesheet" href="/include/css/common.css">
-    <link rel="stylesheet" href="/include/css/element.css">
-    <link rel="stylesheet" href="/include/css/flat-blue.css">
-    <link rel="stylesheet" href="/include/css/flat-green.css">
     
+    <!-- Elements CSS -->
+    <link rel="stylesheet" href="/include/css/elements/animate.min.css">
+    <link rel="stylesheet" href="/include/css/elements/checkbox3.min.css">
+    <link rel="stylesheet" href="/include/css/elements/dataTables.bootstrap.css">
+    <link rel="stylesheet" href="/include/css/elements/element.css">
+    <link rel="stylesheet" href="/include/css/elements/flat-blue.css">
+    <link rel="stylesheet" href="/include/css/elements/flat-green.css">
+    <link rel="stylesheet" href="/include/css/elements/font-awesome.min.css">
+    <link rel="stylesheet" href="/include/css/elements/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="/include/css/elements/select2.min.css">
+    <link rel="stylesheet" href="/include/css/elements/bootstrap-switch.min.css">
     
     <!-- board css-->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -45,22 +53,6 @@
   <script src="/include/board/js/ckeditor/ckeditor.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <!-- ---- -->
-</head>
-<body>
-	<div>
-		<header class="main-header">
-			<tiles:insertAttribute name="header" />
-		</header> <!-- /. main-header -->
-		
-		<div id="main-wrapper">
-			<tiles:insertAttribute name="body" />
-		</div>
-		
-		 <footer class="main-footer">
-			<tiles:insertAttribute name="footer" />
-		 </footer>
-	</div>
 	
 	 <!-- Latest jQuery form server -->
     <script src="https://code.jquery.com/jquery.min.js"></script>
@@ -81,5 +73,25 @@
     <!-- Slider -->
     <script type="text/javascript" src="/include/js/bxslider.min.js"></script>
 	<script type="text/javascript" src="/include/js/script.slider.js"></script>
+	
+	<!-- jQuery와 Postcodify를 로딩한다 -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+
+</head>
+<body>
+	<div>
+		<header class="main-header">
+			<tiles:insertAttribute name="header" />
+		</header> <!-- /. main-header -->
+		
+		<div id="main-wrapper">
+			<tiles:insertAttribute name="body" />
+		</div>
+		
+		 <footer class="main-footer">
+			<tiles:insertAttribute name="footer" />
+		 </footer>
+	</div>
 </body>
 </html>
