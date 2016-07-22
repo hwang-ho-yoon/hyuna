@@ -1,3 +1,4 @@
+<div id="wrapper">
 <div class="single-product-area">
 	<!-- <div class="zigzag-bottom"></div> -->
 	<div class="container">
@@ -55,29 +56,34 @@
                     </div>
                 </div>
                 -->
-				<div class="col-md-8">
-					<div class="product-content-right">
+				<!-- <div class="col-md-8">
+					<div class="product-content-right"> -->
 						<div class="product-breadcroumb">
 							<a href="">Home</a> <a href="">Category Name</a> <a href="">Sony
 								Smart TV - 2015</a>
 						</div>
 
 						<div class="row">
-							<div class="col-sm-6">
-								<div class="product-images">
-									<div class="product-main-img">
-										<img src="img/product-2.jpg" alt="">
+							
+							<div class="col-sm-6 ">
+								
+								<div class="product-images" >
+								<!-- style="height: auto; width: 100%; border:1px solid gold;"   div 영역표시하기.-->								
+								 	<div class="product-main-img" > 
+										<img src="/include/image/product-2.jpg" alt="" class="center-block">
 									</div>
 
-									<div class="product-gallery">
-										<img src="img/product-thumb-1.jpg" alt=""> <img
-											src="img/product-thumb-2.jpg" alt=""> <img
-											src="img/product-thumb-3.jpg" alt="">
-									</div>
-								</div>
+									<!-- <div class="product-gallery">
+										<img src="/include/image/product-thumb-1.jpg" alt=""> <img
+											src="/include/image/product-thumb-2.jpg" alt=""> <img
+											src="/include/image/product-thumb-3.jpg" alt="">
+									</div>--> 
+
+							</div>	
+								
 							</div>
 
-							<div class="col-sm-6">
+							<!-- <div class="col-sm-6"> -->
 								<div class="product-inner">
 									<h2 class="product-name">Sony Smart TV - 2015</h2>
 									<div class="product-inner-price">
@@ -103,14 +109,15 @@
 
 									<div role="tabpanel">
 										<ul class="product-tab" role="tablist">
-											<li role="presentation" class="active"><a href="#home"
-												aria-controls="home" role="tab" data-toggle="tab">Description</a></li>
-											<li role="presentation"><a href="#profile"
-												aria-controls="profile" role="tab" data-toggle="tab">Reviews</a></li>
+											<li role="presentation" class="active">
+											<a href="#home"	aria-controls="home" role="tab" data-toggle="tab">Description</a>
+											</li>
+											<li role="presentation">
+											<a href="#profile"	aria-controls="profile" role="tab" data-toggle="tab">Reviews</a>
+											</li>
 										</ul>
 										<div class="tab-content">
-											<div role="tabpanel" class="tab-pane fade in active"
-												id="home">
+											<div role="tabpanel" class="tab-pane fade in active" id="home">
 												<h2>Product Description</h2>
 												<p>Lorem ipsum dolor sit amet, consectetur adipiscing
 													elit. Nam tristique, diam in consequat iaculis, est purus
@@ -129,6 +136,7 @@
 													neque a consectetur. Nunc aliquam gravida purus, non
 													malesuada sem accumsan in. Morbi vel sodales libero.</p>
 											</div>
+											<!-- review 부분 -->
 											<div role="tabpanel" class="tab-pane fade" id="profile">
 												<h2>Reviews</h2>
 												<div class="submit-review">
@@ -158,13 +166,14 @@
 													</p>
 												</div>
 											</div>
+											<!-- review 끝 -->
 										</div>
 									</div>
 
 								</div>
-							</div>
+							<!-- </div> 
 						</div>
-					</div>
+					</div>-->
 				</div>
 			</div>
 		</div>
