@@ -31,25 +31,15 @@
 		#list{
 		 width:100%;
 		}
-		#container{
-		margin-left:20%;
-		margin-right:20%;
-		margin-top:5%;
-		margin-bottom:5%;
-		}
-		.col-md-2 col-md-offset-4{
-		margin-right:0px;
-		}
-		
 		#write{
-		width:60px;
+		width 150px;
 		}
-		#page{
-		
+		.bottom{
+		margin-bottom:15%;
 		}
 	</style>
-  
-  
+ 
+  <script src="/include/board/js/ckeditor/ckeditor.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <!-- ---- -->
