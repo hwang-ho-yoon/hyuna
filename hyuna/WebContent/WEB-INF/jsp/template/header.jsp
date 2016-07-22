@@ -4,14 +4,15 @@
     <div class="header-area">
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-7">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <div class="header-right">
                         <ul class="list-unstyled list-inline">
                           <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
                             <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
                             <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
+                            <li><a href="/member/memberjoin.do"><i class="fa fa-user"></i> Join</a></li>
                         </ul>
                     </div>
                 </div>
