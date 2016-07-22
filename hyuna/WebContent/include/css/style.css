@@ -1136,23 +1136,9 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
 	width : 90%;
 }
 
-#checkDelete {
-	position : relative;
-	left : -300px;
+.btn_group1 {
+	float : left;
 }
-#allDelete {
-	position : relative;
-	left : -290px;
-}
-#checkOrder {
-	position : relative;
-	left : -280px;
-}
-#shopping {
-	position : relative;
-	right : -300px;
-}
-#allOrder {
-	position : relative;
-	right : -310px;
+.btn_group2 {
+	float : right;
 }

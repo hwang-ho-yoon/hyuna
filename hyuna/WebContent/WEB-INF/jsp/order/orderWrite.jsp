@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page trimDirectiveWhitespaces="true" %>
-<body>
-	<div id="wrapper">
-		<table class="table">
+
+	<div id="wrapper" style="height: auto;">
+		<div class="col-md-12" style="padding: 0"> 
+			<h3>상품정보</h3> 
+			<hr></hr>
+		</div>
+		<table class="table table-hover table-bordered">
 			<tr>
 				<td>이미지</td>
 				<td>상품명</td>
@@ -19,14 +23,20 @@
 				<td>30000원</td>
 			</tr>
 		</table>
-		<table class="table">
-			<tr>
-				<td>총 주문 금액</td>
-				<td>30000원</td>
-			</tr>
-		</table>
+		<div class="col-md-offset-8" align="right">
+			<table class="table table-hover table-bordered">
+				<tr>
+					<td>총 주문 금액</td>
+					<td>30000원</td>
+				</tr>
+			</table>
+		</div>
 		
-		<table class="table">
+		<div class="col-md-12" style="padding: 0"> 
+			<font size="5px">배송지 정보</font><div class="radio3 radio-check radio-inline col-md-offset-7"> <input type="radio" id="radio4" name="radio2" value="option1"> <label for="radio4"> 주문자와 동일</label> </div>
+			<hr></hr>
+		</div>
+		<table class="table table-hover table-bordered">
 			<tr>
 				<td>성명</td>
 				<td>황호윤</td>
@@ -37,7 +47,7 @@
 				<td>연락처</td>
 				<td>010-5663-9227</td>
 				<td>우편번호</td>
-				<td>420101</td>
+				<td>420101 <button class="btn btn-default btn-xs" style="margin: 0">검색</button></td>
 			</tr>
 			<tr>
 				<td>기본주소</td>
@@ -53,7 +63,11 @@
 			</tr>
 		</table>
 		
-		<table class="table">
+		<div class="col-md-12" style="padding: 0"> 
+			<h3>결제 정보</h3> 
+			<hr></hr>
+		</div>
+		<table class="table table-hover table-bordered">
 			<tr>
 				<td>결제금액</td>
 				<td>30000원</td>
@@ -72,5 +86,19 @@
 				<td>국민은행 : 황호윤 210701-04-266770</td>
 			</tr>
 		</table>
-	</div>
-</body>
+		<div align="center">
+			<button class="btn btn-default">결제</button>
+			<button class="btn btn-default">취소</button>
+		</div>
+		</div>
+		
+<!-- 주소와 우편번호를 입력할 <input>들을 생성하고 적당한 name과 class를 부여한다 -->
+<input type="text" name="" class="postcodify_postcode5" value="" />
+<button id="postcodify_search_button">검색</button><br />
+<input type="text" name="" class="postcodify_jibeon_address" value="" /><br />
+<input type="text" name="" class="postcodify_details" value="" /><br />
+
+
+<!-- "검색" 단추를 누르면 팝업 레이어가 열리도록 설정한다 -->
+<script type= ""> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script>
+	
