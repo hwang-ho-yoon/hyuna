@@ -38,28 +38,28 @@
 		</div>
 		<table class="table table-hover table-bordered">
 			<tr>
-				<td>성명</td>
-				<td>황호윤</td>
-				<td>이메일</td>
-				<td>ehddbs70@naver.com</td>
+				<td style="padding-top: 12px">성명</td>
+				<td><input type="text" class="form-control input-sm"></td>
+				<td style="padding-top: 12px">이메일</td>
+				<td><input type="text" class="form-control input-sm"></td>
 			</tr>
 			<tr>
-				<td>연락처</td>
-				<td>010-5663-9227</td>
-				<td>우편번호</td>
-				<td>420101 <button class="btn btn-default btn-xs" style="margin: 0">검색</button></td>
+				<td style="padding-top: 12px">연락처</td>
+				<td><input type="text" class="form-control input-sm"></td>
+				<td style="padding-top: 12px">우편번호</td>
+				<td><div class="form-inline"> <input type="text" class="form-control input-sm postcodify_postcode5" readonly="readonly" style="background: white;"><button id="postcodify_search_button" class="btn btn-default btn-sm" style="margin: 0">검색</button></div></td>
 			</tr>
 			<tr>
-				<td>기본주소</td>
-				<td colspan="3">역곡1동</td>
+				<td style="padding-top: 12px">기본주소</td>
+				<td colspan="3"><input type="text" class="form-control input-sm postcodify_jibeon_address" readonly="readonly" style="background: white;"></td>
 			</tr>
 			<tr>
-				<td>상세주소</td>
-				<td colspan="3">한양수자인 아파트</td>
+				<td style="padding-top: 12px">상세주소</td>
+				<td colspan="3"><input type="text" class="form-control input-sm postcodify_details"></td>
 			</tr>
 			<tr>
-				<td>메시지</td>
-				<td colspan="3">부재시 경비실에 던져주세요</td>
+				<td style="padding-top: 12px">메시지</td>
+				<td colspan="3"><input type="text" class="form-control input-sm"></td>
 			</tr>
 		</table>
 		
@@ -91,9 +91,3 @@
 			<button class="btn btn-default">취소</button>
 		</div>
 		</div>
-		
-<!-- 주소와 우편번호를 입력할 <input>들을 생성하고 적당한 name과 class를 부여한다 -->
-<input type="text" name="" class="postcodify_postcode5" value="" />
-<button id="postcodify_search_button">검색</button><br />
-<input type="text" name="" class="postcodify_jibeon_address" value="" /><br />
-<input type="text" name="" class="postcodify_details" value="" /><br />
