@@ -6,66 +6,44 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="jquery-1.11.0.min.js"></script>
 <script>
-
+/* <tr id="tr_opt"><th>기종</th><th>color</th><th>재고</th><th>공개</th></tr> */
 	$(function(){
 
 		$("#optionadd").click(function(){
 			var add=$("#machine").val();
+			console.log(add);
 			var color=$("#color").val();
+			console.log(color);
+//			var new_tr ="<tr><td><input type='text' id='mc_text' value="+add+"></td>";
+//			new_tr+="<td><input type='text' id='color_text' value="+color+"></td>";
+			var new_tr ="<tr class='opt_tr'><td><span>"+add+"</span></td>";
+			    new_tr+="<td><span>"+color+"</span></td>";
+			    new_tr+="<td><input type='number' class='form-control col-xs-2 input-sm' id='stocktd_text' value="+0+" step='5' ></td>";
+			    new_tr+="<td><input type='checkbox' id='openchk' checked></td>";
+			    new_tr+="<td><button type='button' id='minus' class='minus'>-</button></td></tr>";
+			    $("#tb_option").append(new_tr);
 			
-			var new_tr = $("<tr>");
-			new_tr.addClass("option");
-			
-			//새로운 글이 추가될 때 row 태그 객체 생성 및 class를 선언함.
-			var new_tr = $("<tr>");
-			new_tr.addClass("option");
-			
-			
-			//작성자 정보가 지정될 p태그
-			var writer_p = $("<p>");
-			writer_p.addClass("writer");
-			
-			//작성자정보의 이름
-			var name_span=$("<span>");
-			name_span.addClass("name");
-			name_span.html($("#user_name").val()+"님");
-			
-			 //작성일시
-			var date_span=$("<span>");
-			date_span.html("/"+today+" ");
-			
-			//삭제하기
-			var del_input = $("<input>");
-			del_input.attr({
-				"type" : "button",
-				"value": "삭제하기"
-			});
-			del_input.addClass("delete_btn");
-			
-			
-			//내용
-			var content_p = $("<p>");
-			content_p.html($("#comment").val());
-			
-			//조립하기
-			writer_p.append(name_span).append(date_span).append(del_input);
-			new_li.append(writer_p).append(content_p);
-			$("#comment_list").append(new_li);
-			
-			//입력내용 지우기
-			$("#user_name").val("");
-			$("#comment").val(""); 
 			
 			return false;
 			
 		});
+		
+		//옵션없애기
+		$(document).on("click", ".minus", function() {
+
+	        var rowtr= $(this).parents("tr");
+	        rowtr.remove();
+	 	});
+		
 	});
 </script>
 </head>
 <body>
+<div id="wrapper">
 <form>
 <h1>상품등록</h1>
 <table class="shop_table">
+
 <tr>
 	<td>제품코드 </td>
 	<td><input type="text" id="prd_no" name="prd_no"/></td>
@@ -80,20 +58,33 @@
 </tr>
 <tr>
 	<td>매입가</td>
-	<td><input type="radio" id="prd_prcprice" name="prd_prcprice"/></td>
+	<td><input type="text" id="prd_prcprice" name="prd_prcprice"/></td>
 	<td>정상가</td>
-	<td><input type="radio" id="prd_orgprice" name="prd_orgprice"/></td>
+	<td><input type="text" id="prd_orgprice" name="prd_orgprice"/></td>
 </tr>
 <tr>
 	<td>판매가</td>
-	<td><input type="radio" id="prd_saleprice" name="prd_saleprice"/></td>
+	<td><input type="text" id="prd_saleprice" name="prd_saleprice"/></td>
 	<td>전시상태</td>
-	<td><input type="radio" id="prd_open" name="prd_open"/></td>
+	<td><input type="checkbox" id="prd_open" name="prd_open"/></td>
 </tr>
 <tr>
 	<td>옵션사용</td>
-	<td colspan="3"> Brand : <input type="checkbox" id="option_brand" name="option_brand"/>
-					 Color : <input type="checkbox" id="option_color" name="option_color"/></td>
+	<td colspan="3"> 
+	<label class="checkbox-inline">
+	<input type="checkbox" id="option_color" name="option_color"/>Color
+	</label>
+
+	<label class="checkbox-inline">
+	<input type="checkbox" id="option_brand" name="option_brand"/>Brand  
+	</label>
+	
+	</td>
+					 
+					 
+					 
+					 
+					 
 </tr>
 <tr>
 	<td colspan="4">이미지 설정</td>
@@ -112,7 +103,7 @@
 </table>
 </form>
 <br>
-<div id="optionbrand" class="optionbrand" style = "display:block; border:1px solid black; width:400px;">
+<div id="optionbrand" class="optionbrand" >
 <select id="brand">
 	<option >SAMSUNG</option>
 	<option>LG</option> 
@@ -133,15 +124,25 @@
 	<option>파랑</option>
 </select>
 <!-- </div> -->
-<input type="button" id="optionadd" name="optionadd" value="+"/>
+
+<button type="button" id="optionadd" name="optionadd" class="btn btn-default pull-right btn-xs" > + </button>
 
 </div>
 <!-- 선택된옵션표 -->
 <div id="optiontable" class="optiontable">
-<table id="tb_option" >
-	<tr><td>기종</td><td>color</td><td>추가요금</td><td>가격</td><td>재고</td><td>공개</td></tr>
+<table id="tb_option" class="table">
+	<colgroup>
+					<col width="25%" />
+					<col width="25%" />
+					<col width="25%" />
+					<col width="15%" />
+					<col width="10%" />
+	</colgroup>
+	<tr id="tr_opt"><th>기종</th><th>color</th><th>재고</th><th>공개</th><th>선택</th></tr>
+	
+	
 </table>
 </div>
-
+</div>
 </body>
 </html>

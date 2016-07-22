@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <div id="wrapper">
 	<div class="single-product-area">
 		<div class="container">
@@ -29,13 +31,31 @@
 							</div>
 							<button class="add_to_cart_button" type="submit">Add to
 								cart</button>
-						</form>
-						<div class="product-inner-category">
+						
+						<!-- <div class="product-inner-category">
 							<p>
 								Category: <a href="">Summer</a>. Tags: <a href="">awesome</a>, <a
 									href="">best</a>, <a href="">sale</a>, <a href="">shoes</a>.
 							</p>
+						</div> -->
+						<br>
+						<div>
+							<select id="machine" class="col-md-4">
+								<option>아이폰6/6S</option>
+								<option>아이폰6플러스</option>
+								<option>아이폰SE/5/5S</option>
+								<option>아이폰4/4S</option>
+								<option>애플워치</option>
+							</select> <br>
+							<select id="color" class="col-md-4">
+								<option>빨강</option>
+								<option>노랑</option>
+								<option>파랑</option>
+							</select>
+						
 						</div>
+						</form>
+<br>
 						<div role="tabpanel">
 							<ul class="product-tab" role="tablist">
 								<li role="presentation" class="active"><a href="#home"
