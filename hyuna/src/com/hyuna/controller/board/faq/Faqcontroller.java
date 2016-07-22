@@ -12,4 +12,9 @@ public class Faqcontroller {
 		System.out.println("TESST");
 		return "board/faqList";
 	}
+	@RequestMapping("/faqwrite.do")
+	public String faqwrite(){
+		System.out.println("writetest");
+		return "board/faqwrite";
+	}
 }

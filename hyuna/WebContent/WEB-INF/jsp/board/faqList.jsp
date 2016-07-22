@@ -4,7 +4,8 @@
 	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 	 <%@ page trimDirectiveWhitespaces="true" %>
 
-	<div id="container">
+	<div id="wrapper">
+		<div class="board">
 		<form>
 			<table class="table table-bordered">
 		    <thead>
@@ -40,19 +41,20 @@
 		    </tbody>
 		  </table>
 		</form>
-		<div class="row col-md-3 col-md-offset-4" id="page">
+		<div class="col-md-3 col-md-offset-5">
 		<a href="#">&lt;&lt;</a><a href="#">&nbsp;1&nbsp;</a><a href="#">&nbsp;2&nbsp;</a><a href="#">&nbsp;3&nbsp;</a>
 		<a href="#">&nbsp;4&nbsp;</a><a href="#">&nbsp;5&nbsp;</a><a href="#">&nbsp;6&nbsp;</a><a href="#">&nbsp;7&nbsp;</a>
 		<a href="#">&nbsp;8&nbsp;</a><a href="#">&nbsp;9&nbsp;</a><a href="#">&nbsp;10&nbsp;</a>
 		<a href="#">&gt;&gt;</a>
 		</div>
 		<form>
-			<div class="col-md-1 col-md-offset-4">
-			<input type="submit" class="btn btn-info btn-block" id="write" value="글쓰기">
+			<div class="col-md-2 col-md-offset-2">
+			<input type="button" class="btn btn-info btn-block btn-lg" id="write" value="글쓰기">
 			</div>
 		</form>
+		<div class="bottom">
 		<form>
-			<div class="col-md-2 col-md-offset-4">
+			<div class="col-md-2 col-md-offset-3">
 				<select class="form-control">
 				  <option>제목</option>
 				  <option>작성자</option>
@@ -61,10 +63,18 @@
 			<div class="col-md-2">
 			 <input type="text" class="form-control" id="search" name="search" placeholder="검색">
 			</div>
-			<div class="col-md-1">
-			<input type="submit" class="btn btn-info btn-block" id="searchBtn" name="searchBtn" value="검색">
+			<div class="col-md-2">
+			<input type="submit" class="btn btn-info btn-block btn-lg" id="searchBtn" name="searchBtn" value="검색">
 			</div>
 		</form>
-	</div>
-
-
+		</div>
+		</div>
+		</div>
+	
+<script>
+	$(function(){
+		$("#write").click(function(){
+			location.href = "/board/faqwrite.do";
+		})
+	})
+</script>
