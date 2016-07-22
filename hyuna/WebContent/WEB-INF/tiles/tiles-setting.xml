@@ -4,8 +4,7 @@
 <tiles-definitions>
 	<definition name="main" template="/WEB-INF/jsp/template/mainLayout.jsp">
 		<put-attribute name="header" value="/WEB-INF/jsp/template/header.jsp"></put-attribute>
-		<!-- <put-attribute name="body" value="/WEB-INF/jsp/template/main.jsp"></put-attribute> -->
-		<put-attribute name="body" value="/WEB-INF/jsp/product/prdSingleDetail.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/template/main.jsp"></put-attribute>		
 		<put-attribute name="footer" value="/WEB-INF/jsp/template/footer.jsp"></put-attribute>
 	</definition>
 	
