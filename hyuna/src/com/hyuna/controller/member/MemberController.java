@@ -50,7 +50,7 @@ public class MemberController {
 		mvo.setMem_mail(mem_mail);
 		EmailMember em = new EmailMember();
 		em.setSendEmail(mvo);
-		return "member/loginform";
+		return "member/loginform"; 
 	}
 }
 
