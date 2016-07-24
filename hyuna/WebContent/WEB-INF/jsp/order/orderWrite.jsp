@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page trimDirectiveWhitespaces="true" %>
-
-	<div id="wrapper" style="height: auto;">
+<script type="text/javascript">
+	$(function() {
+		$("#pay_btn").click(function() {
+			location.href = "/order/orderPay.do"
+		});
+	});
+</script>
+	<div id="wrapper">
 		<div class="col-md-12" style="padding: 0"> 
 			<h3>상품정보</h3> 
 			<hr></hr>
@@ -87,7 +93,7 @@
 			</tr>
 		</table>
 		<div align="center">
-			<button class="btn btn-default">결제</button>
+			<button class="btn btn-default" id="pay_btn">결제</button>
 			<button class="btn btn-default">취소</button>
 		</div>
 		</div>

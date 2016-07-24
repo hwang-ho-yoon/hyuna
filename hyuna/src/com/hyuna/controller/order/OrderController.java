@@ -8,8 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class OrderController {
 
 	@RequestMapping("/orderWrite.do")
-	public String listDepartment() {
-		System.out.println("TESST");
+	public String orderWrite() {
 		return "order/orderWrite";
+	}
+	
+	@RequestMapping("/orderPay.do")
+	public String orderPay() {
+		return "order/orderList";
 	}
 }
