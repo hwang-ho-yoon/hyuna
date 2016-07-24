@@ -42,7 +42,7 @@ public class MemberController {
 		logger.info("인서트 호출");
 		mvo.setMem_phone(tel+tel1+tel2);
 		mvo.setMem_mail(mail1+"@"+mail2);
-		memberService.memberInsert(mvo,tel,tel1,tel2,mail1,mail2);
+		//memberService.memberInsert(mvo,tel,tel1,tel2,mail1,mail2);
 		
 		if(mvo.getMem_mailCheck()!=null){
 			EmailMember em = new EmailMember();
@@ -66,7 +66,7 @@ public class MemberController {
 			@RequestParam("tel2") String tel2, @RequestParam("tel3") String tel3) {
 		logger.info("아이디찾기 로직 호출");
 		
-		memberService.memberFindId(mvo, tel1, tel2 ,tel3);
+		//memberService.memberFindId(mvo, tel1, tel2 ,tel3);
 		return "member/findid";
 	}
 	
