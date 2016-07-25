@@ -87,5 +87,6 @@ public class MemberController {
 		em.setPwdEmail(mvo);
 		return "member/loginform"; 
 	}
+	
 }
 
