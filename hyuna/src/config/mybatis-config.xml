@@ -3,6 +3,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.hyuna.vo.OrderVO" alias="orderVo"/>
+		<typeAlias type="com.hyuna.vo.MemberVO" alias="member"/>
 	</typeAliases>
 	<!-- <mappers>
 		<mapper resource="query/Board.xml"/>

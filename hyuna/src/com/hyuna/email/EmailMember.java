@@ -30,7 +30,7 @@ public void setSendEmail(MemberVO mvo){
 		//보내는 사람설정
 		simpleEmail.setFrom("whdals414@gamil.com", "현아", "utf-8");
 		//제목설정
-		simpleEmail.setSubject("비밀번호 테스트");
+		simpleEmail.setSubject("현아에 가입하셨습니다");
 		//본문설정
 		simpleEmail.setMsg(mvo.getMem_name()+" 님의 가입을 환영합니다.");
 		rt = simpleEmail.send();

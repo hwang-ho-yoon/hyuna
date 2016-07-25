@@ -9,7 +9,7 @@ public class MemberVO {
 	private String mem_post;
 	private String mem_address1;
 	private String mem_address2;
-	private String mem_phone;
+	private String mem_tel;
 	private String mem_mail;
 	private String mem_mailCheck;
 	
@@ -61,11 +61,11 @@ public class MemberVO {
 	public void setMem_address2(String mem_address2) {
 		this.mem_address2 = mem_address2;
 	}
-	public String getMem_phone() {
-		return mem_phone;
+	public String getMem_tel() {
+		return mem_tel;
 	}
-	public void setMem_phone(String mem_phone) {
-		this.mem_phone = mem_phone;
+	public void setMem_tel(String mem_tel) {
+		this.mem_tel = mem_tel;
 	}
 	public String getMem_mail() {
 		return mem_mail;

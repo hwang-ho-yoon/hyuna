@@ -11,7 +11,7 @@
                         <ul class="list-unstyled list-inline">
                           <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
                             <li><a href="/cart/cart.do"><i class="fa fa-user"></i> My Cart</a></li>
-                            <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
+                            <li><a href="/member/loginform.do"><i class="fa fa-user"></i> Login</a></li>
                             <li><a href="/member/memberjoin.do"><i class="fa fa-user"></i> Join</a></li>
                         </ul>
                     </div>
