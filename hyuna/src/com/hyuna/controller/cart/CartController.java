@@ -10,7 +10,7 @@ public class CartController {
 	// 장바구니 리스트 화면
 	@RequestMapping("/cart.do")
 	public String cartList() {
-		System.out.println("test");
+		//System.out.println("test");
 		return "cart/cart";
 	}
 	
