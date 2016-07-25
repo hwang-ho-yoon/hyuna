@@ -40,4 +40,9 @@ public class MemberServiceImpl implements MemberService{
 		return list;
 	}
 
+	@Override
+	public MemberVO findidOk(MemberVO mvo) {		
+		return memberDao.findidOk(mvo); 
+	}
+
 }

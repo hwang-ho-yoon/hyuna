@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,11 +25,31 @@
 			$("#td_ph").show();				
 			$("#td_tel").show();
 		});
+		
+		$("#okBtn").click(function(){
+			$.ajax({
+				url : "/member/findidOk.do",
+			    type : "post",
+			    data : $("#findid_form").serialize(),
+			    error : function(){
+					alert("실패");
+			    },
+			    success : function(resultData){
+			    alert(resultData); 
+			    if(resultData=='success'){
+			    	$("#id").text(" 회원님의 아이디는 <c:out value='${vo.mem_id}'/>").css("color","red");			      	
+			    	//alert("${vo.mem_id}");			      	
+			    }else{
+			      	alert("실패");			      
+				}    
+				}
+			});
+		});
 	});
 </script>
 </head>
 <body>
-	<form>
+	<form id="findid_form">
 	<div id="wrapper" style="margin-bottom: 20px">
 		<h4>아이디 찾기</h4>
 		<div>
@@ -73,6 +94,9 @@
 			  		</tr>
 			  		<tr>
 			  			<td><button type="button" class="btn btn-default" id="okBtn">확인</button>
+			  		</tr>
+			  		<tr>
+			  			<td><span id="id"></span></td>			  			
 			  		</tr>			  		
 			  	</tbody>	
 			  	</table>

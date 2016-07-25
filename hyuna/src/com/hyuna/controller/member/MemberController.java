@@ -42,7 +42,7 @@ public class MemberController {
 			list.get(i).getTer_useCheck().equals("y");
 			logger.info(list.get(i).getTer_useCheck().equals("y"));		
 		}*/
-		logger.info(list);
+		logger.info(list.size());
 		model.addAttribute("list", list);
 		return "member/memberjoin";
 	}
@@ -87,6 +87,23 @@ public class MemberController {
 	public String findid() {
 		logger.info("아이디찾기 호출");
 		return "member/findid";
+	}
+	
+	//아이디찾기 로직
+	@RequestMapping("/findidOk")
+	@ResponseBody
+	public String findidOk(@ModelAttribute MemberVO mvo, Model model){
+		logger.info("아이디찾기 로직 호출");
+		
+		String val = "";
+		
+		MemberVO vo = memberService.findidOk(mvo);
+		if(vo!=null){
+			val = "success";
+		}
+		model.addAttribute("vo", vo);
+		
+		return val;
 	}
 	
 	//아이디찾기 로직

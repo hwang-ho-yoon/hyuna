@@ -13,4 +13,6 @@ public interface MemberDao {
 
 	public List<TermsVO> termsList();
 
+	public MemberVO findidOk(MemberVO mvo);
+
 }

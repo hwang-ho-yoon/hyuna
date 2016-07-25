@@ -25,8 +25,16 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	@Override
-	public List<TermsVO> termsList() {		
-		return session.selectList("termsList");
+	public List<TermsVO> termsList() {
+		System.out.println();
+		/*return*/ List<TermsVO> a = session.selectList("termsList");
+		System.out.println(a);
+		return a;
+	}
+
+	@Override
+	public MemberVO findidOk(MemberVO mvo) {		
+		return session.selectOne("findidOk");
 	}
 
 }
