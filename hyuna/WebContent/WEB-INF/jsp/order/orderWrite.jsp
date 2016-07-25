@@ -3,8 +3,39 @@
     <%@ page trimDirectiveWhitespaces="true" %>
 <script type="text/javascript">
 	$(function() {
+		$("#postcodify_search_button").postcodifyPopUp();
 		$("#pay_btn").click(function() {
 			location.href = "/order/orderPay.do"
+		});
+		$("#paySelect").change(function () {
+			if ($("#paySelect").val() == "mutongjang") {
+				var data =	"<table class='table' style='margin-bottom: 0px'>"
+					data += "<tr>"
+					data +=	"<td>국민은행 : </td>"
+					data +=	"<td>황호윤 210701-04-266770</td>"
+					data += "</tr>"
+					data += "<tr>"
+					data +=	"<td>입금자명 : </td>"
+					data += "<td><input type='text' class='form-control input-sm'></td>"
+					data += "</tr>"
+					data += "</table>"
+				$("#payManager").html(data);
+			} else {
+				var data =	"<table class='table' style='margin-bottom: 0px'>"
+					data += "<tr>"
+					data +=	"<td>카드사 : </td>"
+					data +=	"<td><select id='paySelect' class='form-control'>"
+					data += "<option value='kb'>국민은행</option>"
+					data += "<option value='sin'>신한은행</option>"
+					data += "</select></td>"
+					data += "</tr>"
+					data += "<tr>"
+					data +=	"<td>카드번호 : </td>"
+					data += "<td><input type='text' class='form-control input-sm'></td>"
+					data += "</tr>"
+					data += "</table>";
+				$("#payManager").html(data);
+			}
 		});
 	});
 </script>
@@ -38,10 +69,22 @@
 			</table>
 		</div>
 		
-		<div class="col-md-12" style="padding: 0"> 
-			<font size="5px">배송지 정보</font><div class="radio3 radio-check radio-inline col-md-offset-7"> <input type="radio" id="radio4" name="radio2" value="option1"> <label for="radio4"> 주문자와 동일</label> </div>
-			<hr></hr>
-		</div>
+			<div class="col-md-5" style="padding: 0">
+				<font size="5px">배송지 정보</font>
+			</div>
+			<div class="col-md-7" align="right" style="padding-right: 0px; padding-top: 10px">
+				<div class="radio3 radio-check radio-inline" style="padding: 0" align="right"> 
+						<input type="radio" id="radio4" name="radio2" value="option1">
+						<label for="radio4"> 주문자와 동일</label>
+				</div>
+				<div class="radio3 radio-check radio-inline" style="padding: 0" align="right"> 
+						<input type="radio" id="radio5" name="radio2" value="option2">
+						<label for="radio5"> 새로운 배송지</label>
+				</div>
+			</div>
+			<div class="col-md-12" style="padding: 0">
+				<hr></hr>
+			</div>
 		<table class="table table-hover table-bordered">
 			<tr>
 				<td style="padding-top: 12px">성명</td>
@@ -75,21 +118,34 @@
 		</div>
 		<table class="table table-hover table-bordered">
 			<tr>
-				<td>결제금액</td>
+				<td style="width: 23%">결제금액</td>
 				<td>30000원</td>
 			</tr>
 			<tr>
 				<td>결제방식</td>
 				<td>
-					<select class="form-control">
-						<option>무통장</option>
-						<option>카드결제</option>
+					<select id="paySelect" class="form-control">
+						<option value="mutongjang">무통장</option>
+						<option value="card">카드결제</option>
 					</select> 
 				</td>
 			</tr>
 			<tr>
-				<td>결제도우미</td>
-				<td>국민은행 : 황호윤 210701-04-266770</td>
+				<td style="padding-top: 35px">결제도우미</td>
+				<td>
+					<span id="payManager">
+						<table class='table' style="margin-bottom: 0px">
+							<tr>
+								<td>국민은행 : </td>
+								<td>황호윤 210701-04-266770</td>
+							</tr>
+							<tr>
+								<td>입금자명 : </td>
+								<td><input type='text' class='form-control input-sm'></td>
+							</tr>
+						</table>
+					</span>
+				</td>
 			</tr>
 		</table>
 		<div align="center">

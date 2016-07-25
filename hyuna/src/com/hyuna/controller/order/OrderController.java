@@ -16,4 +16,9 @@ public class OrderController {
 	public String orderPay() {
 		return "order/orderList";
 	}
+	
+	@RequestMapping("/orderDetail.do")
+	public String orderDetail() {
+		return "order/orderDetail";
+	}
 }
