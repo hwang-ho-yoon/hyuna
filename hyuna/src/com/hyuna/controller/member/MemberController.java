@@ -18,8 +18,8 @@ public class MemberController {
 
 	Logger logger = Logger.getLogger(MemberController.class);
 	
-	@Autowired
-	private MemberService memberService;
+/*	@Autowired
+	private MemberService memberService;*/
 	
 	//로그인화면
 	@RequestMapping("/loginform")
