@@ -73,12 +73,6 @@
 		</div>
 <script>
 	$(function(){
-		
-		
-		
-		
-		
-		
 		$("#write").click(function(){
 			location.href = "/board/qna/qnaWrite.do";
 		})
