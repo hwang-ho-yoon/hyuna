@@ -23,7 +23,7 @@ import com.hyuna.vo.ProductVO;
 @RequestMapping(value="/prd")
 public class ProductController {
 	Logger logger =Logger.getLogger(ProductController.class);
-	@Autowired//BoardService로 구현된 구현체를 자동으로 찾아d와 setter를 불러 설정한다.
+	//@Autowired//BoardService로 구현된 구현체를 자동으로 찾아d와 setter를 불러 설정한다.
 	private ProductService productService;
 
 	//첨부파일 게시판	//파일의 realpath를 위해 request객체를 같이 보냄.
