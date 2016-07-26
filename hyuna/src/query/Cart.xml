@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyuna.dao.CartDao">
+	
+	<!-- 장바구니 리스트 조회 -->
+	<select id="cartList" parameterType="cart" resultType="cart">
+		select cart_no, cart_quantity from cart
+	</select>
+	
+	
+	
+	<!-- 장바구니 등록 -->
+	<!-- <insert id="cartInsert" parameterType="cart">
+		/* Cart - insertCart */
+		<selectKey keyProperty="cart_no" resultType="int" order="BEFORE">
+			select cart_seq.nextval from dual
+		</selectKey>
+			INSERT INTO cart(
+				cart_no, prd_name, cart_quantity, prd_saleprice
+			)
+			VALUES(
+				#{cart_no}, #{prd_name}, #{cart_quatity}, #{prd_saleprice} 
+			)
+	</insert> -->
+</mapper>

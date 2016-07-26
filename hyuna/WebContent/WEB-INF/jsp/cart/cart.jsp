@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,10 +59,31 @@
                                            <th class="product-subtotal">합계</th>
                                        </tr>
                                    </thead>
+                                   <!-- ========================= 장바구니에 담긴 상품 리스트 출력 시작 ========================== -->
                                    <tbody>
-                                       <tr class="cart_item">
+                                   <c:choose>
+                                   		<c:when test="${not empty cartList}">
+                                   			<c:forEach var="cart" items="${cartList}" varStatus="status">
+                                   				<tr class="cart_item">
+                                   					<td><input type="checkbox" id="check" name="check"></td>
+                                   					<td class="product-thumbnail"><span class="goDetail">${cart.prd_name}</span></td>
+                                   					<td class="product-name"><span class="goDetail">${cart.prd_name}</span>
+                                   					<td class="product-name">${cart.option_brand} - ${cart.option_color}</td>
+                                   					<td class="product-quantity">${cart.cart_quantity}</td>
+                                   					<td class="product-price">${cart.prd_saleprice}</td>
+                                   					<td class="product-deliveryCharge"><span class="amount">￦2,500</span></td>
+                                           			<td class="product-subtotal">${cart.(prd_saleprice+2500)}</td>
+                                   				</tr>
+                                   			</c:forEach>
+                                   		</c:when>
+                                   	<c:otherwise>
+                               			<tr>
+                               				<td colspan="8" class="cart_item">장바구니가 비어 있습니다.</td>
+                               			</tr>
+                                   	</c:otherwise>
+                                   </c:choose>
+                                       <!-- <tr class="cart_item">
                                            <td class="product-remove">
-                                               <!-- <a title="Remove this item" class="remove" href="#">×</a>  -->
                                                <input type="checkbox" id="check" name="check">
                                            </td>
 
@@ -81,7 +103,7 @@
                                                <span class="amount">￦15,000</span> 
                                            </td>
 
-                                          <!--  <td class="product-quantity">
+                                           <td class="product-quantity">
                                                <div class="quantity buttons_added">
                                                    <input type="button" class="minus" value="-">
                                                		<div class="col-xs-2">
@@ -90,12 +112,12 @@
 													</div>                                             
                                                    <input type="button" class="plus" value="+">
                                                </div>
-                                           </td> -->
+                                           </td>
                                            
                                            <td class="product-quantity">
                                                 <div class="quantity buttons_added">
                                                 	<div class="quantityNum">
-                                                    	<input type="number" class="form-control" title="Qty" value="1" min="0">
+                                                    	<input type="number" class="form-control1" title="Qty" value="1" min="0">
                                                     </div>
                                                     <button type="button" class="btn btn-default" style="margin-top: 0px">수정</button>
                                                 </div>
@@ -108,7 +130,7 @@
                                            <td class="product-subtotal">
                                            	<span class="subtotal">￦17,500</span>
                                            </td>
-                                       </tr>
+                                       </tr> -->
                                        
                                        <tr>
                                            <td class="actions" colspan="8">
@@ -120,16 +142,19 @@
                                                <div class="btn_group1">
                                                	<button type="button" class="btn btn-primary" name="checkDelete" id="checkDelete">선택삭제</button>
                                                	<button type="button" class="btn btn-primary" name="allDelete" id="allDelete">장바구니 비우기</button>
-                                               	<button type="button" class="btn btn-primary" name="checkOrder" id="checkOrder">선택주문</button></div>
+                                               	<button type="button" class="btn btn-primary" name="checkOrder" id="checkOrder">선택주문</button>
+                                               </div>
 										<!-- </td>
 										<td> -->
 										<div class="btn_group2">
+											   <button type="button" class="btn btn-primary" name="addCart" id="addCart">담기</button>
 											   <button type="button" class="btn btn-primary" name="shopping" id="shopping">쇼핑계속하기</button>
 											   <button type="button" class="btn btn-primary" name="allOrder" id="allOrder">전체주문</button>
                                            </div>
                                          </td>
                                        </tr>                       
                                    </tbody>
+                                   <!-- ========================= 장바구니에 담긴 상품 출력 종료 ========================== -->
                                </table>
                            </form>
 
@@ -185,8 +210,8 @@
                                            <th>총 주문금액</th>
                                            <td><span class="amount">￦15,000</span></td>
                                       
-                                       	<th>배송비</th>
-                                       	<td><span class="deliveryCharge">￦2,500</span></td>
+                                       	   <th>배송비</th>
+                                       	   <td><span class="deliveryCharge">￦2,500</span></td>
                                        
                                            <th>최종 결제금액</th>
                                            <td><strong><span class="amount">￦17,500</span></strong> </td>

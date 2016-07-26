@@ -4,22 +4,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value="/board")
+@RequestMapping(value="/board/faq")
 public class Faqcontroller {
 
 	@RequestMapping("/faqList.do")
 	public String listDepartment() {
 		System.out.println("TESST");
-		return "board/faqList";
+		return "board/faq/faqList";
 	}
 	@RequestMapping("/faqWrite.do")
 	public String faqwrite(){
 		System.out.println("writetest");
-		return "board/faqWrite";
+		return "board/faq/faqWrite";
 	}
 	@RequestMapping("/faqDetail.do")
 	public String faqdetail(){
 		System.out.println("detailtest");
-		return "board/faqDetail";
+		return "board/faq/faqDetail";
 	}
 }

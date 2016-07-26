@@ -8,28 +8,42 @@
 		<form id="faq_write">
 			<table class="table table table-bordered">
 				<tr>
-					<td width="10%">제목</td>
-					<td width="90%"><input type="text" id="faq_title" name="faq_title" class="form-control"></td>
+					<td width="10%"><label class="control-label">제목</label></td>
+					<td width="10%">
+						<select class="form-control">
+						<option>상품문의</option>
+						<option>배송문의</option>
+						<option>기타문의</option>
+						</select>
+					</td>
+					<td width="70%">
+						<input type="text" id="inputdefault" name="faq_title" class="form-control">
+					</td>
 				</tr>
 				<tr>
-					<td colspan="2"><textarea id="text_area" name="text_area" class="form-control"></textarea><script>
+					<td colspan="4"><textarea id="text_area" name="text_area" class="form-control"></textarea><script>
 	                // Replace the <textarea id="editor1"> with a CKEditor
 	                // instance, using default configuration.
 	                CKEDITOR.replace( 'text_area' );
 	            </script></td>
 	            </tr>
 	            <tr>
-	            
+	            	<td>
+	            		<label class="control-label">첨부 파일</label>
+	            	</td>
+	            	<td colspan="3">
+	            		<input type="file" id="inputdefault" class="form-control"/>
+	            	</td>
 	            </tr>
 			</table>
 			<div class="col-md-1 col-md-offset-0" >
-				<input type="button" value="목록">
+				<input  class="btn" type="button" value="목록">
 			</div>
 			<div class="col-md-1 col-md-offset-9">
-				<input type="button" value="등록">
+				<input class="btn" type="button" value="등록">
 			</div>
 			<div class="col-md-1 col-md-offset-0">
-				<input type="button" value="취소">
+				<input class="btn" type="button" value="취소">
 			</div>
 		</form>
 	</div>
