@@ -49,24 +49,23 @@
 		</div>
 		<form>
 			<div class="col-md-1 col-md-offset-3">
-			<input type="button" class="btn btn-info btn-block" id="write" value="글쓰기">
+			<input type="button" class="btn btn-info" id="write" value="글쓰기">
 			</div>
 		</form>
 		<div class="bottom">
-		<form>
-			<div class="col-md-1 col-md-offset-4">
+		<form class="form-inline" role="form">
+			<div class="col-md-5 col-md-offset-4 form-group" >
 				<select class="form-control" id="select">
 				  <option>제목</option>
 				  <option>작성자</option>
 				  </select>
-				</div>
-		 <input type="text" class="form-control" id="search" name="search" placeholder="검색">
-		 <input type="submit" class="btn btn-info" id="searchBtn" name="searchBtn" value="검색">
+		<input type="text" class="form-control" id="search" name="search" placeholder="검색">
+		 <input type="button" class="btn btn-info" id="searchBtn" name="searchBtn" value="검색">
+			</div>
 		</form>
 		</div>
 		</div>
 		</div>
-	
 <script>
 	$(function(){
 		$("#write").click(function(){

@@ -17,4 +17,9 @@ public class Faqcontroller {
 		System.out.println("writetest");
 		return "board/faqwrite";
 	}
+	@RequestMapping("/faqdetail.do")
+	public String faqdetail(){
+		System.out.println("detailtest");
+		return "board/faqdetail";
+	}
 }
