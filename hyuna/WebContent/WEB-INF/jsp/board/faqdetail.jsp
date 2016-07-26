@@ -3,74 +3,134 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 	 <%@ page trimDirectiveWhitespaces="true" %>
-
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>쇼핑몰</title>
+    
+    <!-- Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/include/css/bootstrap.min.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/include/css/font-awesome.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/include/css/owl.carousel.css">
+    <link rel="stylesheet" href="/include/css/style.css">
+    <link rel="stylesheet" href="/include/css/responsive.css">
+    <link rel="stylesheet" href="/include/css/common.css">
+    
+    <!-- Elements CSS -->
+    <link rel="stylesheet" href="/include/css/elements/animate.min.css">
+    <link rel="stylesheet" href="/include/css/elements/checkbox3.min.css">
+    <link rel="stylesheet" href="/include/css/elements/dataTables.bootstrap.css">
+    <link rel="stylesheet" href="/include/css/elements/element.css">
+    <link rel="stylesheet" href="/include/css/elements/flat-blue.css">
+    <link rel="stylesheet" href="/include/css/elements/flat-green.css">
+    <link rel="stylesheet" href="/include/css/elements/font-awesome.min.css">
+    <link rel="stylesheet" href="/include/css/elements/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="/include/css/elements/select2.min.css">
+    <link rel="stylesheet" href="/include/css/elements/bootstrap-switch.min.css">
+    
+  
+  
+  
+  
+  
+  
+<!--    
+    게시판 전용
+    게시판 전용
+    게시판 전용
+    게시판 전용 -->
+    
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<style>
+	#list{
+		 width:100%;
+		}
+		#write{
+		width:80px;
+		height:41;
+		margin-left:5%;
+		margin-right:0;
+		}
+		/* <-- width 60 height 41--> */
+		.bottom{
+		margin-bottom:15%;
+		}
+		#search{
+		width:150px;
+		height:41px;
+		}
+		#select{
+		width:100px;
+		height:41px;
+		}
+		#page{
+		width: 250px;
+		margin-top:20px;
+		}
+		
+		#searchBtndiv{
+		margin-left:73px;
+		margin-bottom:200px;
+		}
+ 	</style>
+  <script src="/include/board/js/ckeditor/ckeditor.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  
+  <!-- 게시판 전용
+  게시판 전용
+  게시판 전용
+  게시판 전용
+  게시판 전용
+   -->
+   </head>
+   <body>
 	<div id="wrapper">
 		<div class="board">
-		<form>
-			<table class="table table-bordered">
-		    <thead>
-		      <tr>     
-		        <th width="10%">글번호</th>
-		        <th width="60%">제목</th>
-		        <th width="10%">작성자</th>
-		        <th width="10%">작성일</th>
-		        <th width="10%">조회수</th>
-		      </tr>
-		    </thead>
-		    <tbody>
-		     	<%-- <c:choose>
-						<c:when test="${not empty faqList }">
-							<c:forEach var = "faq" items="${faqList}" varStatus="status">
-							<tr data-num="${faq.b_num }">
-								<td>${faq.faq_no }</td> <!-- 번호 -->
-								<td>
-									<span>${faq.faq_title }</span>
-								</td>
-								<td>${faq.faq_content}</td>
-								<td>${faq.faq_writedate }</td>
-								<td>${faq.faq_hit }</td>
-							</tr>
-							</c:forEach>
-						</c:when>
-						<c:otherwise> --%>
-							<tr>
-								<td colspan="6">등록된 게시물이 존재하지 않습니다</td>
-							</tr>
-					<%-- 	</c:otherwise>
-					</c:choose> --%>
-		    </tbody>
-		  </table>
-		</form>
-		<div class="col-md-3 col-md-offset-5">
-		<a href="#">&lt;&lt;</a><a href="#">&nbsp;1&nbsp;</a><a href="#">&nbsp;2&nbsp;</a><a href="#">&nbsp;3&nbsp;</a>
-		<a href="#">&nbsp;4&nbsp;</a><a href="#">&nbsp;5&nbsp;</a><a href="#">&nbsp;6&nbsp;</a><a href="#">&nbsp;7&nbsp;</a>
-		<a href="#">&nbsp;8&nbsp;</a><a href="#">&nbsp;9&nbsp;</a><a href="#">&nbsp;10&nbsp;</a>
-		<a href="#">&gt;&gt;</a>
+			<form>
+				<table class="table table-bordered">
+		    		<tr>
+		    			<td style="background-color:grey">제목</td>
+		    			<td colspan="3">ㅁㄴㅇㅇㅇ</td>
+		    		</tr>
+		    		<tr>
+		    			<td style="background-color:grey">작성자</td>
+		    			<td colspan="3">ㅁㄴㅇㅇㅇ</td>
+		    		</tr>
+		    		<tr>
+		    			<td style="background-color:grey">작성일</td>
+		    			<td>2016-11-11</td>
+		    			<td style="background-color:grey">조회수</td>
+		    			<td colspan="2">1</td>
+		    		</tr>
+		    		<tr>
+		    			<td colspan="4">본문</td>
+		    		</tr>
+				</table>
+				<!-- 버튼들 -->
+				<div class="col-md-1">
+				<input type="button" class="btn btn-info btn-block" id="list" value="목록">
+				</div>
+				<div class="col-md-1 col-md-offset-9">
+				<input type="button" class="btn btn-info btn-block" id="delete" value="삭제">
+				</div>
+				<div class="col-md-1">
+				<input type="button" class="btn btn-info btn-block" id="modify" value="수정">
+				</div>
+			</form>
 		</div>
-		<form>
-			<div class="col-md-2 col-md-offset-2">
-			<input type="button" class="btn btn-info btn-block btn-lg" id="write" value="글쓰기">
-			</div>
-		</form>
-		<div class="bottom">
-		<form>
-			<div class="col-md-2 col-md-offset-3">
-				<select class="form-control">
-				  <option>제목</option>
-				  <option>작성자</option>
-				  </select>
-			</div>
-			<div class="col-md-2">
-			 <input type="text" class="form-control" id="search" name="search" placeholder="검색">
-			</div>
-			<div class="col-md-2">
-			<input type="submit" class="btn btn-info btn-block btn-lg" id="searchBtn" name="searchBtn" value="검색">
-			</div>
-		</form>
-		</div>
-		</div>
-		</div>
-	
+	</div>
+	</body>
 <script>
 	$(function(){
 		$("#write").click(function(){
@@ -78,3 +138,5 @@
 		})
 	})
 </script>
+
+</html>

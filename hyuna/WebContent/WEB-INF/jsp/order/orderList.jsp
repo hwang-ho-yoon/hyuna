@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page trimDirectiveWhitespaces="true" %>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<script>
-	  $(function() {
-	    $( ".datepicker" ).datepicker();
-	  });
-	</script>
 
 	<div id="wrapper">
 		<div class="col-md-12" style="padding: 0"> 
@@ -48,7 +41,7 @@
 				<th>상품 금액(수량)</th>
 				<th>주문상태</th>
 				<th>반품/취소</th>
-			</tr>
+			</tr>	
 			<tr>
 				<td style="padding-top: 14px"><a href="/order/orderDetail.do">20160518212618</a></td>
 				<td style="padding-top: 14px"><a href="#myModal" data-toggle="modal">비비드망고 땡땡이 아크릴 패치</a></td>
@@ -66,21 +59,25 @@
 		</table>
 		
 		<div id="myModal" class="modal fade" data-backdrop="static">
-	    	<div class="modal-dialog">
+	    	<div class="modal-dialog modal-sm">
 		        <div class="modal-content">
 		            <div class="modal-header">
 		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 		                <h4 class="modal-title">송장번호 등록</h4>
 		            </div>
 		            <div class="modal-body">
-		                <p>Do you want to save changes you made to document before closing?</p>
-		                <p class="text-warning"><small>If you don't save, your changes will be lost.</small></p>
+		            	<label>주문번호  : 123124214</label><br>
+		            <form class="form-inline">
+		            	<label>송장번호 : </label><input type="text" class="form-control input-sm">
+		            </form>
+		            	
 		         	</div>
 		           <div class="modal-footer">
-		                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		                <button type="button" class="btn btn-primary">Save changes</button>
+		                <button type="button" class="btn btn-primary btn-sm">저장</button>
+		                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">취소</button>
             	   </div>
-	         </div>
+	         	</div>
+         	</div>
          </div>
 	</div>
 
