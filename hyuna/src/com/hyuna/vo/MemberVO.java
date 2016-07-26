@@ -1,6 +1,7 @@
 package com.hyuna.vo;
 
 public class MemberVO {
+	private int mem_no;
 	private String mem_id;
 	private String mem_pwd;
 	private String mem_name;
@@ -13,6 +14,13 @@ public class MemberVO {
 	private String mem_mail;
 	private String mem_mailCheck;
 	
+	
+	public int getMem_no() {
+		return mem_no;
+	}
+	public void setMem_no(int mem_no) {
+		this.mem_no = mem_no;
+	}
 	public String getMem_id() {
 		return mem_id;
 	}

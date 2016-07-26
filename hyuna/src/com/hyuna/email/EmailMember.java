@@ -67,7 +67,7 @@ public void setSendEmail(MemberVO mvo){
 			//보내는 사람설정
 			simpleEmail.setFrom("whdals414@gamil.com", "현아", "utf-8");
 			//제목설정
-			simpleEmail.setSubject("비밀번호 테스트");
+			simpleEmail.setSubject("임시비밀번호 발송");
 			//본문설정
 			simpleEmail.setMsg(getRandomPassword(10));
 			rt = simpleEmail.send();
