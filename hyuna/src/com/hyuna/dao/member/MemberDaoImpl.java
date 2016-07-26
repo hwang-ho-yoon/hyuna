@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.hyuna.vo.MemberVO;
 import com.hyuna.vo.TermsVO;
+import com.hyuna.vo.Terms_agreeVO;
 @Repository
 public class MemberDaoImpl implements MemberDao{
 	
@@ -34,7 +35,27 @@ public class MemberDaoImpl implements MemberDao{
 
 	@Override
 	public MemberVO findidOk(MemberVO mvo) {		
-		return session.selectOne("findidOk");
+		return (MemberVO)session.selectOne("findidOk");
+	}
+
+	@Override
+	public MemberVO memberSelect(MemberVO mvo) {		
+		return session.selectOne("memberSelect");
+	}
+
+	@Override
+	public int agreeInsert(Terms_agreeVO tv) {		
+		return session.insert("agreeInsert");
+	}
+
+	@Override
+	public MemberVO loginCheck(MemberVO mvo) {		
+		return session.selectOne("loginCheck");
+	}
+
+	@Override
+	public int memberPw(MemberVO mvo) {		
+		return session.update("memberPw");
 	}
 
 }

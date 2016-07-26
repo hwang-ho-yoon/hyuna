@@ -1,6 +1,6 @@
 package com.hyuna.vo;
 
-public class CartVO {
+public class CartVO extends ProductVO {
 	private int cart_no = 0;			// 장바구니 번호
 	private int cart_quantity = 0;		// 수량
 	

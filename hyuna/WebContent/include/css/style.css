@@ -806,9 +806,9 @@ input[type="submit"]:hover, button[type=submit]:hover {background-color: #222}
     margin-right: 15px;
 }
 .quantity input[type="number"] {
-    border: 1px solid #5a88ca;
+    /* border: 1px solid #5a88ca; */
     padding: 5px;
-    width: 30%;
+    width: 50px;
 }
 .add_to_cart_button {
     background: none repeat scroll 0 0 #5a88ca;

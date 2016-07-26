@@ -20,13 +20,13 @@
 	            </tr>
 			</table>
 			<div class="col-md-1 col-md-offset-0" >
-				<input type="button" value="목록">
+				<input type="button" class="btn" value="목록">
 			</div>
 			<div class="col-md-1 col-md-offset-9">
-				<input type="button" value="등록">
+				<input type="button" class="btn" value="등록">
 			</div>
 			<div class="col-md-1 col-md-offset-0">
-				<input type="button" value="취소">
+				<input type="button" class="btn" value="취소">
 			</div>
 		</form>
 	</div>

@@ -36,23 +36,48 @@
     <link rel="stylesheet" href="/include/css/elements/select2.min.css">
     <link rel="stylesheet" href="/include/css/elements/bootstrap-switch.min.css">
     
-    <!-- board css-->
+	
+	<!-- 게시판 css-->
+    
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<style>
-		#list{
+	#list{
 		 width:100%;
 		}
 		#write{
-		width 150px;
+		width:80px;
+		height:41;
+		margin-left:5%;
+		margin-right:0;
 		}
+		/* <-- width 60 height 41--> */
 		.bottom{
 		margin-bottom:15%;
 		}
-	</style>
- 
+		#search{
+		width:150px;
+		height:41px;
+		}
+		#select{
+		width:100px;
+		height:41px;
+		}
+		#page{
+		width: 250px;
+		margin-top:20px;
+		}
+		#searchBtn{
+		height:41px;
+		padding:0px;
+		margin:0px;
+		width:80px;
+		}
+ 	</style>
   <script src="/include/board/js/ckeditor/ckeditor.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  
+  <!-- 게시판 css -->
 	
     
 	<!-- jQuery와 Postcodify를 로딩한다 -->

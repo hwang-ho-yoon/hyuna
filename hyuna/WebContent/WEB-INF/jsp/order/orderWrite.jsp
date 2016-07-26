@@ -5,7 +5,13 @@
 	$(function() {
 		$("#postcodify_search_button").postcodifyPopUp();
 		$("#pay_btn").click(function() {
-			location.href = "/order/orderPay.do"
+			if (!chkOrder($("#order_name"), "작성자를")) {
+				return;
+			} else if (!chkOrder($("#order_name"), "작성자를")) {
+				return;
+			} else {
+				
+			}
 		});
 		$("#paySelect").change(function () {
 			if ($("#paySelect").val() == "mutongjang") {
@@ -16,6 +22,10 @@
 					data += "</tr>"
 					data += "<tr>"
 					data +=	"<td>입금자명 : </td>"
+					data += "<td><input type='text' class='form-control input-sm'></td>"
+					data += "</tr>"
+					data += "<tr>"
+					data +=	"<td>입금자 계좌번호 : </td>"
 					data += "<td><input type='text' class='form-control input-sm'></td>"
 					data += "</tr>"
 					data += "</table>"
@@ -37,7 +47,18 @@
 				$("#payManager").html(data);
 			}
 		});
+		
 	});
+	function chkOrder(v_item, v_name){
+		if(v_item.val().replace(/\s/g,"")==""){
+			$(".modal-title").html("입력오류");
+			$(".modal-body").html(v_name+" 입력해 주세요");
+			$('#myModal').modal('show');
+			return false;
+		}else{
+			return true;
+		}
+	}
 </script>
 	<div id="wrapper">
 		<div class="col-md-12" style="padding: 0"> 
@@ -88,27 +109,27 @@
 		<table class="table table-hover table-bordered">
 			<tr>
 				<td style="padding-top: 12px">성명</td>
-				<td><input type="text" class="form-control input-sm"></td>
+				<td><input type="text" class="form-control input-sm" id="ogr_reciName" name="ogr_reciName"></td>
 				<td style="padding-top: 12px">이메일</td>
-				<td><input type="text" class="form-control input-sm"></td>
+				<td><input type="text" class="form-control input-sm" id="ogr_reciEmail" name="ogr_reciEmail"></td>
 			</tr>
 			<tr>
 				<td style="padding-top: 12px">연락처</td>
-				<td><input type="text" class="form-control input-sm"></td>
+				<td><input type="text" class="form-control input-sm" id="ogr_reciTel" name="ogr_reciTel"></td>
 				<td style="padding-top: 12px">우편번호</td>
-				<td><div class="form-inline"> <input type="text" class="form-control input-sm postcodify_postcode5" readonly="readonly" style="background: white;"><button id="postcodify_search_button" class="btn btn-default btn-sm" style="margin: 0">검색</button></div></td>
+				<td><div class="form-inline"> <input type="text" class="form-control input-sm postcodify_postcode5" readonly="readonly" style="background: white;" id="ogr_reciZipCode" name="ogr_reciZipCode"><button id="postcodify_search_button" class="btn btn-default btn-sm" style="margin: 0">검색</button></div></td>
 			</tr>
 			<tr>
 				<td style="padding-top: 12px">기본주소</td>
-				<td colspan="3"><input type="text" class="form-control input-sm postcodify_jibeon_address" readonly="readonly" style="background: white;"></td>
+				<td colspan="3"><input type="text" class="form-control input-sm postcodify_jibeon_address" readonly="readonly" style="background: white;" id="ogr_reciAddr1" name="ogr_reciAddr1"></td>
 			</tr>
 			<tr>
 				<td style="padding-top: 12px">상세주소</td>
-				<td colspan="3"><input type="text" class="form-control input-sm postcodify_details"></td>
+				<td colspan="3"><input type="text" class="form-control input-sm postcodify_details" id="ogr_reciAddr2" name="ogr_reciAddr2"></td>
 			</tr>
 			<tr>
 				<td style="padding-top: 12px">메시지</td>
-				<td colspan="3"><input type="text" class="form-control input-sm"></td>
+				<td colspan="3"><input type="text" class="form-control input-sm" id="ogr_message" name="ogr_message"></td>
 			</tr>
 		</table>
 		
@@ -143,6 +164,10 @@
 								<td>입금자명 : </td>
 								<td><input type='text' class='form-control input-sm'></td>
 							</tr>
+							<tr>
+								<td>입금자 계좌번호 : </td>
+								<td><input type='text' class='form-control input-sm'></td>
+							</tr>
 						</table>
 					</span>
 				</td>
@@ -152,4 +177,23 @@
 			<button class="btn btn-default" id="pay_btn">결제</button>
 			<button class="btn btn-default">취소</button>
 		</div>
-		</div>
+		
+		
+		<div id="myModal" class="modal fade" data-backdrop="static">
+	    	<div class="modal-dialog modal-sm">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                <h4 class="modal-title">송장번호 등록</h4>
+		            </div>
+		            <div class="modal-body">
+		            	
+		         	</div>
+		           <div class="modal-footer">
+		                <button type="button" class="btn btn-primary btn-sm">확인</button>
+            	   </div>
+	         	</div>
+         	</div>
+         </div>
+		
+	</div>
