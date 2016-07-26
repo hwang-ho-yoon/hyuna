@@ -3,18 +3,16 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 	 <%@ page trimDirectiveWhitespaces="true" %>
-	<%-- <%@ taglib prefix="tag" uri="/WEB-INF/tld/custom_tag.tld" %> --%>
+	<%@ taglib prefix="tag" uri="/WEB-INF/tld/custom_tag.tld" %>
 	<div id="wrapper">
 		<div class="board">
 		<form>
 			<table class="table table-bordered">
 		    <thead>
 		      <tr>     
-		        <th width="10%">글번호</th>
-		        <th width="20%">상품정보</th>
-		        <th width="10%">카테고리</th>
-		        <th width="30">제목</th>
-		        <th width="10">작성자</th>
+		  		<th width="10%">글번호</th>
+		        <th width="60%">제목</th>
+		        <th width="10%">작성자</th>
 		        <th width="10%">작성일</th>
 		        <th width="10%">조회수</th>
 		      </tr>
@@ -36,7 +34,7 @@
 						</c:when>
 						<c:otherwise> --%>
 							<tr>
-								<td colspan="6">등록된 게시물이 존재하지 않습니다</td>
+								<td colspan="7">등록된 게시물이 존재하지 않습니다</td>
 							</tr>
 					<%-- 	</c:otherwise>
 					</c:choose> --%>
@@ -80,7 +78,7 @@
 		
 		
 		$("#write").click(function(){
-			location.href = "/board/qnawrite.do";
+			location.href = "/board/faq/faqWrite.do";
 		})
 	})
 </script>

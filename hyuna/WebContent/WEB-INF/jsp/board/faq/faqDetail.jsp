@@ -3,19 +3,6 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 	 <%@ page trimDirectiveWhitespaces="true" %>
-
-  <script src="/include/board/js/ckeditor/ckeditor.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  
-  <!-- 게시판 전용
-  게시판 전용
-  게시판 전용
-  게시판 전용
-  게시판 전용
-   -->
-   </head>
-   <body>
 	<div id="wrapper">
 		<div class="board">
 			<form>
@@ -54,7 +41,7 @@
 <script>
 	$(function(){
 		$("#write").click(function(){
-			location.href = "/board/faqwrite.do";
+			location.href = "/board/faqDetail.do";
 		})
 	})
 </script>
