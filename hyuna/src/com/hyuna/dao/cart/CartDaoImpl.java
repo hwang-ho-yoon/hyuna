@@ -17,12 +17,9 @@ public class CartDaoImpl implements CartDao {
 	public List<CartVO> cartList(CartVO cvo) {
 		return session.selectList("cartList");
 	}
-	
-	// 장바구니 등록 구현
+
 	@Override
 	public int cartInsert(CartVO cvo) {
-		return session.insert("cartList");
-	}
-
-	
+		return session.insert("cartInsert");
+	}	
 }
