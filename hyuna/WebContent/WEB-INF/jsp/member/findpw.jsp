@@ -75,7 +75,7 @@ body{
 .vertical-offset-100{
     padding-top:50px;
 }
-.telc{width: 100px}
+.telc{width: 100px; height: 35px}
 </style>
 </head>
 <body>
@@ -103,10 +103,33 @@ body{
 			    		<div class="form-group" id="mailtxt">
 			    			<input class="form-control" placeholder="이메일 주소" name="mem_mail" id="mem_mail" type="email" >
 			    		</div>			    		
+			    		<div class="form-group" style="margin-bottom: 0px">
+			    		휴대폰 번호
+			    		</div>			    		
 			    		<div class="form-group" id="teltxt">
 			    			<input class="telc" name="tel1" type="text" maxlength="3">&nbsp;-
 			    			<input class="telc" name="tel2" type="text" maxlength="4">&nbsp;-
 			    			<input class="telc" name="tel3" type="text" maxlength="4">
+			    		</div>
+			    		<div class="form-group">
+			    			
+			    		</div>
+			       		<div class="form-group">
+					    	<select id="mem_ask" name="mem_ask" class="form-control">
+								<option value="나의 보물 23호는?">나의 보물 23호는?</option>
+								<option value="내가 2살때 살았던 곳은?">내가 2살때 살았던 곳은?</option>						
+								<option value="초등학교1학년때 짝궁 이름은?">초등학교1학년때 짝궁 이름은?</option>						
+								<option value="할머니의 생년월일은?">할머니의 생년월일은?</option>						
+								<option value="내가 존경하는 인물은?">내가 존경하는 인물은?</option>						
+								<option value="타인이 모르는 나의 신체비밀은?">타인이 모르는 나의 신체비밀은?</option>						
+								<option value="기억에 남는 추억의 장소는?">기억에 남는 추억의 장소는?</option>						
+								<option value="자신의 인생 좌우명은?">자신의 인생 좌우명은?</option>						
+								<option value="부모님 결혼기념일은?">부모님 결혼기념일은?</option>						
+								<option value="자신이 좋아하는 음식은?">자신이 좋아하는 음식은?</option>						
+							</select><span id="ask_msg"></span>
+			    		</div>
+			    		<div class="form-group">
+			    			<input class="form-control" placeholder="비밀번호 찾기 답변" name="mem_answer" id="mem_answer" type="text" >
 			    		</div>			    		
 			    	    <div class="form-inline" align="center">
 			    		<input class="btn btn-lg btn-success btn-block" type="button" value="확인" id="okBtn">

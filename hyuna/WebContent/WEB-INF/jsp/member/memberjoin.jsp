@@ -21,9 +21,10 @@
 	var mail2Reg = /^[A-za-z]*\.[A-za-z]{3}$/i;
 	var cnt = 0;
 	var idcheck = "";
+	var mailcheck = "";
 	
 	$(function(){
-		
+ 
 		$("#postcodify_search_button").postcodifyPopUp();
 		$("#join").click(function(){
 	 		if(!chkSubmit($("#mem_id")))return;
@@ -68,9 +69,9 @@
 			}else if(!idReg.test($("#mem_id").val())){
 				$("#mem_id").focus();
 				return;				
-			}else if(!pwdReg.test($("#mem_pwd").val())){
+ 			}else if(!pwdReg.test($("#mem_pwd").val())){
 				$("#mem_pwd").focus();
-				return;
+				return; 
 			}else if(($("#mem_pwd").val())!=($("#mem_pwd1").val())){
 				$("#mem_pwd1").focus();
 				return;
@@ -86,6 +87,23 @@
 			}else if(!mail2Reg.test($("#mail2").val())){
 				$("#mail2").focus();
 				return;
+			}else if(mailcheck!="ok"){
+				$.ajax({
+					url : "/member/mailcheck.do",
+				    type : "post",
+				    data : $("#join_form").serialize(),
+				    error : function(){
+						alert("실패");
+				    },
+				    success : function(resultData){			     
+					    if(resultData==1){
+							alert("이미 사용중인 메일입니다");
+					      	mailcheck = "no";
+					    }else if(resultData==0){					      	
+					      	mailcheck = "ok";			      	
+						}
+					}
+				});				
 			}
 			else{				
 				$("#join_form").attr({
@@ -110,19 +128,18 @@
 			    error : function(){
 					alert("실패");
 			    },
-			    success : function(resultData){
-			     
-			    if(resultData==1){
-					$("#id_msg").text(" 사용중 입니다.").css("color","red");
-			      	$("#mem_id").select();
-			      	idcheck = "no";
-			    }else if(resultData==0&&idReg.test($("#mem_id").val())){
-			      	$("#id_msg").text(" 사용가능 합니다.").css("color","blue");
-			      	idcheck = "ok";			      	
-				}else if(!idReg.test($("#mem_id").val())){
-					$("#id_msg").text(" 사용불가능 합니다.").css("color","red");
-					idcheck = "no";
-				}     
+			    success : function(resultData){			     
+				    if(resultData==1){
+						$("#id_msg").text(" 사용중 입니다.").css("color","red");
+				      	$("#mem_id").select();
+				      	idcheck = "no";
+				    }else if(resultData==0&&idReg.test($("#mem_id").val())){
+				      	$("#id_msg").text(" 사용가능 합니다.").css("color","blue");
+				      	idcheck = "ok";			      	
+					}else if(!idReg.test($("#mem_id").val())){
+						$("#id_msg").text(" 사용불가능 합니다.").css("color","red");
+						idcheck = "no";
+					}     
 				}
 			});
 		}); 
@@ -170,7 +187,7 @@
 								
 			}
 		});		
-		$("#mem_pwd").keyup(function(){			
+		$("#mem_pwd").keyup(function(){				
 			if(!pwdReg.test($("#mem_pwd").val())){
 				$("#form-group2").removeClass("has-success has-feedback");
 				$("#form-group2").addClass("has-error has-feedback");
@@ -437,13 +454,13 @@
 				</div>
 				<div>
 					<div class="form-group" id="form-group6">						
-						<input type="text" class="form-control postcodify_jibeon_address" aria-describedby="inputSuccess5Status" id="mem_address1" name="mem_address1" maxlength="100" style="width: 300px; background: white" readonly="readonly">
+						<input type="text" class="form-control postcodify_jibeon_address" aria-describedby="inputSuccess5Status" id="mem_address1" name="mem_address1" maxlength="100" style="width: 300px; margin-top: 10px; background: white" readonly="readonly">
 						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c6"></span>																			
 					</div>									
 				</div>	
 				<div>
 					<div class="form-group" id="form-group7">						
-						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="mem_address2" name="mem_address2" maxlength="100" style="width: 300px">
+						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="mem_address2" name="mem_address2" maxlength="100" style="width: 300px; margin-top: 10px">
 						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c7"></span>																			
 					</div>									
 				</div>	

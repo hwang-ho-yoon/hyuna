@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(function(){
-		if($("#rm").is(":checked")){				
+/* 		if($("#rm").is(":checked")){				
 			$("#teltxt").hide();				
 			$("#teltxt").hide();			
 		}
@@ -24,26 +24,26 @@
 			$("#mailtxt").hide();
 			$("#teltxt").show();				
 			$("#teltxt").show();
-		});
+		}); */
 		
 		$("#okBtn").click(function(){
-			$.ajax({
+ 			$.ajax({
 				url : "/member/findidOk.do",
 			    type : "post",
 			    data : $("#findid_form").serialize(),
 			    error : function(){
 					alert("실패");
 			    },
-			    success : function(resultData){			     
-				    if(resultData=='success'){
-				    	$("#id").text(" 회원님의 아이디는 <c:out value='${member.mem_id}'/> 입니다.").css("color","red");			      	
-				    	alert("${member.mem_id}");
-				    	console.log("${member.mem_id}");
-				    }else{
-				      	alert("없음");			      
-					}    
+			    success : function(resultData){				    	
+				    if(resultData=='Failed'){
+				    	alert("존재하지않는 정보입니다 확인후 다시 시도하세요.");				    					    	
+				    }else if(resultData!=null){
+				    	alert("회원님의 아이디는 "+resultData+" 입니다.");
+				    	location.href = "/member/loginform.do";
+					}     
 				}
 			});
+
 		});
 	});
 </script>
@@ -57,7 +57,7 @@ body{
 .vertical-offset-100{
     padding-top:50px;
 }
-.telc{width: 100px}
+.telc{width: 100px; height: 35px}
 </style>
 </head>
 <body>
@@ -71,16 +71,19 @@ body{
 			  	<div class="panel-body">
 			    	<form accept-charset="UTF-8" role="form" id="findid_form">
                     <fieldset>
-                    	<div class="form-group">                    	
+                    	<!-- <div class="form-group">                    	
 			    		    <input name="mem_radio" id="rm" type="radio" value="mail" checked="checked">&nbsp;이메일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			    		    <input name="mem_radio" id="rp" type="radio" value="ph">&nbsp;휴대폰			    		
 			    		</div>
-			    		<hr>
+			    		<hr> -->
 			    	  	<div class="form-group">
 			    		    <input class="form-control" placeholder="이름" name="mem_name" id="mem_name" type="text">
 			    		</div>
 			    		<div class="form-group" id="mailtxt">
 			    			<input class="form-control" placeholder="이메일 주소" name="mem_mail" id="mem_mail" type="email" >
+			    		</div>
+			    		<div class="form-group" style="margin-bottom: 0px">
+			    		휴대폰 번호
 			    		</div>			    		
 			    		<div class="form-group" id="teltxt">
 			    			<input class="telc" name="tel1" type="text" maxlength="3">&nbsp;-

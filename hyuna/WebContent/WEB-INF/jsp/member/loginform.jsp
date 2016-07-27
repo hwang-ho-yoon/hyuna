@@ -21,7 +21,7 @@
 				    if(resultData=="success"){
 				    	location.href = "/index.jsp";
 				    }else{
-				    	alert("없음");	
+				    	alert("아이디 또는 비밀번호가 일치하지 않습니다.");	
 				    	return;				      				      	
 					}
 				}
@@ -38,7 +38,8 @@
 			location.href = "/member/findid.do";
 		});
 		
-		$("#pwdBtn").click(function(){
+		//비밀번호찾기 버튼클릭
+		$("#pwBtn").click(function(){			
 			location.href = "/member/findpw.do";
 		});
 	});
@@ -83,7 +84,7 @@ body{
 			    		<hr>
 			    		<button type="button" class="btn btn-default" id="memberBtn">회원가입</button>
 			    		<button type="button" class="btn btn-default" id="idBtn">아이디찾기</button>
-			    		<button type="button" class="btn btn-default" id="pwdBtn">비밀번호찾기</button>			    					    		
+			    		<button type="button" class="btn btn-default" id="pwBtn">비밀번호찾기</button>			    					    		
 			    		</div>	
 			    	</fieldset>
 			      	</form>
