@@ -5,41 +5,60 @@
 	$(function() {
 		$("#postcodify_search_button").postcodifyPopUp();
 		$("#pay_btn").click(function() {
-			if (!chkOrder($("#ogr_reciName"), "성명을")) {
+			if (!chkOrder($("#reciName"), "성명을")) {
 				return;
-			} else if(!chkOrder($("#ogr_reciTel"), "연락처를")) {
+			} else if(!chkOrder($("#reciTel"), "연락처를")) {
 				return;
-			} else if(!chkOrder($("#ogr_reciZipCode"), "우편번호를")) {
+			} else if(!chkOrder($("#reciZipCode"), "우편번호를")) {
 				return;
-			} else if(!chkOrder($("#ogr_reciAddr1"), "기본주소를")) {
+			} else if(!chkOrder($("#reciAddr1"), "기본주소를")) {
 				return;
-			} else if(!chkOrder($("#ogr_reciAddr2"), "상세주소를")) {
+			} else if(!chkOrder($("#reciAddr2"), "상세주소를")) {
 				return;
-			} else if(!chkOrder($("#ogr_message"), "배송메시지를")) {
+			} else if(!chkOrder($("#message"), "배송메시지를")) {
 				return;
 			} else {
 				if($("#paySelect").val() == "mutongjang") {
-					if (!chkOrder($("#ogr_accHold"), "입금자명을")) {
+					if (!chkOrder($("#accHold"), "입금자명을")) {
 						return;
-					} else if (!chkOrder($("#ogr_accHoldNo"), "입금자 계좌번호를")) {
+					} else if (!chkOrder($("#accHoldNo"), "입금자 계좌번호를")) {
 						return;
 					}
 				} else if($("#paySelect").val() == "card") {
-					if (!chkOrder($("#ogr_cardNo"), "카드번호를")) {
+					if (!chkOrder($("#cardNo"), "카드번호를")) {
 						return;
 					}
 				} else {
 					
-				    $("#ord_frm").each( function (index) {
-				        $(this).find("input[name=prd_d_no]").attr("name", "targets[" + index + "].targetId");
-				        $(this).find("input[name=ord_amount]").attr("name", "targets[" + index + "].targetName");
+					$("#ogr_reciName").val($("#reciName").val());
+					$("#ogr_reciTel").val($("#reciTel").val());
+					$("#ogr_reciZipCode").val($("#reciZipCode").val());
+					$("#ogr_reciAddr1").val($("#reciAddr1").val());
+					$("#ogr_reciAddr2").val($("#reciAddr2").val());
+					$("#ogr_payPlan").val($("#payPlan").val());
+					$("#ogr_accHold").val($("#accHold").val());
+					$("#ogr_accHoldNo").val($("#accHoldNo").val());
+					$("#ogr_approvalNo").val($("#approvalNo").val());
+					$("#mem_no").val("${sessionScope.hyunaMember}");
+				   
+					$("#productTable tr").each(function () {
+						var index = $(this).index();
+						if (index != 0) {
+					        $(this).find("input[name=prd_d_no]").attr("name", "OrderProductVO[" + (index-1) + "].prd_d_no");
+					        $(this).find("input[name=ord_amount]").attr("name", "OrderProductVO[" + (index-1) + "].ord_amount");
+						}
 				    });
+				    
+				    $("#ord_frm").attr({
+				    	"method" : "post",
+				    	"action" : "/order/orderInsert.do"
+				    });
+				    $("#ord_frm").submit();
 				}
 			}
 		});
 		$(".beasong").click(function() {
 			if ($(this).val() == "sameMember") {
-				
 			} else if ($(this).val() == "newBeasong") {
 				$("#ogr_reciName").val("");
 				$("#ogr_reciTel").val("");
@@ -59,11 +78,11 @@
 					data += "</tr>"
 					data += "<tr>"
 					data +=	"<td>입금자명 : </td>"
-					data += "<td><input type='text' class='form-control input-sm' id='ogr_accHold' name='ogr_accHold'></td>"
+					data += "<td><input type='text' class='form-control input-sm' id='accHold' name='accHold'></td>"
 					data += "</tr>"
 					data += "<tr>"
 					data +=	"<td>입금자 계좌번호 : </td>"
-					data += "<td><input type='text' class='form-control input-sm' id='ogr_accHoldNo' name='ogr_accHoldNo'></td>"
+					data += "<td><input type='text' class='form-control input-sm' id='accHoldNo' name='accHoldNo'></td>"
 					data += "</tr>"
 					data += "</table>"
 				$("#payManager").html(data);
@@ -99,12 +118,22 @@
 	}
 </script>
 	<div id="wrapper">
-		<form id="ord_frm">
 		<div class="col-md-12" style="padding: 0"> 
 			<h3>상품정보</h3> 
 			<hr></hr>
 		</div>
-		<table class="table table-hover table-bordered">
+		 <form id="ord_frm" name="ord_frm">
+         	<input type="hidden" id="mem_no;" name="mem_no;">
+         	<input type="hidden" id="ogr_reciName" name="ogr_reciName">
+         	<input type="hidden" id="ogr_reciTel" name="ogr_reciTel">
+         	<input type="hidden" id="ogr_reciZipCode" name="ogr_reciZipCode">
+         	<input type="hidden" id="ogr_reciAddr1" name="ogr_reciAddr1">
+         	<input type="hidden" id="ogr_reciAddr2" name="ogr_reciAddr2">
+         	<input type="hidden" id="ogr_message" name="ogr_message">
+         	<input type="hidden" id="org_payPlan" name="org_payPlan">
+         	<input type="hidden" id="ogr_accHold" name="ogr_accHold">
+         	<input type="hidden" id="ogr_accHoldNo" name="ogr_accHoldNo">
+		<table class="table table-hover table-bordered" id="productTable">
 			<tr>
 				<td>이미지</td>
 				<td>상품명</td>
@@ -127,6 +156,7 @@
 				<td>70000원</td>
 			</tr>
 		</table>
+		
 		<div class="col-md-offset-8" align="right">
 			<table class="table table-hover table-bordered">
 				<tr>
@@ -135,6 +165,7 @@
 				</tr>
 			</table>
 		</div>
+		</form>
 		
 		<div class="col-md-5" style="padding: 0">
 			<font size="5px">배송지 정보</font>
@@ -155,23 +186,23 @@
 		<table class="table table-hover table-bordered">
 			<tr>
 				<td style="padding-top: 12px">성명</td>
-				<td><input type="text" class="form-control input-sm" id="ogr_reciName" name="ogr_reciName"></td>
+				<td><input type="text" class="form-control input-sm" id="reciName" name="reciName"></td>
 				<td style="padding-top: 12px">연락처</td>
-				<td><input type="text" class="form-control input-sm" id="ogr_reciTel" name="ogr_reciTel"></td>
+				<td><input type="text" class="form-control input-sm" id="reciTel" name="reciTel"></td>
 			</tr>
 			<tr>
 				<td style="padding-top: 12px">우편번호</td>
-				<td><div class="form-inline"> <input type="text" class="form-control input-sm postcodify_postcode5" readonly="readonly" style="background: white;" id="ogr_reciZipCode" name="ogr_reciZipCode"><button id="postcodify_search_button" class="btn btn-default btn-sm" style="margin: 0">검색</button></div></td>
+				<td><div class="form-inline"> <input type="text" class="form-control input-sm postcodify_postcode5" readonly="readonly" style="background: white;" id="reciZipCode" name="reciZipCode"><button id="postcodify_search_button" class="btn btn-default btn-sm" style="margin: 0">검색</button></div></td>
 				<td style="padding-top: 12px">기본주소</td>
-				<td><input type="text" class="form-control input-sm postcodify_jibeon_address" readonly="readonly" style="background: white;" id="ogr_reciAddr1" name="ogr_reciAddr1"></td>
+				<td><input type="text" class="form-control input-sm postcodify_jibeon_address" readonly="readonly" style="background: white;" id="reciAddr1" name="reciAddr1"></td>
 			</tr>
 			<tr>
 				<td style="padding-top: 12px">상세주소</td>
-				<td colspan="3"><input type="text" class="form-control input-sm postcodify_details" id="ogr_reciAddr2" name="ogr_reciAddr2"></td>
+				<td colspan="3"><input type="text" class="form-control input-sm postcodify_details" id="reciAddr2" name="reciAddr2"></td>
 			</tr>
 			<tr>
 				<td style="padding-top: 12px">메시지</td>
-				<td colspan="3"><input type="text" class="form-control input-sm" id="ogr_message" name="ogr_message"></td>
+				<td colspan="3"><input type="text" class="form-control input-sm" id="message" name="message"></td>
 			</tr>
 		</table>
 		
@@ -187,8 +218,8 @@
 			<tr>
 				<td>결제방식</td>
 				<td>
-					<select id="paySelect" class="form-control">
-						<option value="mutongjang">무통장</option>
+					<select id="payPlan" class="form-control">
+						<option value="mutongjang" selected="selected">무통장</option>
 						<option value="card">카드결제</option>
 					</select> 
 				</td>
@@ -204,11 +235,11 @@
 							</tr>
 							<tr>
 								<td>입금자명 : </td>
-								<td><input type='text' class='form-control input-sm' id="ogr_accHold" name="ogr_accHold"></td>
+								<td><input type='text' class='form-control input-sm' id="accHold" name="accHold"></td>
 							</tr>
 							<tr>
 								<td>입금자 계좌번호 : </td>
-								<td><input type='text' class='form-control input-sm' id="ogr_accHoldNo" name="ogr_accHoldNo"></td>
+								<td><input type='text' class='form-control input-sm' id="accHoldNo" name="accHoldNo"></td>
 							</tr>
 						</table>
 					</span>
@@ -237,5 +268,4 @@
 	         	</div>
          	</div>
          </div>
-         </form>
 	</div>
