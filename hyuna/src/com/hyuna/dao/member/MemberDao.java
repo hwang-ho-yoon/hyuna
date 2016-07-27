@@ -26,4 +26,12 @@ public interface MemberDao {
 
 	public MemberVO throwMember(int mem_no);
 
+	public int mailcheck(MemberVO mvo);
+
+	public int pwdCheck(MemberVO mvo);
+
+	public void memberUpdate(MemberVO mvo);
+
+	public int memberOut(MemberVO mvo);
+
 }

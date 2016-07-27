@@ -26,11 +26,8 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	@Override
-	public List<TermsVO> termsList() {
-		System.out.println();
-		/*return*/ List<TermsVO> a = session.selectList("termsList");
-		System.out.println(a);
-		return a;
+	public List<TermsVO> termsList() {		
+		return session.selectList("termsList");	
 	}
 
 	@Override
@@ -61,6 +58,27 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public MemberVO throwMember(int mem_no) {		
 		return session.selectOne("throwMember");
+	}
+
+	@Override
+	public int mailcheck(MemberVO mvo) {		
+		return session.selectOne("mailcheck");
+	}
+
+	@Override
+	public int pwdCheck(MemberVO mvo) {		
+		return session.selectOne("pwdCheck");
+	}
+
+	@Override
+	public void memberUpdate(MemberVO mvo) {
+		session.update("memberUpdate");
+		
+	}
+
+	@Override
+	public int memberOut(MemberVO mvo) {		
+		return session.update("memberOut");
 	}
 
 }

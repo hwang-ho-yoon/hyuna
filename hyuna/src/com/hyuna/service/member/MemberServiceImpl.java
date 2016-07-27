@@ -71,4 +71,25 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.throwMember(mem_no);
 	}
 
+	@Override
+	public int mailcheck(MemberVO mvo) {		
+		return memberDao.mailcheck(mvo);
+	}
+
+	@Override
+	public int pwdCheck(MemberVO mvo) {		
+		return memberDao.pwdCheck(mvo);
+	}
+
+	@Override
+	public void memberUpdate(MemberVO mvo) {
+		memberDao.memberUpdate(mvo);
+		
+	}
+
+	@Override
+	public int memberOut(MemberVO mvo) {		
+		return memberDao.memberOut(mvo);
+	}
+
 }

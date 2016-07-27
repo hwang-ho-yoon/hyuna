@@ -24,7 +24,7 @@
 	<!-- 아이디 찾기 -->
 	<select id="findidOk" resultType="member" parameterType="member">
 		/* findidOk */		
-		select mem_id from member where mem_name = #{mem_name} and mem_mail = #{mem_mail} 
+		select mem_id from member where mem_name = #{mem_name} and mem_mail = #{mem_mail} and mem_tel = #{mem_tel} 
 	</select>
 	
 	<!-- 약관동의를위해 회원조회 -->
@@ -42,13 +42,14 @@
 	<!-- 로그인 아이디비밀번호 체크 -->
 	<select id="loginCheck" parameterType="member" resultType="member">
 		/* loginCheck */
-		select mem_no, mem_id, mem_pwd from member where  mem_id = #{mem_id} and mem_pwd = #{mem_pwd}
+		select mem_no, mem_id, mem_pwd from member where  mem_id = #{mem_id} and mem_pwd = #{mem_pwd} and mem_outcheck != '탈퇴'
 	</select>
 	
 	<!-- 비밀번호 찾기  -->
 	<update id="memberPw" parameterType="member">
 		/* findpwOk */
-		update member set mem_pwd = #{mem_pwd} where mem_id = #{mem_id} and mem_name = #{mem_name} and mem_mail = #{mem_mail}
+		update member set mem_pwd = #{mem_pwd} where mem_id = #{mem_id} and mem_name = #{mem_name} and mem_mail = #{mem_mail},
+		and mem_ask = #{mem_ask} and mem_answer = #{mem_anser}
 	</update>
 	
 	<!-- 쓰로잉조회 -->
@@ -56,4 +57,25 @@
 		/* throwMember */
 		select * from member where mem_no = #{mem_no}
 	</select>
+	
+	<!-- 비밀번호체크 -->
+	<select id="pwdCheck" resultType="int" parameterType="member">
+		/* pwdCheck */
+		select nvl((select 1 from member where mem_pwd = #{mem_pwd} and mem_no = #{mem_no}),0) as state from dual
+	</select>
+	
+	<!-- 회원정보수정 -->
+	<update id="memberUpdate" parameterType="member">
+		/* memberUpdate */
+		update member set mem_ask = #{mem_ask}, mem_answer = #{mem_answer}, mem_post = #{mem_post}, mem_address1 = #{mem_address1}, 
+		mem_address2 = #{mem_address2}, mem_tel = #{mem_tel}, mem_mail = #{mem_mail}, mem_mailCheck = #{mem_mailCheck}
+		<if test="mem_pwd !=null and mem_pwd !=''">,mem_pwd = #{mem_pwd} </if>
+		where mem_no = #{mem_no}		
+	</update>
+	
+	<!-- 회원탈퇴 -->
+	<update id="memberOut" parameterType="member">
+		/* memberOut */
+		update member set mem_outcheck = '탈퇴', mem_outdate = sysdate where mem_no = #{mem_no}
+	</update>
 </mapper>

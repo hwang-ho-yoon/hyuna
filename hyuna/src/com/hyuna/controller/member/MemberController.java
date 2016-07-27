@@ -54,10 +54,9 @@ public class MemberController {
 			@RequestParam("ter_no0") int ter_no0, @RequestParam("ter_no1") int ter_no1, @ModelAttribute Terms_agreeVO tv,
 			@RequestParam("agr_agreeCheck") String agr_agreeCheck, @RequestParam("agr_agreeCheck2") String agr_agreeCheck2){		
 		logger.info("인서트 호출");
-		mvo.setMem_tel(tel+tel1+tel2);
+		mvo.setMem_tel(tel+"-"+tel1+"-"+tel2);
 		mvo.setMem_mail(mail1+"@"+mail2);
-		logger.info(tel+tel1+tel2);
-		logger.info(mail1+"@"+mail2);
+
 		
 		int result = 0;
 		String url = "";
@@ -107,7 +106,7 @@ public class MemberController {
 	//로그인 체크
 	@RequestMapping("/loginCheck")
 	@ResponseBody
-	public String loginCheck(@ModelAttribute MemberVO mvo, Model model, HttpSession session){
+	public String loginCheck(@ModelAttribute MemberVO mvo, HttpSession session){
 		logger.info("로그인체크 호출");
 		
 		String str = "";
@@ -115,8 +114,9 @@ public class MemberController {
 		if(vo!=null){
 			str = "success";
 			session.setAttribute("hyunaMember", vo.getMem_no());
-		}		
-		model.addAttribute("mvo", vo);
+			session.setAttribute("hyunaname", vo.getMem_id());
+		}	
+		
 		return str;
 	}
 	
@@ -130,29 +130,19 @@ public class MemberController {
 	//아이디찾기 로직
 	@RequestMapping("/findidOk")
 	@ResponseBody
-	public String findidOk(@ModelAttribute MemberVO mvo, Model model){
+	public String findidOk(@ModelAttribute MemberVO mvo, @RequestParam("tel1") String tel1, @RequestParam("tel2") String tel2, @RequestParam("tel3") String tel3){
 		logger.info("아이디찾기 로직 호출");
 		
-		String str = "";		
-		MemberVO vo = memberService.findidOk(mvo);
-		if(vo!=null&&(!vo.equals(""))){
-			str = "success";
-		}
-		model.addAttribute("member", vo);
-		System.out.println("이름"+vo.getMem_name());
-		System.out.println("노"+vo.getMem_no());
+		String str = "";
+		mvo.setMem_tel(tel1+"-"+tel2+"-"+tel3);
+		MemberVO vo = memberService.findidOk(mvo); 
+		
+		if(vo!=null){
+			str = vo.getMem_id();
+		}else if(vo==null){
+			str = "Failed";
+		}		
 		return str;
-	}
-	
-	//아이디찾기 로직
-	@ResponseBody
-	@RequestMapping("/memberFindid")
-	public String memberFindid(@ModelAttribute MemberVO mvo, @RequestParam("tel1") String tel1,
-			@RequestParam("tel2") String tel2, @RequestParam("tel3") String tel3) {
-		logger.info("아이디찾기 로직 호출");
-		
-		//memberService.memberFindId(mvo, tel1, tel2 ,tel3);
-		return "member/findid";
 	}
 	
 	//비밀번호찾기
@@ -186,5 +176,67 @@ public class MemberController {
 		
 	}
 	
+/*	//이메일중복체크
+	@RequestMapping("/mailcheck")
+	@ResponseBody
+	public String mailcheck(@ModelAttribute MemberVO mvo){
+		logger.info("메일체크 호출");
+		
+		int result = 0 ;
+		result = memberService.mailcheck(mvo);
+	}*/
+	
+	//마이메뉴 클릭시
+	@RequestMapping("/membermenu")
+	public String membermenu(Model model, HttpSession session){
+		logger.info("나의정보 호출");
+		
+		MemberVO mvo = memberService.throwMember((int)session.getAttribute("hyunaMember"));		
+		model.addAttribute("detail", mvo);
+		
+		return "member/membermenu";		
+	}
+	
+	//비밀번호 체크
+	@RequestMapping("/pwdCheck")
+	@ResponseBody
+	public String pwdCheck(@ModelAttribute MemberVO mvo){
+		logger.info("비밀번호체크 호출");
+		
+		int result = 0;		
+		result = memberService.pwdCheck(mvo);
+		
+		return result+"";
+
+	}
+	
+	//회원 정보수정
+	@RequestMapping("/memberUpdate")
+	public String memberUpdate(@ModelAttribute MemberVO mvo, @RequestParam("tel") String tel, @RequestParam("tel1") String tel1,
+			@RequestParam("tel2") String tel2, @RequestParam("mail1") String mail1, @RequestParam("mail2") String mail2){
+		logger.info("업데이트 호출");
+		mvo.setMem_tel(tel+tel1+tel2);
+		mvo.setMem_mail(mail1+"@"+mail2);
+		memberService.memberUpdate(mvo);
+		return "redirect:"+"/member/membermenu.do";
+	}
+	
+	//회원탈퇴
+	@RequestMapping("/memberOut")
+	@ResponseBody
+	public String memberOut(@ModelAttribute MemberVO mvo){
+		logger.info("탈퇴 호출");
+		
+		int result = 0;
+		result = memberService.memberOut(mvo);
+		return result+"";
+	}
+	
+	//로그아웃
+	@RequestMapping("/logout")
+	public String logout(HttpSession session){			
+		session.removeAttribute("hyunaMember");
+		return "member/loginform";
+	}
 }
 

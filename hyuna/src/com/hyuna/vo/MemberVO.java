@@ -57,6 +57,7 @@ public class MemberVO {
 	public void setMem_post(String mem_post) {
 		this.mem_post = mem_post;
 	}
+	
 	public String getMem_address1() {
 		return mem_address1;
 	}
@@ -87,5 +88,5 @@ public class MemberVO {
 	public void setMem_mailCheck(String mem_mailCheck) {
 		this.mem_mailCheck = mem_mailCheck;
 	}
-
+	
 }
