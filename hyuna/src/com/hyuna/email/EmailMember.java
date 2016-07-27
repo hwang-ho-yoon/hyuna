@@ -69,7 +69,7 @@ public void setSendEmail(MemberVO mvo){
 			//제목설정
 			simpleEmail.setSubject("임시비밀번호 발송");
 			//본문설정
-			simpleEmail.setMsg(getRandomPassword(10));
+			simpleEmail.setMsg(mvo.getMem_pwd());
 			rt = simpleEmail.send();
 			resultMsg = "success";
 			

@@ -66,4 +66,9 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.memberPw(mvo);
 	}
 
+	@Override
+	public MemberVO throwMember(int mem_no) {		
+		return memberDao.throwMember(mem_no);
+	}
+
 }

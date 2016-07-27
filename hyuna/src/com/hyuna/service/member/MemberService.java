@@ -23,5 +23,7 @@ public interface MemberService {
 	public MemberVO loginCheck(MemberVO mvo);
 
 	public int memberPw(MemberVO mvo);
+	
+	public MemberVO throwMember(int mem_no);
 
 }

@@ -2,6 +2,8 @@ package com.hyuna.controller.member;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,7 +35,7 @@ public class MemberController {
 		return "member/loginform";
 	}
 	
-	//회원가입
+	//회원가입 약관내용출력
 	@RequestMapping("/memberjoin")
 	public String memberjoin(Model model) {		
 		logger.info("회원가입 호출");
@@ -105,14 +107,14 @@ public class MemberController {
 	//로그인 체크
 	@RequestMapping("/loginCheck")
 	@ResponseBody
-	public String loginCheck(@ModelAttribute MemberVO mvo, Model model){
+	public String loginCheck(@ModelAttribute MemberVO mvo, Model model, HttpSession session){
 		logger.info("로그인체크 호출");
 		
 		String str = "";
 		MemberVO vo = memberService.loginCheck(mvo);
-		if(vo!=null&&(!vo.equals(""))){
+		if(vo!=null){
 			str = "success";
-			
+			session.setAttribute("hyunaMember", vo.getMem_no());
 		}		
 		model.addAttribute("mvo", vo);
 		return str;
@@ -120,7 +122,7 @@ public class MemberController {
 	
 	//아이디찾기
 	@RequestMapping("/findid")
-	public String findid() {
+	public String findid(HttpSession session) {
 		logger.info("아이디찾기 호출");
 		return "member/findid";
 	}
@@ -168,16 +170,19 @@ public class MemberController {
 		mvo.setMem_pwd(em.getRandomPassword(10));
 				
 		int result = 0;
+		String url = "";
 		result = memberService.memberPw(mvo);
 		if(result==1){
 			em.setPwdEmail(mvo);
+			url = "/member/loginform.do";
 		}
-		System.out.println(em.getRandomPassword(10));
+		
+		//System.out.println(em.getRandomPassword(10));
 		System.out.println(mvo.getMem_mail());
 		System.out.println(mvo.getMem_name());
 		System.out.println(mvo.getMem_id());
 		
-		return "member/loginform";
+		return "redirect:"+url;
 		
 	}
 	

@@ -48,6 +48,12 @@
 	<!-- 비밀번호 찾기  -->
 	<update id="memberPw" parameterType="member">
 		/* findpwOk */
-		update member set mem_pwd = #{mem_pwd} where mem_id = #{mem_id} and mem_name #{mem_name} and #{mem_mail}
+		update member set mem_pwd = #{mem_pwd} where mem_id = #{mem_id} and mem_name = #{mem_name} and mem_mail = #{mem_mail}
 	</update>
+	
+	<!-- 쓰로잉조회 -->
+	<select id="throwMember" resultType="member" parameterType="int">
+		/* throwMember */
+		select * from member where mem_no = #{mem_no}
+	</select>
 </mapper>

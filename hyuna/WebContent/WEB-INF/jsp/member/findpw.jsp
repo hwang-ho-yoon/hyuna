@@ -31,9 +31,10 @@
 				"method":"post",
 				"action":"/member/memberPw.do"
 			});
-			$("#findpw_form").submit();
 			alert("비밀번호가 이메일로 발송되었습니다");
-			location.href = "/index.jsp";
+			$("#findpw_form").submit();
+			
+			
 		});
 
 /*  		var pattern1 = /[0-9]/;

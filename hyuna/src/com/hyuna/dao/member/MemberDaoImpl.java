@@ -58,4 +58,9 @@ public class MemberDaoImpl implements MemberDao{
 		return session.update("memberPw");
 	}
 
+	@Override
+	public MemberVO throwMember(int mem_no) {		
+		return session.selectOne("throwMember");
+	}
+
 }

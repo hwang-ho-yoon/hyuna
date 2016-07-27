@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
     <div class="header-area">
         <div class="container">
             <div class="row">
@@ -9,10 +11,17 @@
                 <div class="col-md-5">
                     <div class="header-right">
                         <ul class="list-unstyled list-inline">
-                          <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
+                          <li><a href="#"><i class="fa fa-user"></i> 마이메뉴</a></li>
                             <li><a href="/cart/cart.do"><i class="fa fa-user"></i> My Cart</a></li>
-                            <li><a href="/member/loginform.do"><i class="fa fa-user"></i> Login</a></li>
-                            <li><a href="/member/memberjoin.do"><i class="fa fa-user"></i> Join</a></li>
+                            <c:choose>
+                            	<c:when test="${not empty sessionScope.hyunaMember }">
+                            		<li><a href=""><i class="fa fa-user"></i> 로그아웃</a></li>
+                            	</c:when>                            
+	                            <c:otherwise>
+	                            	<li><a href="/member/loginform.do"><i class="fa fa-user"></i> 로그인</a></li>
+	                            </c:otherwise>
+                            </c:choose>
+                            <li><a href="/member/memberjoin.do"><i class="fa fa-user"></i> 회원가입</a></li>
                         </ul>
                     </div>
                 </div>

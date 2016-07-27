@@ -24,4 +24,6 @@ public interface MemberDao {
 
 	public int memberPw(MemberVO mvo);
 
+	public MemberVO throwMember(int mem_no);
+
 }
