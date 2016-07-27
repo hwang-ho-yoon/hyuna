@@ -1,5 +1,7 @@
 package com.hyuna.service.order;
 
-public interface OrderService {
+import com.hyuna.vo.OrderGroupVO;
 
+public interface OrderService {
+	public int orderGroupInsert(OrderGroupVO orderGroupVO);
 }
