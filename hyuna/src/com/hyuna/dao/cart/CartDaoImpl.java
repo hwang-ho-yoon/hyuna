@@ -18,8 +18,14 @@ public class CartDaoImpl implements CartDao {
 		return session.selectList("cartList");
 	}
 
+	// 장바구니 등록
 	@Override
 	public int cartInsert(CartVO cvo) {
 		return session.insert("cartInsert");
+	}
+
+	@Override
+	public int cartDelete(CartVO cvo) {
+		return session.delete("cartDelete");
 	}	
 }

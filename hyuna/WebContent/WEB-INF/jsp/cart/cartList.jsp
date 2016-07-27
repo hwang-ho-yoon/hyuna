@@ -5,9 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/hyuna/include/fonts/font-awesome.min.css">
+<link rel="stylesheet" href="/hyuna/include/fonts/fontawesome-webfont.eot">
 <link rel="stylesheet" href="/hyuna/include/fonts/fontawesome-webfont.woff">
 <link rel="stylesheet" href="/hyuna/include/fonts/fontawesome-webfont.ttf">
+<link rel="stylesheet" href="/hyuna/include/fonts/fontawesome-webfont.svg">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>My Cart</title>
 </head>
@@ -29,9 +30,36 @@
 					$("input[name=check]").prop("checked", false);
 			}
 		});
+		
+		// 담기버튼 클릭 시 이벤트 처리 */
 		$("#addCart").click(function() {
 			location.href="/cart/cartInsert.do";
 		});		
+		
+		/* 삭제버튼 클릭 시 이벤트 */
+		$("#allDelete").click(function() {
+			var cart_no = $(this).parents("li").attr("mem_no");
+			console.log("cart_no : " + cart_no);
+			
+			if(confirm('장바구니를 비우겠습니까?')) {
+				$.ajax({
+					type : 'delete',
+					url : '/cart/' + cart_no + ".do";
+					headers : {
+						"Content-Type":"application/json",
+						"X-HTTP-Method-Override":"DELETE"
+					},
+					dataType : 'text',
+					success : function(result) {
+						console.log("result : " + result);
+						if(result == 'SUCCESS') {
+							alert("비우기 완료");
+							listAll(cart_no);
+						}
+					}
+				});
+			}
+		});
 		
 	});
 </script>
@@ -69,14 +97,22 @@
                                    		<c:when test="${not empty cartList}">
                                    			<c:forEach var="cart" items="${cartList}" varStatus="status">
                                    				<tr class="cart_item">
-                                   					<td><input type="checkbox" id="check" name="check"></td>
+                                   					<%-- <td><input type="checkbox" id="check" name="check"></td>
+                                   					<td class="product-thumbnail"><span class="goDetail">${cart.img_1}</span></td>
+                                   					<td class="product-name"><span class="goDetail">${cart.prd_name}</span>
+                                   					<td class="product-name">${cart.model_brand} / ${cart.color_no}</td>
+                                   					<td class="product-quantity">${cart.cart_quantity}</td>
+                                   					<td class="product-price">${cart.prd_saleprice}</td>
+                                   					<td class="product-deliveryCharge"><span class="amount">￦2,500</span></td>
+                                           			<td class="product-subtotal">${cart.(prd_saleprice+2500)}</td> --%>
+                                           			<td><input type="checkbox" id="check" name="check"></td>
                                    					<td class="product-thumbnail"><span class="goDetail"></span></td>
                                    					<td class="product-name"><span class="goDetail"></span>
                                    					<td class="product-name"></td>
                                    					<td class="product-quantity">${cart.cart_quantity}</td>
                                    					<td class="product-price"></td>
                                    					<td class="product-deliveryCharge"><span class="amount">￦2,500</span></td>
-                                           			<td class="product-subtotal">11</td>
+                                           			<td class="product-subtotal">123</td>
                                    				</tr>
                                    			</c:forEach>
                                    		</c:when>

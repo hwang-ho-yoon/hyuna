@@ -68,9 +68,11 @@ public class CartController {
 	}
 	
 	// 삭제
-	/*@RequestMapping(value="/cartChkDelete.do")
-	public String cartChkDelete(@ModelAttribute CartVO cvo, HttpServletRequest request) throws IOException {
+	@RequestMapping(value="/cartChkDelete.do")
+	public String cartChkDelete(/*@ModelAttribute CartVO cvo, HttpServletRequest request*/) throws IOException {
 		logger.info("cartChkDelete 호출 성공");
+		
+		CartVO cvo = new CartVO();
 		
 		int result = 0;
 		String url = "";
@@ -81,5 +83,5 @@ public class CartController {
 			url = "/cart/cartList.do";
 		}
 		return "redirect : " + url;
-	}*/
+	}
 }
