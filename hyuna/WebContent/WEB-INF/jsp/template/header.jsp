@@ -12,7 +12,8 @@
                     <div class="header-right">
                         <ul class="list-unstyled list-inline">
                           <li><a href="#"><i class="fa fa-user"></i> 마이메뉴</a></li>
-                            <li><a href="/cart/cart.do"><i class="fa fa-user"></i> My Cart</a></li>
+                            <!-- <li><a href="/cart/cart.do"><i class="fa fa-user"></i> My Cart</a></li> -->
+                            <li><a href="/cart/cartList.do"><i class="fa fa-user"></i> My Cart</a></li>
                             <c:choose>
                             	<c:when test="${not empty sessionScope.hyunaMember }">
                             		<li><a href=""><i class="fa fa-user"></i> 로그아웃</a></li>
