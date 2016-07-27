@@ -16,6 +16,7 @@ a:focus { outline: 0px solid }
 img {
     max-width: 100%;
     height: auto;
+    
 }
 .fix { overflow: hidden }
 h1,
@@ -927,8 +928,9 @@ div.quantity input.plus, div.quantity input.minus {
     width: 25px;
 }
 td.product-quantity div.quantity {
-    float: none;
-    margin: 0;
+  	float: none;
+    /* width : 500px; */
+    margin: auto;
 }
 td.actions div.coupon {
     float: left;

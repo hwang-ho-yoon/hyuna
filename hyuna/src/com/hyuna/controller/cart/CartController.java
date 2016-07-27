@@ -25,10 +25,10 @@ public class CartController {
 	@Autowired
 	private CartService cartService;
 	
-	// 장바구니 리스트 화면
+	// 장바구니로 이동
 	@RequestMapping("/cart.do")
 	public String cart() {
-		//System.out.println("test");
+		logger.info("cart 호출성공");
 		return "cart/cart";
 	}
 	
@@ -38,26 +38,48 @@ public class CartController {
 		logger.info("cartList 호출 성공");
 		
 		List<CartVO> cartList = cartService.cartList(cvo);
+		
+		/*logger.info("cart : " + cartList.get(0).getPrd_name());*/
+		
 		model.addAttribute("cartList", cartList);
 		
-		return "board/cartList";
+		return "cart/cartList";
 	}
-	
-	
-	
-	/*// 장바구니 등록
-	@RequestMapping(value="/cartInsert", method=RequestMethod.POST)
-	public String cartInsert(@ModelAttribute CartVO cvo, HttpServletRequest request) throws IllegalStateException, IOException {
+		
+	// 장바구니 등록
+	@RequestMapping(value="/cartInsert", method=RequestMethod.GET)
+	public String cartInsert() throws IllegalStateException, IOException {
 		logger.info("cartInsert 호출 성공");
+		
+		CartVO cvo = new CartVO();
+		cvo.setCart_quantity(2);
+		cvo.setPrd_d_no(1);
+		cvo.setMem_no(1111);
 		
 		int result = 0;
 		String url = "";
 		
 		result = cartService.cartInsert(cvo);
 		if(result == 1) {
-			url = "/cart/cart.do";
+			url = "/cart/cartList.do";
 		}
+				
+		return "redirect:" + url;
+	}
+	
+	// 삭제
+	/*@RequestMapping(value="/cartChkDelete.do")
+	public String cartChkDelete(@ModelAttribute CartVO cvo, HttpServletRequest request) throws IOException {
+		logger.info("cartChkDelete 호출 성공");
 		
+		int result = 0;
+		String url = "";
+		
+		result = cartService.cartChkDelete(cvo);
+		
+		if(result == 1) {
+			url = "/cart/cartList.do";
+		}
 		return "redirect : " + url;
 	}*/
 }

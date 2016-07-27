@@ -2964,8 +2964,12 @@ select[multiple].form-group-lg .form-control {
     padding-top: 6px;
   }
 }
+
+#2 {
+	  display: inline;
+}
 .btn {
-  display: inline-block;
+   display: inline;
   padding: 6px 12px;
   margin-bottom: 0;
   font-size: 14px;
@@ -2984,7 +2988,7 @@ select[multiple].form-group-lg .form-control {
   background-image: none;
   border: 1px solid transparent;
   border-radius: 4px;
-}
+} */
 .btn:focus,
 .btn:active:focus,
 .btn.active:focus,
@@ -3019,6 +3023,7 @@ fieldset[disabled] .btn {
   opacity: .65;
 }
 .btn-default {
+  margin-top : -57px;
   color: #333;
   background-color: #fff;
   border-color: #ccc;
@@ -3716,6 +3721,7 @@ tbody.collapse.in {
   float: left;
   width: 100%;
   margin-bottom: 0;
+  margin-top : -57px;
 }
 .input-group-lg > .form-control,
 .input-group-lg > .input-group-addon,

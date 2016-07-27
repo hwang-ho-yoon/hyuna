@@ -82,7 +82,7 @@
 	
     
 	<!-- jQuery와 Postcodify를 로딩한다 -->
-<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+<script src="/include/js/search.js"></script>
 
 </head>
 <body>
