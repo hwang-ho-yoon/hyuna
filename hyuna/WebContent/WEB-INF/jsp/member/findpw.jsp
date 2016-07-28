@@ -7,34 +7,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-
- 	$(function(){ 		
-		if($("#rm").is(":checked")){				
-			$("#teltxt").hide();				
-			$("#teltxt").hide();			
-		}
-		$("#rm").click(function(){			
-			$("#teltxt").hide();				
-			$("#teltxt").hide();
-			$("#mailtxt").show();				
-			$("#mailtxt").show();
-		});
-		$("#rp").click(function(){			
-			$("#mailtxt").hide();				
-			$("#mailtxt").hide();
-			$("#teltxt").show();				
-			$("#teltxt").show();
-		});
-		
-		$("#okBtn").click(function(){
-			$("#findpw_form").attr({
-				"method":"post",
-				"action":"/member/memberPw.do"
-			});
-			alert("비밀번호가 이메일로 발송되었습니다");
-			$("#findpw_form").submit();
-			
-			
+ 	$(function(){ 	
+		$("#okBtn").click(function(){			
+			$.ajax({
+				url : "/member/memberPw.do",
+			    type : "post",
+			    data : $("#findpw_form").serialize(),
+			    error : function(){
+					alert("실패");
+			    },
+			    success : function(resultData){			     
+				    if(resultData==1){
+				    	alert("비밀번호가 이메일로 발송되었습니다");
+				    	location.href = "/member/loginform.do";
+				    }else{
+				    	alert("존재하지 않는 정보입니다.");	
+				    	return;				      				      	
+					}
+				}			
+			});							
 		});
 
 /*  		var pattern1 = /[0-9]/;
@@ -89,11 +80,6 @@ body{
 			  	<div class="panel-body">
 			    	<form accept-charset="UTF-8" role="form" id="findpw_form">
                     <fieldset>
-                    	<div class="form-group">                    	
-			    		    <input name="mem_radio" id="rm" type="radio" value="mail" checked="checked">&nbsp;이메일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			    		    <input name="mem_radio" id="rp" type="radio" value="ph">&nbsp;휴대폰			    		
-			    		</div>
-			    		<hr>
 			    	  	<div class="form-group">
 			    		    <input class="form-control" placeholder="아이디" name="mem_id" id="mem_id" type="text">
 			    		</div>
@@ -103,18 +89,7 @@ body{
 			    		<div class="form-group" id="mailtxt">
 			    			<input class="form-control" placeholder="이메일 주소" name="mem_mail" id="mem_mail" type="email" >
 			    		</div>			    		
-			    		<div class="form-group" style="margin-bottom: 0px">
-			    		휴대폰 번호
-			    		</div>			    		
-			    		<div class="form-group" id="teltxt">
-			    			<input class="telc" name="tel1" type="text" maxlength="3">&nbsp;-
-			    			<input class="telc" name="tel2" type="text" maxlength="4">&nbsp;-
-			    			<input class="telc" name="tel3" type="text" maxlength="4">
-			    		</div>
-			    		<div class="form-group">
-			    			
-			    		</div>
-			       		<div class="form-group">
+				       		<div class="form-group">
 					    	<select id="mem_ask" name="mem_ask" class="form-control">
 								<option value="나의 보물 23호는?">나의 보물 23호는?</option>
 								<option value="내가 2살때 살았던 곳은?">내가 2살때 살았던 곳은?</option>						

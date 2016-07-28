@@ -42,15 +42,21 @@
 	<!-- 로그인 아이디비밀번호 체크 -->
 	<select id="loginCheck" parameterType="member" resultType="member">
 		/* loginCheck */
-		select mem_no, mem_id, mem_pwd from member where  mem_id = #{mem_id} and mem_pwd = #{mem_pwd} and mem_outcheck != '탈퇴'
+		select mem_no, mem_id, mem_pwd from member where  mem_id = #{mem_id} and mem_pwd = #{mem_pwd} and mem_outcheck is null
 	</select>
 	
 	<!-- 비밀번호 찾기  -->
 	<update id="memberPw" parameterType="member">
 		/* findpwOk */
-		update member set mem_pwd = #{mem_pwd} where mem_id = #{mem_id} and mem_name = #{mem_name} and mem_mail = #{mem_mail},
-		and mem_ask = #{mem_ask} and mem_answer = #{mem_anser}
+		update member set mem_pwd = #{mem_pwd} where mem_id = #{mem_id} and mem_name = #{mem_name} and mem_mail = #{mem_mail} 
+		and mem_ask = #{mem_ask} and mem_answer = #{mem_answer}		
 	</update>
+	
+	<!-- 비밀번호찾기위해 메일조회 -->
+	<select id="selectEmail" parameterType="member" resultType="member">
+		/* selectEmail */
+		select mem_mail from member where mem_id = #{mem_id}
+	</select>
 	
 	<!-- 쓰로잉조회 -->
 	<select id="throwMember" resultType="member" parameterType="int">
@@ -68,8 +74,8 @@
 	<update id="memberUpdate" parameterType="member">
 		/* memberUpdate */
 		update member set mem_ask = #{mem_ask}, mem_answer = #{mem_answer}, mem_post = #{mem_post}, mem_address1 = #{mem_address1}, 
-		mem_address2 = #{mem_address2}, mem_tel = #{mem_tel}, mem_mail = #{mem_mail}, mem_mailCheck = #{mem_mailCheck}
-		<if test="mem_pwd !=null and mem_pwd !=''">,mem_pwd = #{mem_pwd} </if>
+		mem_address2 = #{mem_address2}, mem_tel = #{mem_tel}, mem_mail = #{mem_mail}, mem_mailCheck = #{mem_mailCheck} ,mem_updatedate = sysdate 
+		<if test="mem_pwd !=null and mem_pwd !=''">,mem_pwd = #{mem_pwd} </if> 
 		where mem_no = #{mem_no}		
 	</update>
 	

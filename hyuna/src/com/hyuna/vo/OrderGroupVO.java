@@ -1,23 +1,34 @@
 package com.hyuna.vo;
 
+import java.util.List;
+
 public class OrderGroupVO {
    private int ogr_no;         
    private String ogr_date;
-   private int ogr_price;
-   private int ogr_sahc;
    private String ogr_reciName;
    private String ogr_reciTel;
    private int ogr_reciZipCode;      
-   private String ogr_reciAddr1;
+   private String ogr_reciAddr1; 
    private String ogr_reciAddr2;
    private String ogr_payPlan;
    private String ogr_accHold;
+   private String ogr_message;
    private int ogr_accHoldNo;
    private int ogr_approvalNo;
    private int ogr_cardNo;
    private int ogr_invoice;
-   private String org_state;
+   private String ogr_state;
    private int mem_no;
+	
+   private List<OrderProductVO> OrderProductVO;
+
+	public List<OrderProductVO> getOrderProductVO() {
+		return OrderProductVO;
+	}
+
+	public void setOrderProductVO(List<OrderProductVO> orderProductVO) {
+		OrderProductVO = orderProductVO;
+	}
 	
 	public int getOgr_no() {
 		return ogr_no;
@@ -30,18 +41,6 @@ public class OrderGroupVO {
 	}
 	public void setOgr_date(String ogr_date) {
 		this.ogr_date = ogr_date;
-	}
-	public int getOgr_price() {
-		return ogr_price;
-	}
-	public void setOgr_price(int ogr_price) {
-		this.ogr_price = ogr_price;
-	}
-	public int getOgr_sahc() {
-		return ogr_sahc;
-	}
-	public void setOgr_sahc(int ogr_sahc) {
-		this.ogr_sahc = ogr_sahc;
 	}
 	public String getOgr_reciName() {
 		return ogr_reciName;
@@ -88,6 +87,12 @@ public class OrderGroupVO {
 	public int getOgr_accHoldNo() {
 		return ogr_accHoldNo;
 	}
+	public String getOgr_message() {
+		return ogr_message;
+	}
+	public void setOgr_message(String ogr_message) {
+		this.ogr_message = ogr_message;
+	}
 	public void setOgr_accHoldNo(int ogr_accHoldNo) {
 		this.ogr_accHoldNo = ogr_accHoldNo;
 	}
@@ -97,8 +102,8 @@ public class OrderGroupVO {
 	public void setOgr_approvalNo(int ogr_approvalNo) {
 		this.ogr_approvalNo = ogr_approvalNo;
 	}
-	public String getOrg_state() {
-		return org_state;
+	public String getOgr_state() {
+		return ogr_state;
 	}
 	public int getOgr_cardNo() {
 		return ogr_cardNo;
@@ -112,8 +117,8 @@ public class OrderGroupVO {
 	public void setOgr_invoice(int ogr_invoice) {
 		this.ogr_invoice = ogr_invoice;
 	}
-	public void setOrg_state(String org_state) {
-		this.org_state = org_state;
+	public void setOgr_state(String ogr_state) {
+		this.ogr_state = ogr_state;
 	}
 	public int getMem_no() {
 		return mem_no;

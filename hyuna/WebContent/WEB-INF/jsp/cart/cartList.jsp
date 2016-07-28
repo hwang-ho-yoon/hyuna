@@ -44,7 +44,7 @@
 			if(confirm('장바구니를 비우겠습니까?')) {
 				$.ajax({
 					type : 'delete',
-					url : '/cart/' + cart_no + ".do";
+					url : '/cart/' + cart_no + ".do",
 					headers : {
 						"Content-Type":"application/json",
 						"X-HTTP-Method-Override":"DELETE"
@@ -59,19 +59,13 @@
 					}
 				});
 			}
-		});
-		
+		});		
 	});
+
 </script>
 <body>
 	<div class="single-product-area">
-       <!-- <div class="zigzag-bottom"></div> -->
-       <!-- <div class="container"> -->
-           <div class="row">
-              <!--  <div class="col-md-4">
-
-               </div> -->
-               
+           <div class="row">               
                <div id="wrapper">
                    <div class="product-content-right">
                        <div class="woocommerce">
@@ -97,22 +91,19 @@
                                    		<c:when test="${not empty cartList}">
                                    			<c:forEach var="cart" items="${cartList}" varStatus="status">
                                    				<tr class="cart_item">
-                                   					<%-- <td><input type="checkbox" id="check" name="check"></td>
+                                           			<td><input type="checkbox" id="check" name="check"></td>
                                    					<td class="product-thumbnail"><span class="goDetail">${cart.img_1}</span></td>
                                    					<td class="product-name"><span class="goDetail">${cart.prd_name}</span>
-                                   					<td class="product-name">${cart.model_brand} / ${cart.color_no}</td>
-                                   					<td class="product-quantity">${cart.cart_quantity}</td>
-                                   					<td class="product-price">${cart.prd_saleprice}</td>
+                                   					<td class="product-name">${cart.model_machine} - ${cart.color_detail}</td>
+                                   					<td class="product-price">￦${cart.prd_saleprice}</td>
+                                   					<td class="product-quantity">
+                                   						<div class="quantity buttons_added">
+                                                    		<input type="number" class="form-control" title="Qty" value="${cart.cart_quantity}" min="0">
+                                                			<button type="button" class="btn btn-default" style="margin-top: 0px">수정</button>
+		                                                </div>
+                                   					</td>
                                    					<td class="product-deliveryCharge"><span class="amount">￦2,500</span></td>
-                                           			<td class="product-subtotal">${cart.(prd_saleprice+2500)}</td> --%>
-                                           			<td><input type="checkbox" id="check" name="check"></td>
-                                   					<td class="product-thumbnail"><span class="goDetail"></span></td>
-                                   					<td class="product-name"><span class="goDetail"></span>
-                                   					<td class="product-name"></td>
-                                   					<td class="product-quantity">${cart.cart_quantity}</td>
-                                   					<td class="product-price"></td>
-                                   					<td class="product-deliveryCharge"><span class="amount">￦2,500</span></td>
-                                           			<td class="product-subtotal">123</td>
+                                           			<td class="product-subtotal">￦${cart.prd_saleprice+2500}</td>
                                    				</tr>
                                    			</c:forEach>
                                    		</c:when>
@@ -122,62 +113,17 @@
                                			</tr>
                                    	</c:otherwise>
                                    </c:choose>
-                                        <!-- <tr class="cart_item">
-                                           <td class="product-remove">
-                                               <input type="checkbox" id="check" name="check">
-                                           </td>
-
-                                           <td class="product-thumbnail">
-                                               <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="/include/image/product-thumb-2.jpg"></a>
-                                           </td>
-
-                                           <td class="product-name">
-                                               <a href="single-product.html">Ship Your Idea</a> 
-                                           </td>
-                                           
-                                           <td class="product-name">
-                                               <a href="#">아이폰6 / 아이언맨</a> 
-                                           </td>
-
-                                           <td class="product-price">
-                                               <span class="amount">￦15,000</span> 
-                                           </td>
-
-                                           
-                                          	<td class="product-quantity">
-                                                <div class="quantity buttons_added">
-                                                	<div class="col-xs-2">
-                                                    	<input type="number" class="form-control" title="Qty" value="1" min="0">
-                                     
-                                                    	<button type="button" class="btn btn-default" style="margin-top: 0px">수정</button>
-                                                  </div>
-                                                </div>
-                                            </td>
-
-                                           <td class="product-deliveryCharge">
-                                               <span class="amount">￦2,500</span> 
-                                           </td>
-                                           
-                                           <td class="product-subtotal">
-                                           	<span class="subtotal">￦17,500</span>
-                                           </td>
-                                       </tr> --> 
-                                       
+                                                                          
                                        <tr>
                                            <td class="actions" colspan="8">
-                                               <!-- <div class="coupon">
-                                                   <label for="coupon_code">Coupon:</label>
-                                                   <input type="text" placeholder="Coupon code" value="" id="coupon_code" class="input-text" name="coupon_code">
-                                                   <input type="submit" value="Apply Coupon" name="apply_coupon" class="button">
-                                               </div> -->
                                                <div class="btn_group1">
-                                               	<button type="button" class="btn btn-primary" name="checkDelete" id="checkDelete">선택삭제</button>
-                                               	<button type="button" class="btn btn-primary" name="allDelete" id="allDelete">장바구니 비우기</button>
-                                               	<button type="button" class="btn btn-primary" name="checkOrder" id="checkOrder">선택주문</button>
+	                                               	<button type="button" class="btn btn-primary" name="checkDelete" id="checkDelete">선택삭제</button>
+	                                               	<button type="button" class="btn btn-primary" name="allDelete" id="allDelete">장바구니 비우기</button>
+	                                               	<button type="button" class="btn btn-primary" name="checkOrder" id="checkOrder">선택주문</button>
                                                </div>
 										<!-- </td>
 										<td> -->
-										<div class="btn_group2">
+										   <div class="btn_group2">
 											   <button type="button" class="btn btn-primary" name="addCart" id="addCart">담기</button>
 											   <button type="button" class="btn btn-primary" name="shopping" id="shopping">쇼핑계속하기</button>
 											   <button type="button" class="btn btn-primary" name="allOrder" id="allOrder">전체주문</button>
@@ -191,66 +137,25 @@
 
                            <div class="cart-collaterals">
 
-
-                           <!-- <div class="cross-sells">
-                               <h2>You may be interested in...</h2>
-                               <ul class="products">
-                                   <li class="product">
-                                       <a href="single-product.html">
-                                           <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="include/image/product-2.jpg">
-                                           <h3>Ship Your Idea</h3>
-                                           <span class="price"><span class="amount">£20.00</span></span>
-                                       </a>
-
-                                       <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.html">Select options</a>
-                                   </li>
-
-                                   <li class="product">
-                                       <a href="single-product.html">
-                                           <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="include/image/product-4.jpg">
-                                           <h3>Ship Your Idea</h3>
-                                           <span class="price"><span class="amount">£20.00</span></span>
-                                       </a>
-
-                                       <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.html">Select options</a>
-                                   </li>
-                               </ul>
-                           </div> -->
-
-
                            <div class="cart_totals ">
                                <h2>Cart Totals</h2>
 
                                <table cellspacing="0">
                                    <tbody>
-                                       <!-- <tr class="cart-subtotal">
-                                           <th>총 주문금액</th>
-                                           <td><span class="amount">￦15,000</span></td>
-                                       </tr>
-                                       
-                                       <tr class="cart-deliveryCharge">
-                                       	<th>배송비</th>
-                                       	<td><span class="deliveryCharge">￦2,500</span></td>
-                                       </tr>
-                                       
-                                       <tr class="order-total">
-                                           <th>최종 결제금액</th>
-                                           <td><strong><span class="amount">￦17,500</span></strong> </td>
-                                       </tr> -->
                                        <tr class="cart-subtotal">
                                            <th>총 주문금액</th>
-                                           <td><span class="amount">￦15,000</span></td>
+                                           <td><span class="amount">￦${cart.prd_saleprice}</span></td>
                                       
-                                       	   <th>배송비</th>
-                                       	   <td><span class="deliveryCharge">￦2,500</span></td>
+                                          <th>배송비</th>
+                                          <td><span class="deliveryCharge">￦2,500</span></td>
                                        
                                            <th>최종 결제금액</th>
-                                           <td><strong><span class="amount">￦17,500</span></strong> </td>
+                                           <td><strong><span class="amount">￦${cart.prd_saleprice+2500}</span></strong> </td>
                                        </tr>
                                    </tbody>
                                </table>
                            </div>
-                           
+                                                                                 
                            <div class="xans-element- xans-order xans-order-basketguide clearfix "><h4>장바구니 이용안내</h4>
 	                           <div class="basketguide_right">
 									<ul class="guide_center">
@@ -263,27 +168,6 @@
 								    </ul>
 								</div>
 							</div>
-
-
-                           <!-- <form method="post" action="#" class="shipping_calculator">
-                               <h2><a class="shipping-calculator-button" data-toggle="collapse" href="#calcalute-shipping-wrap" aria-expanded="false" aria-controls="calcalute-shipping-wrap">Calculate Shipping</a></h2>
-
-                               <section id="calcalute-shipping-wrap" class="shipping-calculator-form collapse">
-
-                               <p class="form-row form-row-wide">
-                               
-                               </p>
-
-                               <p class="form-row form-row-wide"><input type="text" id="calc_shipping_state" name="calc_shipping_state" placeholder="State / county" value="" class="input-text"> </p>
-
-                               <p class="form-row form-row-wide"><input type="text" id="calc_shipping_postcode" name="calc_shipping_postcode" placeholder="Postcode / Zip" value="" class="input-text"></p>
-
-
-                               <p><button class="button" value="1" name="calc_shipping" type="submit">Update Totals</button></p>
-
-                               </section>
-                           </form> -->
-
 
                            </div>
                        </div>                        

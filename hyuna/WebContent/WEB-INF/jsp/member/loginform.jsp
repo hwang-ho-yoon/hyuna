@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	$(function(){
+	$(function(){		
 		//로그인 버튼클릭
 		$("#loginBtn").click(function(){
 			$.ajax({
@@ -42,7 +42,15 @@
 		$("#pwBtn").click(function(){			
 			location.href = "/member/findpw.do";
 		});
+		
+		//엔터로 로그인
+		$("#enter").keydown(function(){		
+			if(event.keyCode == 13){
+				$("#loginBtn").click();
+			}			
+		});
 	});
+	
 </script>
 <style type="text/css">
 body{
@@ -72,7 +80,7 @@ body{
 			    		    <input class="form-control" placeholder="아이디" name="mem_id" type="text">
 			    		</div>
 			    		<div class="form-group">
-			    			<input class="form-control" placeholder="비밀번호" name="mem_pwd" type="password" >
+			    			<input class="form-control" placeholder="비밀번호" id="enter" name="mem_pwd" type="password" >
 			    		</div>
 			    		<div class="checkbox">
 			    	    	<label>
