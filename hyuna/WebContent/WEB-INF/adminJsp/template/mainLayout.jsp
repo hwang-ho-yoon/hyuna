@@ -99,7 +99,7 @@
 <body>
 	<div>
 		<header class="main-header">
-			<tiles:insertAttribute name="header" />
+			<tiles:insertAttribute name="header" />			
 		</header> <!-- /. main-header -->
 		
 		<div id="main-wrapper">

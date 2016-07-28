@@ -25,7 +25,7 @@ public class CartDaoImpl implements CartDao {
 	}
 
 	@Override
-	public int cartDelete(CartVO cvo) {
+	public int cartAllDelete(CartVO cvo) {
 		return session.delete("cartDelete");
 	}	
 }

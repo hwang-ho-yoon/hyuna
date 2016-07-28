@@ -81,4 +81,9 @@ public class MemberDaoImpl implements MemberDao{
 		return session.update("memberOut");
 	}
 
+	@Override
+	public MemberVO selectEmail(MemberVO mvo) {		
+		return session.selectOne("selectEmail");
+	}
+
 }

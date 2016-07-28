@@ -154,25 +154,22 @@ public class MemberController {
 	
 	//비밀번호 찾기 로직
 	@RequestMapping("/memberPw")
-	public String memberPw(@ModelAttribute MemberVO mvo) {		
+	@ResponseBody
+	public String memberPw(@ModelAttribute MemberVO mvo, @RequestParam("tel") String tel, @RequestParam("tel1") String tel1,
+			@RequestParam("tel2") String tel2) {		
 		logger.info("비밀번호 메일발송 호출");
-		EmailMember em = new EmailMember();			
+		EmailMember em = new EmailMember();
+		MemberVO evo = memberService.selectEmail(mvo);		
+		
 		mvo.setMem_pwd(em.getRandomPassword(10));
+		mvo.setMem_tel(tel+"-"+tel1+"-"+tel2);
 				
-		int result = 0;
-		String url = "";
+		int result = 0;		
 		result = memberService.memberPw(mvo);
 		if(result==1){
-			em.setPwdEmail(mvo);
-			url = "/member/loginform.do";
+			em.setPwdEmail(evo);			
 		}
-		
-		//System.out.println(em.getRandomPassword(10));
-		System.out.println(mvo.getMem_mail());
-		System.out.println(mvo.getMem_name());
-		System.out.println(mvo.getMem_id());
-		
-		return "redirect:"+url;
+		return result+"";
 		
 	}
 	
@@ -215,7 +212,7 @@ public class MemberController {
 	public String memberUpdate(@ModelAttribute MemberVO mvo, @RequestParam("tel") String tel, @RequestParam("tel1") String tel1,
 			@RequestParam("tel2") String tel2, @RequestParam("mail1") String mail1, @RequestParam("mail2") String mail2){
 		logger.info("업데이트 호출");
-		mvo.setMem_tel(tel+tel1+tel2);
+		mvo.setMem_tel(tel+"-"+tel1+"-"+tel2);
 		mvo.setMem_mail(mail1+"@"+mail2);
 		memberService.memberUpdate(mvo);
 		return "redirect:"+"/member/membermenu.do";

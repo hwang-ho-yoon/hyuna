@@ -29,7 +29,7 @@ public class CartController {
 	@RequestMapping("/cart.do")
 	public String cart() {
 		logger.info("cart 호출성공");
-		return "cart/cart";
+		return "cart/cartList";
 	}
 	
 	// 장바구니 목록 구현
@@ -52,9 +52,13 @@ public class CartController {
 		logger.info("cartInsert 호출 성공");
 		
 		CartVO cvo = new CartVO();
-		cvo.setCart_quantity(2);
+		cvo.setCart_quantity(1);
 		cvo.setPrd_d_no(1);
-		cvo.setMem_no(1111);
+		cvo.setMem_no(2222);
+		
+		/*cvo.setCart_quantity(3);
+		cvo.setPrd_d_no(3);
+		cvo.setMem_no(1234);*/
 		
 		int result = 0;
 		String url = "";
@@ -68,20 +72,20 @@ public class CartController {
 	}
 	
 	// 삭제
-	@RequestMapping(value="/cartChkDelete.do")
+	@RequestMapping(value="/cartAllDelete.do")
 	public String cartChkDelete(/*@ModelAttribute CartVO cvo, HttpServletRequest request*/) throws IOException {
-		logger.info("cartChkDelete 호출 성공");
+		logger.info("cartDelete 호출 성공");
 		
 		CartVO cvo = new CartVO();
 		
 		int result = 0;
 		String url = "";
 		
-		result = cartService.cartChkDelete(cvo);
+		result = cartService.cartAllDelete(cvo);
 		
 		if(result == 1) {
 			url = "/cart/cartList.do";
 		}
-		return "redirect : " + url;
+		return "redirect:" + url;
 	}
 }

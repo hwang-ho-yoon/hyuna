@@ -34,4 +34,6 @@ public interface MemberService {
 
 	public int memberOut(MemberVO mvo);
 
+	public MemberVO selectEmail(MemberVO mvo);
+
 }

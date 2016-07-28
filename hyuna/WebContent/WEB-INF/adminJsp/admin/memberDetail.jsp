@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">	
+<script type="text/javascript">
 	var member_tel = "${detail.mem_tel }";
 	var tel = member_tel.split("-");
 	var member_mail = "${detail.mem_mail }";
@@ -20,8 +20,8 @@
 	var mailReg = /^[A-za-z0-9]{4,16}$/i;
 	var mail2Reg = /^[A-za-z]*\.[A-za-z]{3}$/i;
 	
- 	$(function(){ 		
- 		$("#postcodify_search_button").postcodifyPopUp();
+ 	$(function(){
+ 		
  		$("#mail1").val(mail[0]);
  		$("#mail2").val(mail[1]);
  		$("#mem_ask").val(member_ask);
@@ -66,8 +66,8 @@
  			}
  		});
  		
- 		$("#cancel").click(function(){
- 			location.href = "/index.jsp";
+ 		$("#goBack").click(function(){
+ 			history.back();
  		});
  		
 		//이메일 선택시마다 값변환
@@ -194,7 +194,7 @@
 			<tr>
 				<td class="tc">비밀번호 찾기 질문</td>
 				<td>
-					<select id="mem_ask" name="mem_ask" class="form-control">
+					<select id="mem_ask" name="mem_ask" class="form-control" disabled="disabled">
 						<option value="나의 보물 23호는?">나의 보물 23호는?</option>
 						<option value="내가 2살때 살았던 곳은?">내가 2살때 살았던 곳은?</option>						
 						<option value="초등학교1학년때 짝궁 이름은?">초등학교1학년때 짝궁 이름은?</option>						
@@ -213,7 +213,7 @@
 				<td>
 				<div>
 					<div class="form-group" id="form-group4">						
-						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="mem_answer" maxlength="50" style="width: 400px" id="mem_answer" name="mem_answer"  value="${detail.mem_answer }">
+						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="mem_answer" maxlength="50" style="width: 400px" id="mem_answer" name="mem_answer"  value="${detail.mem_answer }" readonly="readonly">
 						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c4"></span>												
 					</div>
 				</div>			
@@ -226,19 +226,19 @@
 					<div class="form-group" id="form-group5">										
 						<input type="text" class="form-control postcodify_postcode5" aria-describedby="inputSuccess5Status" id="mem_post" name="mem_post" maxlength="6" style="width: 100px;" value="${detail.mem_post }" readonly="readonly">
 						
-						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c5"></span>						
-						&nbsp;-&nbsp;<button type="button" value="우편번호" id="postcodify_search_button" class="btn btn-default " style="margin-bottom: 5px">우편번호</button><span id=post_msg></span>
+						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c5"></span>				
+						
 					</div>									
 				</div>
 				<div>
 					<div class="form-group" id="form-group6">						
-						<input type="text" class="form-control postcodify_jibeon_address" aria-describedby="inputSuccess5Status" id="mem_address1" name="mem_address1" maxlength="100" style="width: 300px; margin-top: 10px" value="${detail.mem_address1 }">
+						<input type="text" class="form-control postcodify_jibeon_address" aria-describedby="inputSuccess5Status" id="mem_address1" name="mem_address1" maxlength="100" style="width: 300px; margin-top: 10px" value="${detail.mem_address1 }" readonly="readonly">
 						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c6"></span>																			
 					</div>									
 				</div>	
 				<div>
 					<div class="form-group" id="form-group7">						
-						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="mem_address2" name="mem_address2" maxlength="100" style="width: 300px; margin-top: 10px" value="${detail.mem_address2 }">
+						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="mem_address2" name="mem_address2" maxlength="100" style="width: 300px; margin-top: 10px" value="${detail.mem_address2 }" readonly="readonly">
 						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c7"></span>																			
 					</div>									
 				</div>	
@@ -247,7 +247,7 @@
 			<tr>
 				<td class="tc">휴대전화</td>
 				<td>
-					<select id="tel" name="tel" class="form-control">
+					<select id="tel" name="tel" class="form-control" disabled="disabled">
 						<option value="010">010</option>
 						<option value="011">011</option>
 						<option value="016">016</option>
@@ -256,11 +256,11 @@
 						<option value="019">019</option>
 					</select>&nbsp;-&nbsp;
 					<div class="form-group" id="form-group8">						
-						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="tel1" name="tel1" maxlength="4" style="width: 100px" value="">
+						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="tel1" name="tel1" maxlength="4" style="width: 100px" readonly="readonly">
 						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c8"></span>																			
 					</div>&nbsp;-&nbsp;
 					<div class="form-group" id="form-group9">						
-						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="tel2" name="tel2" maxlength="4" style="width: 100px"  value="">
+						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="tel2" name="tel2" maxlength="4" style="width: 100px" readonly="readonly">
 						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c9"></span>																			
 					</div>					
 				</td>	
@@ -269,65 +269,55 @@
 				<td class="tc">이메일</td>
 				<td>
 					<div class="form-group" id="form-group10">						
-						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="mail1" name="mail1" maxlength="16" >
+						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="mail1" name="mail1" maxlength="16" readonly="readonly">
 						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c10"></span>																			
 					</div>&nbsp;@&nbsp;
 					<div class="form-group" id="form-group11">						
 						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="mail2" name="mail2" maxlength="16" readonly="readonly">
 						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c11"></span>																			
-					</div>
-					<select id="mail" name="mail" class="form-control">						
-						<option>-이메일 선택-</option>
-						<option value="naver.com">naver.com</option>
-						<option value="daum.net">daum.net</option>
-						<option value="nate.com">nate.com</option>
-						<option value="hotmail.com">hotmail.com</option>
-						<option value="yahoo.com">yahoo.com</option>
-						<option value="empas.com">empas.com</option>
-						<option value="korea.com">korea.com</option>
-						<option value="dreamwiz.com">dreamwiz.com</option>
-						<option value="gmail.com">gmail.com</option>
-						<option>직접입력</option>
-					</select>	
+					</div>	
 				</td>
 			</tr>
 			<tr>
 				<td class="tc">뉴스메일</td>
 				<td><label id="as"></label>뉴스 메일을 받으시겠습니까?								
-					<input type="radio" id="check" class="radio" name="mem_mailCheck" value="수신" >수신함
-					<input type="radio" id="nocheck" class="radio" name="mem_mailCheck" value="">수신안함
+					<input type="radio" id="check" class="radio" name="mem_mailCheck" value="수신" disabled="disabled">수신함
+					<input type="radio" id="nocheck" class="radio" name="mem_mailCheck" value="" disabled="disabled">수신안함
 					<span id="mail_msg"></span>					
 				</td>	
 			</tr>		
 		</table>
+	</div>
+	
+	<!-- 약관 -->
+	
+	<input type="hidden" id="ter_no0" name="ter_no0" value="${list0.ter_no }">
+	<h4>${list0.ter_title}</h4>
+	<div style="border: 1px solid #ddd">	
+		<div style="margin-top: 15px; margin-bottom: 15px" class="col-md-12">
+			<textarea readonly="readonly" class="form-control" rows="10" cols="133" style="background: white">				
+${list0.ter_content }
+			</textarea>			
+		</div>
+		<div style="margin: 20px">${list0.ter_title }에 동의하십니까?&nbsp;<input type="checkbox" id="agr_agreeCheck" name="agr_agreeCheck" value="동의" disabled="disabled">동의함&nbsp;<span id="agr1_msg"></span></div>
+	</div>
+
+
+	<input type="hidden" id="ter_no1" name="ter_no1" value="${list1.ter_no }">
+ 	<h4>${list1.ter_title}</h4>
+	<div style="border: 1px solid #ddd">	
+		<div style="margin-top: 15px; margin-bottom: 15px" class="col-md-12">
+			<textarea readonly="readonly" class="form-control" rows="10" cols="133" style="background: white">
+${list1.ter_content }
+			</textarea>
+		</div>
+		<div style="margin: 20px">${list1.ter_title}에 동의하십니까?&nbsp;<input type="checkbox" id="agr_agreeCheck2" name="agr_agreeCheck2" value="동의" disabled="disabled">동의함&nbsp;<span id="agr2_msg"></span></div>
 	</div>	
 
 	<div class="contentBtn" style="text-align:right; margin-bottom: 20px">
-		<button type="button" id="cancel"  class="btn btn-default">변경취소</button>
-		<button type="button" id="update"  class="btn btn-default">정보변경</button>
-		<button type="button" id="out"  class="btn btn-default">회원탈퇴</button>
+		<button type="button" id="goBack"  class="btn btn-default">목록</button>
 	</div>
 </div>
 </form>
-    		<div id="outModal" class="modal fade" data-backdrop="static">
-	    	<div class="modal-dialog modal-sm">
-		        <div class="modal-content">
-		            <div class="modal-header">
-		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		                <h4 class="modal-title">비밀번호 입력</h4>
-		            </div>
-		            <div class="modal-body form-inline">
-		            <form id="pwd_form">
-		            <input type="hidden" name="mem_no" value="${sessionScope.hyunaMember }">
-		                  비밀번호:&nbsp;&nbsp;<input type="password" name="mem_pwd" id="mem_pswd1" maxlength="16" class="form-control" style="width: 150px">
-		            </form>		            	
-		         	</div>
-		           <div class="modal-footer">
-		                <button type="button" class="btn btn-primary btn-sm" id="pwdBtn">확인</button>
-		                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">취소</button>
-            	   </div>
-	         	</div>
-         	</div>
-         </div>
 </body>
 </html>
