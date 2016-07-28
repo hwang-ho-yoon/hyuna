@@ -4,7 +4,8 @@
 	<typeAliases>
 		<typeAlias type="com.hyuna.vo.OrderGroupVO" alias="orderGroup"/>
 		<typeAlias type="com.hyuna.vo.MemberVO" alias="member"/>
-		<typeAlias type="com.hyuna.vo.CartVO" alias="cart"/>			
+		<typeAlias type="com.hyuna.vo.CartVO" alias="cart"/>
+		<typeAlias type="com.hyuna.vo.OrderProductVO" alias="orderProduct"/>		
 	</typeAliases>
 	<!-- <mappers>
 		<mapper resource="query/Board.xml"/>

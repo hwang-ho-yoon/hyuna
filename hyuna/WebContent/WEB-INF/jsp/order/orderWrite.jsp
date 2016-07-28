@@ -18,57 +18,46 @@
 			} else if(!chkOrder($("#message"), "배송메시지를")) {
 				return;
 			} else {
-				if($("#paySelect").val() == "mutongjang") {
+				if($("#payPlan").val() == "mutongjang") {
 					if (!chkOrder($("#accHold"), "입금자명을")) {
 						return;
 					} else if (!chkOrder($("#accHoldNo"), "입금자 계좌번호를")) {
 						return;
 					}
-				} else if($("#paySelect").val() == "card") {
+				} else if($("#payPlan").val() == "card") {
 					if (!chkOrder($("#cardNo"), "카드번호를")) {
 						return;
 					}
-				} else {
-					
-					$("#ogr_reciName").val($("#reciName").val());
-					$("#ogr_reciTel").val($("#reciTel").val());
-					$("#ogr_reciZipCode").val($("#reciZipCode").val());
-					$("#ogr_reciAddr1").val($("#reciAddr1").val());
-					$("#ogr_reciAddr2").val($("#reciAddr2").val());
-					$("#ogr_payPlan").val($("#payPlan").val());
+				} 
+				$("#ogr_reciName").val($("#reciName").val());
+				$("#ogr_reciTel").val($("#reciTel").val());
+				$("#ogr_reciZipCode").val($("#reciZipCode").val());
+				$("#ogr_reciAddr1").val($("#reciAddr1").val());
+				$("#ogr_reciAddr2").val($("#reciAddr2").val());
+				$("#ogr_payPlan").val($("#payPlan").val());
+				$("#ogr_message").val($("#message").val());
+				if ($("#payPlan").val() == "mutongjang") {
 					$("#ogr_accHold").val($("#accHold").val());
 					$("#ogr_accHoldNo").val($("#accHoldNo").val());
-					$("#ogr_approvalNo").val($("#approvalNo").val());
+				} else if($("#payPlan").val() == "card") {
 					$("#ogr_cardNo").val($("#cardNo").val());
-					$("#mem_no").val("${sessionScope.hyunaMember}");
-				   
-					$("#productTable tr").each(function () {
-						var index = $(this).index();
-						if (index != 0) {
-					        $(this).find("input[name=prd_d_no]").attr("name", "OrderProductVO[" + (index-1) + "].prd_d_no");
-					        $(this).find("input[name=ord_amount]").attr("name", "OrderProductVO[" + (index-1) + "].ord_amount");
-						}
-				    });
-				    
-					$.ajax({
-						url : "/order/orderInsert.do",
-					    type : "post",
-					    data : $("#ord_frm").serialize(),
-					    error : function(){
-							alert("주문등록 실패");
-					    },
-					    success : function(resultData){			     
-						    if(resultData=="SUCCESS"){
-						    	location.href = "/order/orderDetail.do";
-						    }else{
-								$(".modal-title").html("주문등록 오류");
-								$(".modal-body").html("주문등록에 실패하였습니다.");
-								$('#myModal').modal('show');	
-						    	return;				      				      	
-							}
-						}
-					});
 				}
+				$("#mem_no").val("${sessionScope.hyunaMember}");
+			   
+				$("#productTable tr").each(function () {
+					var index = $(this).index();
+					if (index != 0) {
+				        $(this).find("input[name=prd_d_no]").attr("name", "OrderProductVO[" + (index-1) + "].prd_d_no");
+				        $(this).find("input[name=ord_amount]").attr("name", "OrderProductVO[" + (index-1) + "].ord_amount");
+					}
+			    });
+			    
+			    $("#ord_frm").attr({
+			    	"method" : "post",
+			    	"action" : "/order/orderInsert.do"
+			    });
+			    $("#ord_frm").submit();
+				
 			}
 		});
 		$(".beasong").click(function() {
@@ -83,8 +72,8 @@
 			}
 		});
 		
-		$("#paySelect").change(function () {
-			if ($("#paySelect").val() == "mutongjang") {
+		$("#payPlan").change(function () {
+			if ($("#payPlan").val() == "mutongjang") {
 				var data =	"<table class='table' style='margin-bottom: 0px'>"
 					data += "<tr>"
 					data +=	"<td>국민은행 : </td>"
@@ -104,7 +93,7 @@
 				var data =	"<table class='table' style='margin-bottom: 0px'>"
 					data += "<tr>"
 					data +=	"<td>카드사 : </td>"
-					data +=	"<td><select id='paySelect' class='form-control'>"
+					data +=	"<td><select id='paySelect' class='form-control input-sm'>"
 					data += "<option value='kb'>국민은행</option>"
 					data += "<option value='sin'>신한은행</option>"
 					data += "</select></td>"
@@ -120,11 +109,9 @@
 	});
 	function chkOrder(v_item, v_name){
 		if(v_item.val().replace(/\s/g,"")==""){
-			$(".modal-title").html("입력오류");
-			$(".modal-body").html(v_name+" 입력해 주세요");
-			$('#myModal').modal('show');
-			v_item.val("");
-			v_item.focus();	
+			$("#orderModal .modal-title").html("입력오류");
+			$("#orderModal .modal-body").html(v_name+" 입력해 주세요");
+			$('#orderModal').modal('show');
 			return false;
 		} else{
 			return true;
@@ -137,18 +124,18 @@
 			<hr></hr>
 		</div>
 		 <form id="ord_frm" name="ord_frm">
-         	<input type="hidden" id="mem_no;" name="mem_no;">
-         	<input type="hidden" id="ogr_reciName" name="ogr_reciName">
-         	<input type="hidden" id="ogr_reciTel" name="ogr_reciTel">
-         	<input type="hidden" id="ogr_reciZipCode" name="ogr_reciZipCode">
-         	<input type="hidden" id="ogr_reciAddr1" name="ogr_reciAddr1">
-         	<input type="hidden" id="ogr_reciAddr2" name="ogr_reciAddr2">
-         	<input type="hidden" id="ogr_message" name="ogr_message">
-         	<input type="hidden" id="org_payPlan" name="org_payPlan">
-         	<input type="hidden" id="ogr_accHold" name="ogr_accHold">
-         	<input type="hidden" id="ogr_accHoldNo" name="ogr_accHoldNo">
-         	<input type="hidden" id="ogr_cardNo" name="ogr_cardNo">
-		<table class="table table-hover table-bordered" id="productTable">
+         	<input type="hidden" id="mem_no" name="mem_no" value="">
+         	<input type="hidden" id="ogr_reciName" name="ogr_reciName" value="">
+         	<input type="hidden" id="ogr_reciTel" name="ogr_reciTel" value="">
+         	<input type="hidden" id="ogr_reciZipCode" name="ogr_reciZipCode" value="">
+         	<input type="hidden" id="ogr_reciAddr1" name="ogr_reciAddr1" value="">
+         	<input type="hidden" id="ogr_reciAddr2" name="ogr_reciAddr2" value="">
+         	<input type="hidden" id="ogr_message" name="ogr_message" value="">
+         	<input type="hidden" id="ogr_payPlan" name="ogr_payPlan" value="">
+         	<input type="hidden" id="ogr_accHold" name="ogr_accHold" value="">
+         	<input type="hidden" id="ogr_accHoldNo" name="ogr_accHoldNo" value="0">
+         	<input type="hidden" id="ogr_cardNo" name="ogr_cardNo" value="0">
+		<table class="table table-hover table-bordered" id="productTable" >
 			<tr>
 				<td>이미지</td>
 				<td>상품명</td>
@@ -233,7 +220,7 @@
 			<tr>
 				<td>결제방식</td>
 				<td>
-					<select id="payPlan" class="form-control">
+					<select id="payPlan" class="form-control input-sm">
 						<option value="mutongjang" selected="selected">무통장</option>
 						<option value="card">카드결제</option>
 					</select> 
@@ -267,7 +254,7 @@
 		</div>
 		
 		
-		<div id="myModal" class="modal fade" data-backdrop="static">
+		<div id="orderModal" class="modal fade" data-backdrop="static">
 	    	<div class="modal-dialog modal-sm">
 		        <div class="modal-content">
 		            <div class="modal-header">
@@ -275,7 +262,6 @@
 		                <h4 class="modal-title"></h4>
 		            </div>
 		            <div class="modal-body">
-		            	
 		         	</div>
 		           <div class="modal-footer">
 		                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">확인</button>

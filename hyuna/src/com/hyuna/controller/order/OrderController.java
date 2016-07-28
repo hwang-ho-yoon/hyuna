@@ -1,22 +1,21 @@
 package com.hyuna.controller.order;
 
-import javax.servlet.http.HttpSession;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hyuna.service.order.OrderService;
 import com.hyuna.util.OrderState;
 import com.hyuna.vo.OrderGroupVO;
-import com.hyuna.vo.OrderProductsVO;
 
 @Controller
 @RequestMapping(value="/order")
 public class OrderController {
+
 	Logger logger = Logger.getLogger(OrderController.class);
 	@Autowired
 	private OrderService orderService;
@@ -32,30 +31,29 @@ public class OrderController {
 	}
 	
 	@RequestMapping("/orderDetail.do")
-	public String orderDetail() {
+	public String orderDetail(@RequestParam("ogr_no") String ogr_no, Model model) {
+		OrderGroupVO ogv = orderService.orderGroupDetail(ogr_no);
+		model.addAttribute("orderGroup", ogv);
 		return "order/orderDetail";
 	}
 	
 	@RequestMapping("/orderInsert.do")
-	@ResponseBody
-	public String orderInsert(@ModelAttribute OrderProductsVO opv, @ModelAttribute OrderGroupVO ogv, HttpSession session) {
+	public String orderInsert(@ModelAttribute OrderGroupVO ogv) {
 		logger.info("주문등록 호출");
-		int mem_no = (int)session.getAttribute("hyunaMember");
-		ogv.setMem_no(mem_no);
 		if (ogv.getOgr_payPlan().equals("mutongjang")) {
-			ogv.setOrg_state(OrderState.STANDBY_DEPOSIT);
+			ogv.setOgr_state(OrderState.STANDBY_DEPOSIT);
 		} else if (ogv.getOgr_payPlan().equals("card")) {
-			ogv.setOrg_state(OrderState.COMPLETE_DEPOSIT);
+			ogv.setOgr_state(OrderState.COMPLETE_DEPOSIT);
 			ogv.setOgr_approvalNo(ogv.getOgr_cardNo());
 		}
 		int result = orderService.orderGroupInsert(ogv);
-		System.out.println("ffffffffffffffffffffffffffffffffffffff :" + ogv.getOgr_no());
+		result = orderService.orderProductInsert(ogv);
 		String url = "";
 		if (result == 1) {
-			url = "SUCCESS";
+			url = "/order/orderDetail.do?ogr_no="+ogv.getOgr_no();
 		} else {
-			url = "FAIL";
+			url = "/order/orderWrite.do";
 		}
-		return url;
+		return "redirect:"+url;
 	}
 }

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.hyuna.vo.OrderGroupVO;
+import com.hyuna.vo.OrderProductVO;
 @Repository
 public class OrderDaoImpl implements OrderDao{
 
@@ -13,7 +14,17 @@ public class OrderDaoImpl implements OrderDao{
 	
 	@Override
 	public int orderGroupInsert(OrderGroupVO orderGroupVO) {
-		return session.insert("orderGroupInsert");
+		return session.insert("orderGroupInsert", orderGroupVO);
+	}
+
+	@Override
+	public int orderProductInsert(OrderProductVO oProductVO) {
+		return session.insert("orderProductInsert", oProductVO);
+	}
+
+	@Override
+	public OrderGroupVO orderGroupDetail(String ogr_no) {
+		return session.selectOne("orderGroupDetail", ogr_no);
 	}
 
 }
