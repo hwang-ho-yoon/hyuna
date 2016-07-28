@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,7 +93,7 @@
 	
     
 	<!-- jQuery와 Postcodify를 로딩한다 -->
-<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+<script src="/include/js/search.js"></script>
 
 </head>
 <body>

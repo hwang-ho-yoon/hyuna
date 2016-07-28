@@ -10,21 +10,20 @@
 
  	$(function(){ 		
 		if($("#rm").is(":checked")){				
-			$("#td_ph").hide();				
-			$("#td_tel").hide();			
+			$("#teltxt").hide();				
+			$("#teltxt").hide();			
 		}
 		$("#rm").click(function(){			
-			$("#td_ph").hide();				
-			$("#td_tel").hide();
-			$("#td_mail").show();				
-			$("#td_email").show();
-
+			$("#teltxt").hide();				
+			$("#teltxt").hide();
+			$("#mailtxt").show();				
+			$("#mailtxt").show();
 		});
 		$("#rp").click(function(){			
-			$("#td_mail").hide();				
-			$("#td_email").hide();
-			$("#td_ph").show();				
-			$("#td_tel").show();
+			$("#mailtxt").hide();				
+			$("#mailtxt").hide();
+			$("#teltxt").show();				
+			$("#teltxt").show();
 		});
 		
 		$("#okBtn").click(function(){
@@ -32,8 +31,10 @@
 				"method":"post",
 				"action":"/member/memberPw.do"
 			});
-			$("#findpw_form").submit();
 			alert("비밀번호가 이메일로 발송되었습니다");
+			$("#findpw_form").submit();
+			
+			
 		});
 
 /*  		var pattern1 = /[0-9]/;
@@ -47,7 +48,7 @@
 		alert(ranNum);  */
 
 	}); 
- 	 function createCode(objArr, iLength) {
+/*  	 function createCode(objArr, iLength) {
          var arr = objArr;
          var randomStr = "";
          
@@ -58,74 +59,87 @@
          return randomStr
      }
     function getRandomCode(iLength) {
-    	//var arr="0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,~,`,!,@,#,$,%,^,&,*,(,),-,+,|,_,=,\,[,],{,},<,>,?,/,.,;".split(",");        
+    	var arr="0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,~,`,!,@,#,$,%,^,&,*,(,),-,+,|,_,=,\,[,],{,},<,>,?,/,.,;".split(",");        
     	var arr="0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z".split(",");        
         var rnd = createCode(arr, iLength);        	
         return rnd;
-    }
+    } */
 </script>
+<style type="text/css">
+body{
+    background: url(http://mymaplist.com/img/parallax/back.png);
+	background-color: #444;
+    background: url(http://mymaplist.com/img/parallax/pinlayer2.png),url(http://mymaplist.com/img/parallax/pinlayer1.png),url(http://mymaplist.com/img/parallax/back.png);    
+}
+
+.vertical-offset-100{
+    padding-top:50px;
+}
+.telc{width: 100px; height: 35px}
+</style>
 </head>
 <body>
-	<form id="findpw_form">	
-	<div id="wrapper" style="margin-bottom: 20px">
-		<h4>비밀번호 찾기</h4>
-		<div>
-			<div class="row" style="background: #ddd;">
-			  <div class="col-xs-6 col-sm-4"></div>
-			  <div class="col-xs-6 col-sm-4" style="padding-top: 100px; padding-bottom: 100px; padding-left: 50px">
-			  	<table>
-			  	
-			  	<thead>
-			  		<tr align="center">
-			  			<th style="text-align: center; padding-bottom: 20px">비밀번호찾기</th>
-			  		</tr>
-			  	</thead>
-			  	<tbody>	
-			  		<tr>
-			  			<td>			  			
-			  				<input type="radio" name="radio" checked="checked" id="rm">이메일
-			  				<input type="radio" name="radio" id="rp">휴대폰			  				
-			  			</td>
-			  		</tr>
-			  		<tr>
-			  			<td>아이디</td>
-			  		</tr>
-			  		<tr>
-			  			<td><input type="text" id="mem_id" name="mem_id"></td>
-			  		</tr>
-			  		<tr>
-			  			<td>이름</td>
-			  		</tr>
-			  		<tr>
-			  			<td><input type="text" id="mem_name" name="mem_name"></td>
-			  		</tr>
-			  		<tr>
-			  			<td id="td_mail">이메일</td>
-			  		</tr>
-			  		<tr>
-			  			<td id="td_email"><input type="email" id="mem_mail" name="mem_mail"></td>
-			  		</tr>
-			  		<tr>
-			  			<td id="td_ph">휴대폰</td>
-			  		</tr>
-			  		<tr>
-			  			<td id="td_tel">
-			  				<input type="text" id="tel1" name="tel1" maxlength="3" style="width: 55px">&nbsp;-
-			  				<input type="text" id="tel2" name="tel2" maxlength="4" style="width: 55px">&nbsp;-
-			  				<input type="text" id="tel3" name="tel3" maxlength="4" style="width: 55px">
-			  			</td>
-			  		</tr>
-			  		<tr>
-			  			<td><button type="button" class="btn btn-default" id="okBtn">확인</button>
-			  		</tr>			  		
-			  	</tbody>	
-			  	</table>
-			  </div>
-
-			  <div class="col-xs-6 col-sm-4"></div>
+<div class="container">
+    <div class="row vertical-offset-100">
+    	<div class="col-md-4 col-md-offset-4">
+    		<div class="panel panel-default">
+			  	<div class="panel-heading">
+			    	<h3 class="panel-title">비밀번호 찾기</h3>
+			 	</div>
+			  	<div class="panel-body">
+			    	<form accept-charset="UTF-8" role="form" id="findpw_form">
+                    <fieldset>
+                    	<div class="form-group">                    	
+			    		    <input name="mem_radio" id="rm" type="radio" value="mail" checked="checked">&nbsp;이메일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    		    <input name="mem_radio" id="rp" type="radio" value="ph">&nbsp;휴대폰			    		
+			    		</div>
+			    		<hr>
+			    	  	<div class="form-group">
+			    		    <input class="form-control" placeholder="아이디" name="mem_id" id="mem_id" type="text">
+			    		</div>
+			    	  	<div class="form-group">
+			    		    <input class="form-control" placeholder="이름" name="mem_name" id="mem_name" type="text">
+			    		</div>
+			    		<div class="form-group" id="mailtxt">
+			    			<input class="form-control" placeholder="이메일 주소" name="mem_mail" id="mem_mail" type="email" >
+			    		</div>			    		
+			    		<div class="form-group" style="margin-bottom: 0px">
+			    		휴대폰 번호
+			    		</div>			    		
+			    		<div class="form-group" id="teltxt">
+			    			<input class="telc" name="tel1" type="text" maxlength="3">&nbsp;-
+			    			<input class="telc" name="tel2" type="text" maxlength="4">&nbsp;-
+			    			<input class="telc" name="tel3" type="text" maxlength="4">
+			    		</div>
+			    		<div class="form-group">
+			    			
+			    		</div>
+			       		<div class="form-group">
+					    	<select id="mem_ask" name="mem_ask" class="form-control">
+								<option value="나의 보물 23호는?">나의 보물 23호는?</option>
+								<option value="내가 2살때 살았던 곳은?">내가 2살때 살았던 곳은?</option>						
+								<option value="초등학교1학년때 짝궁 이름은?">초등학교1학년때 짝궁 이름은?</option>						
+								<option value="할머니의 생년월일은?">할머니의 생년월일은?</option>						
+								<option value="내가 존경하는 인물은?">내가 존경하는 인물은?</option>						
+								<option value="타인이 모르는 나의 신체비밀은?">타인이 모르는 나의 신체비밀은?</option>						
+								<option value="기억에 남는 추억의 장소는?">기억에 남는 추억의 장소는?</option>						
+								<option value="자신의 인생 좌우명은?">자신의 인생 좌우명은?</option>						
+								<option value="부모님 결혼기념일은?">부모님 결혼기념일은?</option>						
+								<option value="자신이 좋아하는 음식은?">자신이 좋아하는 음식은?</option>						
+							</select><span id="ask_msg"></span>
+			    		</div>
+			    		<div class="form-group">
+			    			<input class="form-control" placeholder="비밀번호 찾기 답변" name="mem_answer" id="mem_answer" type="text" >
+			    		</div>			    		
+			    	    <div class="form-inline" align="center">
+			    		<input class="btn btn-lg btn-success btn-block" type="button" value="확인" id="okBtn">
+						</div>
+			    	</fieldset>
+			      	</form>
+			    </div>
 			</div>
 		</div>
 	</div>
-	</form>	
+</div>
 </body>
 </html>
