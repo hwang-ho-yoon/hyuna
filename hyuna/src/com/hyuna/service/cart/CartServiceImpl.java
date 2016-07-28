@@ -34,11 +34,11 @@ public class CartServiceImpl implements CartService {
 		return result;
 	}
 
-	// 장바구니 삭제
+	// 장바구니 전체 삭제
 	@Override
-	public int cartChkDelete(CartVO cvo) {
+	public int cartAllDelete(CartVO cvo) {
 		int result = 0;
-		result = cartDao.cartDelete(cvo);
+		result = cartDao.cartAllDelete(cvo);
 		return result;
 	}
 	

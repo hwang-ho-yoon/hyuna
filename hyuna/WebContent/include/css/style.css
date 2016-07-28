@@ -894,6 +894,26 @@ text-transform: uppercase;}
 }
 
 
+/* ㅈㅂㄱㄴ*/
+/* td.product-quantity.cartCount {
+    background-color: red;
+    width: 150px;
+}
+button.btn.btn-default {
+    float: right;
+} */
+
+
+
+input.form-control {
+    float: left;
+}
+
+.quantity.buttons_added {
+    width: 120px;
+}
+
+
 
 table.shop_table {
     border-bottom: 1px solid #ddd;
@@ -929,7 +949,7 @@ div.quantity input.plus, div.quantity input.minus {
 }
 td.product-quantity div.quantity {
   	float: none;
-    /* width : 500px; */
+    /* width : 200px; */
     margin: auto;
 }
 td.actions div.coupon {
@@ -1142,8 +1162,4 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
 }
 .btn_group2 {
 	float : right;
-}
-.quantityNum {
-	position : relative;
-	min-height : 1px;
 }
