@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyuna.dao.order.OrderDao">
+	<insert id="orderGroup" parameterType="orderGroup">
+		insert into orderGroup(ogr_no, ogr_reciName, ogr_reciTel, ogr_reciZipCode, ogr_reciAddr1, ogr_reciAddr2, ogr_payPlan, ogr_accHold, ogr_accHoldNo, ogr_approvalNo, ogr_invoice, org_state, mem_no) values(orderGroupSeq.nextval, #{ogr_reciName}, #{ogr_reciTel}, #{ogr_reciZipCode}, #{ogr_reciAddr1}, #{ogr_reciAddr2}, #{ogr_payPlan}, #{ogr_accHold}, #{ogr_accHoldNo}, #{ogr_approvalNo}, #{ogr_invoice}, #{org_state}, #{mem_no})         
+		<selectKey keyProperty="ogr_no" resultType="int" order="AFTER">
+			SELECT ogr_no FROM dual
+		</selectKey>
+	</insert>
+</mapper>

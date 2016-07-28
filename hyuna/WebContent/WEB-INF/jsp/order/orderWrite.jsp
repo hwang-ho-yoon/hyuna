@@ -39,6 +39,7 @@
 					$("#ogr_accHold").val($("#accHold").val());
 					$("#ogr_accHoldNo").val($("#accHoldNo").val());
 					$("#ogr_approvalNo").val($("#approvalNo").val());
+					$("#ogr_cardNo").val($("#cardNo").val());
 					$("#mem_no").val("${sessionScope.hyunaMember}");
 				   
 					$("#productTable tr").each(function () {
@@ -49,11 +50,24 @@
 						}
 				    });
 				    
-				    $("#ord_frm").attr({
-				    	"method" : "post",
-				    	"action" : "/order/orderInsert.do"
-				    });
-				    $("#ord_frm").submit();
+					$.ajax({
+						url : "/order/orderInsert.do",
+					    type : "post",
+					    data : $("#ord_frm").serialize(),
+					    error : function(){
+							alert("주문등록 실패");
+					    },
+					    success : function(resultData){			     
+						    if(resultData=="SUCCESS"){
+						    	location.href = "/order/orderDetail.do";
+						    }else{
+								$(".modal-title").html("주문등록 오류");
+								$(".modal-body").html("주문등록에 실패하였습니다.");
+								$('#myModal').modal('show');	
+						    	return;				      				      	
+							}
+						}
+					});
 				}
 			}
 		});
@@ -97,7 +111,7 @@
 					data += "</tr>"
 					data += "<tr>"
 					data +=	"<td>카드번호 : </td>"
-					data += "<td><input type='text' class='form-control input-sm' id='ogr_cardNo' name='ogr_cardNo'></td>"
+					data += "<td><input type='text' class='form-control input-sm' id='cardNo' name='cardNo'></td>"
 					data += "</tr>"
 					data += "</table>";
 				$("#payManager").html(data);
@@ -133,6 +147,7 @@
          	<input type="hidden" id="org_payPlan" name="org_payPlan">
          	<input type="hidden" id="ogr_accHold" name="ogr_accHold">
          	<input type="hidden" id="ogr_accHoldNo" name="ogr_accHoldNo">
+         	<input type="hidden" id="ogr_cardNo" name="ogr_cardNo">
 		<table class="table table-hover table-bordered" id="productTable">
 			<tr>
 				<td>이미지</td>
