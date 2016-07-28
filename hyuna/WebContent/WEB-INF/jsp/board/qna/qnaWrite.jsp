@@ -21,10 +21,10 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="4"><textarea id="text_area" name="text_area" class="form-control"></textarea><script>
+					<td colspan="4"><textarea id="edit" name="text_area" class="form-control"></textarea><script>
 	                // Replace the <textarea id="editor1"> with a CKEditor
 	                // instance, using default configuration.
-	                CKEDITOR.replace( 'text_area' );
+	               
 	            </script></td>
 	            </tr>
 	            <tr>
