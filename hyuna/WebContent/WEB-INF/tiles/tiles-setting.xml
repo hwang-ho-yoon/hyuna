@@ -25,4 +25,16 @@
 	<definition name="member/*" extends="main">
 		<put-attribute name="body" value="/WEB-INF/jsp/member/{1}.jsp"></put-attribute>
 	</definition>
+	
+	
+	<!-- 관리자 페이지 -->
+	<definition name="admin" template="/WEB-INF/adminJsp/template/mainLayout.jsp">
+		<put-attribute name="header" value="/WEB-INF/adminJsp/template/header.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/adminJsp/template/main.jsp"></put-attribute>		
+		<put-attribute name="footer" value="/WEB-INF/adminJsp/template/footer.jsp"></put-attribute>
+	</definition>
+	
+	 <definition name="admin/*" extends="admin">
+		<put-attribute name="body" value="/WEB-INF/adminJsp/admin/{1}.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>

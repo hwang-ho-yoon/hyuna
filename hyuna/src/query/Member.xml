@@ -74,8 +74,8 @@
 	<update id="memberUpdate" parameterType="member">
 		/* memberUpdate */
 		update member set mem_ask = #{mem_ask}, mem_answer = #{mem_answer}, mem_post = #{mem_post}, mem_address1 = #{mem_address1}, 
-		mem_address2 = #{mem_address2}, mem_tel = #{mem_tel}, mem_mail = #{mem_mail}, mem_mailCheck = #{mem_mailCheck},
-		<if test="mem_pwd !=null and mem_pwd !=''">,mem_pwd = #{mem_pwd} </if> mem_updatedate = #{mem_updatedate} 
+		mem_address2 = #{mem_address2}, mem_tel = #{mem_tel}, mem_mail = #{mem_mail}, mem_mailCheck = #{mem_mailCheck} ,mem_updatedate = sysdate 
+		<if test="mem_pwd !=null and mem_pwd !=''">,mem_pwd = #{mem_pwd} </if> 
 		where mem_no = #{mem_no}		
 	</update>
 	

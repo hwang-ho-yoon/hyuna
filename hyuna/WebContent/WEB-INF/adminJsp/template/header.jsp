@@ -24,30 +24,15 @@
 				}
 			});			
 		});
-		
-		$("#mem_pwd").keydown(function(evt){
-			if(evt.keyCode==13)
-				return false;			
-		});
+
+
 				
 		$("#login").click(function(){
 			location.href = "/member/loginform.do";
 		});
 		$("#logout").click(function(){
 			location.href = "/member/logout.do";
-		});
-		$("#memberjoin").click(function(){
-			location.href = "/member/memberjoin.do";
-		});
-		$("#cart").click(function(){			
-			location.href = "/cart/cart.do";
-		});
-		$("#my").mouseover(function(){
-			$("#my").css("text-decoration","underline");	
-		});
-		$("#my").mouseout(function(){
-			$("#my").css("text-decoration","none");	
-		});
+		});		
 		$("#login").mouseover(function(){
 			$("#login").css("text-decoration","underline");	
 		});
@@ -59,19 +44,7 @@
 		});
 		$("#logout").mouseout(function(){
 			$("#logout").css("text-decoration","none");	
-		});
-		$("#memberjoin").mouseover(function(){
-			$("#memberjoin").css("text-decoration","underline");	
-		});
-		$("#memberjoin").mouseout(function(){
-			$("#memberjoin").css("text-decoration","none");	
-		});
-		$("#cart").mouseover(function(){
-			$("#cart").css("text-decoration","underline");	
-		});
-		$("#cart").mouseout(function(){
-			$("#cart").css("text-decoration","none");	
-		});
+		});		
 	});
 </script>
     <div class="header-area">
@@ -81,17 +54,14 @@
                 </div>
                 <div class="col-md-5">
                     <div class="header-right">
-                        <ul class="list-unstyled list-inline" style="margin-top: 20px">                                                
-                          <li><i class="fa fa-user"></i><span id="my" style="cursor: pointer; "> 나의정보</span></li>
-                            <li><i class="fa fa-user"></i><span id="cart" style="cursor: pointer; "> My Cart</span></li>
+                        <ul class="list-unstyled list-inline" style="margin-top: 20px">                                                                                                    
                             <c:choose>
-                            	<c:when test="${not empty sessionScope.hyunaMember }">
+                            	<c:when test="${not empty sessionScope.adminNo }">
                             		<li><i class="fa fa-user"></i><span id="logout" style="cursor: pointer; "> 로그아웃</span></li>
-                            		<li>${sessionScope.hyunaname } 님</li>
+                            		<li>${sessionScope.adminNo } 님</li>
                             	</c:when>                            
 	                            <c:otherwise>
-	                            	<li><i class="fa fa-user"></i><span id="login" style="cursor: pointer; "> 로그인</span></li>
-	                            	<li><i class="fa fa-user"></i><span id="memberjoin" style="cursor: pointer; "> 회원가입</span></li>
+	                            	<li><i class="fa fa-user"></i><span id="login" style="cursor: pointer; "> 로그인</span></li>	                            	
 	                            </c:otherwise>
                             </c:choose>                            
                         </ul>
@@ -164,6 +134,7 @@
                         <li><a href="/board/qna/qnaList.do">Q&A</a></li>
                         <li><a href="/board/faq/faqList.do">FAQ</a></li>
 						<li><a href="/board/review/reviewList.do">review</a></li>
+						<li><a href="/admin/memberList.do">회원목록</a></li>
 						 
 <!-- 						 <button type="button" class="btn btn-info">PHP</button>
 						 <button type="button" class="btn btn-info">Blogger</button>

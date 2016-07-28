@@ -92,4 +92,9 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.memberOut(mvo);
 	}
 
+	@Override
+	public MemberVO selectEmail(MemberVO mvo) {		
+		return memberDao.selectEmail(mvo);
+	}
+
 }

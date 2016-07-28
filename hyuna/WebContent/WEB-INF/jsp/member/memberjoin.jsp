@@ -14,7 +14,7 @@
 <!-- <script type="text/javascript" src="/include/js/jquery-1.12.2.min.js"></script> -->
 <script type="text/javascript">
 	var idReg = /^[a-z0-9]{4,16}$/;	//아이디정규식	
-	var pwdReg = /^(?=.*[a-zA-Z0-9])(?=.*\W).{6,20}$/;
+	var pwdReg = /^(?=.*[a-zA-Z0-9])(?=.*\W).{10,16}$/;
 	var phReg = /^[0-9]{3,4}$/;
 	var ph2Reg = /^[0-9]{4}$/;
 	var mailReg = /^[A-za-z0-9]{4,16}$/i;
@@ -24,7 +24,7 @@
 	var mailcheck = "";
 	
 	$(function(){
- 
+
 		$("#postcodify_search_button").postcodifyPopUp();
 		$("#join").click(function(){
 	 		if(!chkSubmit($("#mem_id")))return;
@@ -38,7 +38,7 @@
 	 			$("#mem_id").focus();
 	 			return;
 	 		}
-	 		else if(!chkSubmit($("#mem_pwd")))return;
+	 		else if(!chkSubmit($("#mem_pswd")))return;
 	 		else if(!chkSubmit($("#mem_pwd1")))return;
 	 		else if(!chkSubmit($("#mem_name")))return;
 	 		else if(!chkSubmit($("#mem_answer")))return;
@@ -69,10 +69,10 @@
 			}else if(!idReg.test($("#mem_id").val())){
 				$("#mem_id").focus();
 				return;				
- 			}else if(!pwdReg.test($("#mem_pwd").val())){
-				$("#mem_pwd").focus();
+ 			}else if(!pwdReg.test($("#mem_pswd").val())){
+				$("#mem_pswd").focus();
 				return; 
-			}else if(($("#mem_pwd").val())!=($("#mem_pwd1").val())){
+			}else if(($("#mem_pswd").val())!=($("#mem_pwd1").val())){
 				$("#mem_pwd1").focus();
 				return;
 			}else if(!phReg.test($("#tel1").val())){
@@ -87,23 +87,6 @@
 			}else if(!mail2Reg.test($("#mail2").val())){
 				$("#mail2").focus();
 				return;
-			}else if(mailcheck!="ok"){
-				$.ajax({
-					url : "/member/mailcheck.do",
-				    type : "post",
-				    data : $("#join_form").serialize(),
-				    error : function(){
-						alert("실패");
-				    },
-				    success : function(resultData){			     
-					    if(resultData==1){
-							alert("이미 사용중인 메일입니다");
-					      	mailcheck = "no";
-					    }else if(resultData==0){					      	
-					      	mailcheck = "ok";			      	
-						}
-					}
-				});				
 			}
 			else{				
 				$("#join_form").attr({
@@ -187,8 +170,8 @@
 								
 			}
 		});		
-		$("#mem_pwd").keyup(function(){				
-			if(!pwdReg.test($("#mem_pwd").val())){
+		$("#mem_pswd").keyup(function(){				
+			if(!pwdReg.test($("#mem_pswd").val())){
 				$("#form-group2").removeClass("has-success has-feedback");
 				$("#form-group2").addClass("has-error has-feedback");
 				$("#c2").removeClass("glyphicon-ok");
@@ -201,7 +184,7 @@
 			}
 		});
 		$("#mem_pwd1").keyup(function(){			
-			if(($("#mem_pwd").val())!=($("#mem_pwd1").val())){				
+			if(($("#mem_pswd").val())!=($("#mem_pwd1").val())){				
 				$("#form-group3").removeClass("has-success has-feedback");
 				$("#form-group3").addClass("has-error has-feedback");
 				$("#c3").removeClass("glyphicon-ok");
@@ -384,7 +367,7 @@
 				<td>
 				<div>
 					<div class="form-group" id="form-group2">						
-						<input type="password" class="form-control" aria-describedby="inputSuccess5Status" id="mem_pwd" name="mem_pwd" maxlength="16" >
+						<input type="password" class="form-control" aria-describedby="inputSuccess5Status" id="mem_pswd" name="mem_pwd" maxlength="16" >
 						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c2"></span>											
 					</div>
 					(영문 대소문자/숫자/특수문자(필수) 중 2가지 이상 조합, 10자~16자)
