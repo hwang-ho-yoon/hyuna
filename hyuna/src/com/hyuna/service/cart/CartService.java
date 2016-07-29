@@ -10,4 +10,6 @@ public interface CartService {
 	public int cartInsert(CartVO cvo);
 
 	public int cartAllDelete(CartVO cvo);
+
+	public int chkDelete(Integer cart_no);
 }
