@@ -13,21 +13,68 @@
 	var member_mail = "${detail.mem_mail }";
 	var mail = member_mail.split("@");
 	var member_ask = "${detail.mem_ask }";
-	var member_check = "${detail.mem_mailCheck }";
-	var pwdReg = /^(?=.*[a-zA-Z0-9])(?=.*\W).{10,16}$/;
-	var phReg = /^[0-9]{3,4}$/;
-	var ph2Reg = /^[0-9]{4}$/;
-	var mailReg = /^[A-za-z0-9]{4,16}$/i;
-	var mail2Reg = /^[A-za-z]*\.[A-za-z]{3}$/i;
+	var member_check = "${detail.mem_mailCheck }";	
+	var arg0 = "${agr0.agr_agreeCheck}";
+	var arg1 = "${agr1.agr_agreeCheck}";
+	var id = "${detail.mem_id }";
+	var id0 = id.substring(0,3);
+	var id1 = id.substring(3);	
+	var id2 = id1.replace(/[a-z0-9]/g, "*");
+	var id3 = id0+id2;
+	var name = "${detail.mem_name}";
+	var name0 = name.substring(0, 2);
+	var name1 = name.substring(2)	
+	var name2 = name1.replace(/[^A-Za-z0-9]/g, "*");	
+	var name3 = name0+name2;
+	var post = "${detail.mem_post}";
+	var post0 = post.substring(0, 3);
+	var post1 = post.substring(3);
+	var post2 = post1.replace(/[0-9]/g, "*");
+	var post3 = post0+post2;
+	var adr = "${detail.mem_address1}";
+	var adr1 = adr.split(" ");
+	var adr2 = adr1[2].replace(/[^A-Za-z0-9]/g, "*");
+	var adr3 = adr1[0]+" "+adr1[1]+" "+adr2;	
+	var adrr = "${detail.mem_address2}";
+	var adrr0 = adrr.substring(0, 5);
+	var adrr1 = adrr.substring(5);
+	var adrr2 = adrr1.replace(/[^A-Za-z0-9]/g, "*");
+	var adrr3 = adrr0+adrr2;	
+ 	var tel0 = tel[0].substring(0,2);
+	var tel01 = tel[0].substring(2);
+	var tel02 = tel01.replace(/[0-9]/g, "*");
+	var tel03 = tel0+tel02;
+ 	var tel1 = tel[1].substring(0,2);
+	var tel11 = tel[1].substring(2);
+	var tel12 = tel11.replace(/[0-9]/g, "*");
+	var tel13 = tel1+tel12;	
+ 	var tel2 = tel[2].substring(0,2);
+	var tel21 = tel[2].substring(2);
+	var tel22 = tel21.replace(/[0-9]/g, "*");
+	var tel23 = tel2+tel22; 
+	var mail0 = mail[0].substring(0,3);
+	var mail1 = mail[0].substring(3).replace(/[A-Za-z0-9]/g, "*");
+	var mail2 = mail0+mail1;
 	
- 	$(function(){
- 		
- 		$("#mail1").val(mail[0]);
+ 	$(function(){  
+ 		$("#mem_id").val(id3);
+ 		$("#mem_name").val(name3);
+ 		$("#mem_post").val(post3);
+ 		$("#mem_address1").val(adr3);
+ 		$("#mem_address2").val(adrr3); 		
+ 		$("#tel").val(tel03);
+ 		$("#tel1").val(tel13);
+ 		$("#tel2").val(tel23);
+ 		$("#mail1").val(mail2);
  		$("#mail2").val(mail[1]);
  		$("#mem_ask").val(member_ask);
- 		$("#tel").val(tel[0]);
- 		$("#tel1").val(tel[1]);
- 		$("#tel2").val(tel[2]);
+ 		
+ 		if(arg0=='동의'){
+ 			$("#agr_agreeCheck").attr("checked", true);
+ 		}
+ 		if(arg1=='동의'){
+ 			$("#agr_agreeCheck2").attr("checked", true);
+ 		}
  		if(member_check=='수신'){
  			$("#check").attr("checked",true); 			
  		}else{
@@ -147,37 +194,25 @@
 	<h4>기본정보</h4>
 		<table class="table" style="border: 1px solid #ddd">
 			<tr>
-				<td>아이디</td>
+			<td>회원번호</td>
 				<td>
 				<div>
 					<div class="form-group" id="form-group1" >						
-						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="mem_id" name="mem_id" maxlength="16" value="${detail.mem_id }" readonly="readonly">
+						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="mem_no" name="mem_no" maxlength="16" value="${detail.mem_no }" readonly="readonly">
 						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c1"></span>																
 					</div>					
 				</div>
 				</td>
 			</tr>
 			<tr>
-				<td class="tc">비밀번호</td>
+			<td>아이디</td>
 				<td>
 				<div>
-					<div class="form-group" id="form-group2">						
-						<input type="password" class="form-control" aria-describedby="inputSuccess5Status" id="mem_pwdd" name="mem_pwd" maxlength="16" >
-						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c2"></span>											
-					</div>
-					(영문 대소문자/숫자/특수문자(필수) 중 2가지 이상 조합, 10자~16자)					
-				</div>							
-				</td>
-			</tr>
-			<tr>
-				<td class="tc">비밀번호 확인</td>
-				<td>
-				<div>
-					<div class="form-group" id="form-group3">						
-						<input type="password" class="form-control" aria-describedby="inputSuccess5Status" id="mem_pwd1" name="mem_pwd1" maxlength="16" >
-						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c3"></span>											
+					<div class="form-group" id="form-group1" >						
+						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="mem_id" name="mem_id" maxlength="16" readonly="readonly">
+						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c1"></span>																
 					</div>					
-				</div>												
+				</div>
 				</td>
 			</tr>
 			<tr>
@@ -185,7 +220,7 @@
 				<td>
 				<div>
 					<div class="form-group" id="form-group12" >						
-						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="mem_name" name="mem_name" maxlength="5" value="${detail.mem_name }" readonly="readonly">
+						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="mem_name" name="mem_name" maxlength="5"  readonly="readonly">
 						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c12"></span>										
 					</div>					
 				</div>
@@ -224,7 +259,7 @@
 				<td>
 				<div>
 					<div class="form-group" id="form-group5">										
-						<input type="text" class="form-control postcodify_postcode5" aria-describedby="inputSuccess5Status" id="mem_post" name="mem_post" maxlength="6" style="width: 100px;" value="${detail.mem_post }" readonly="readonly">
+						<input type="text" class="form-control postcodify_postcode5" aria-describedby="inputSuccess5Status" id="mem_post" name="mem_post" maxlength="6" style="width: 100px;" readonly="readonly">
 						
 						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c5"></span>				
 						
@@ -232,13 +267,13 @@
 				</div>
 				<div>
 					<div class="form-group" id="form-group6">						
-						<input type="text" class="form-control postcodify_jibeon_address" aria-describedby="inputSuccess5Status" id="mem_address1" name="mem_address1" maxlength="100" style="width: 300px; margin-top: 10px" value="${detail.mem_address1 }" readonly="readonly">
+						<input type="text" class="form-control postcodify_jibeon_address" aria-describedby="inputSuccess5Status" id="mem_address1" name="mem_address1" maxlength="100" style="width: 300px; margin-top: 10px" readonly="readonly">
 						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c6"></span>																			
 					</div>									
 				</div>	
 				<div>
 					<div class="form-group" id="form-group7">						
-						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="mem_address2" name="mem_address2" maxlength="100" style="width: 300px; margin-top: 10px" value="${detail.mem_address2 }" readonly="readonly">
+						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="mem_address2" name="mem_address2" maxlength="100" style="width: 300px; margin-top: 10px" readonly="readonly">
 						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c7"></span>																			
 					</div>									
 				</div>	
@@ -248,12 +283,7 @@
 				<td class="tc">휴대전화</td>
 				<td>
 					<select id="tel" name="tel" class="form-control" disabled="disabled">
-						<option value="010">010</option>
-						<option value="011">011</option>
-						<option value="016">016</option>
-						<option value="017">017</option>
-						<option value="018">018</option>
-						<option value="019">019</option>
+						<option value="01*">01*</option>						
 					</select>&nbsp;-&nbsp;
 					<div class="form-group" id="form-group8">						
 						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="tel1" name="tel1" maxlength="4" style="width: 100px" readonly="readonly">
@@ -285,6 +315,28 @@
 					<input type="radio" id="nocheck" class="radio" name="mem_mailCheck" value="" disabled="disabled">수신안함
 					<span id="mail_msg"></span>					
 				</td>	
+			</tr>
+			<tr>
+				<td class="tc">가입일</td>
+				<td>
+				<div>
+					<div class="form-group" id="form-group4">						
+						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="mem_answer" maxlength="50" style="width: 400px" id="mem_answer" name="mem_answer"  value="${detail.mem_registdate }" readonly="readonly">
+						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c4"></span>												
+					</div>
+				</div>			
+				</td>
+			</tr>		
+			<tr>
+				<td class="tc">마지막 수정일</td>
+				<td>
+				<div>
+					<div class="form-group" id="form-group4">						
+						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="mem_answer" maxlength="50" style="width: 400px" id="mem_answer" name="mem_answer"  value="${detail.mem_updatedate }" readonly="readonly">
+						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c4"></span>												
+					</div>
+				</div>			
+				</td>
 			</tr>		
 		</table>
 	</div>

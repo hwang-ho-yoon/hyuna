@@ -92,8 +92,9 @@
 				$("#join_form").attr({
 					"method":"post",
 					"action":"/member/memberInsert.do"
-				});
-				$("#join_form").submit();			
+				});				
+				$("#join_form").submit();
+				alert("회원가입 되었습니다.");
 			}
 		});
 		
@@ -432,18 +433,18 @@
 						<input type="text" class="form-control postcodify_postcode5" aria-describedby="inputSuccess5Status" id="mem_post" name="mem_post" maxlength="6" style="width: 100px; background: white" readonly="readonly">
 						
 						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c5"></span>						
-						&nbsp;-&nbsp;<button type="button" value="우편번호" id="postcodify_search_button" class="btn btn-default " style="margin-bottom: 5px">우편번호</button><span id=post_msg></span>																			
+						&nbsp;-&nbsp;<button type="button" value="우편번호" id="postcodify_search_button" class="btn btn-default " style="margin-bottom: 5px; margin-top: 0px">우편번호</button><span id=post_msg></span>																			
 					</div>									
 				</div>
 				<div>
 					<div class="form-group" id="form-group6">						
-						<input type="text" class="form-control postcodify_jibeon_address" aria-describedby="inputSuccess5Status" id="mem_address1" name="mem_address1" maxlength="100" style="width: 300px; margin-top: 10px; background: white" readonly="readonly">
-						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c6"></span>																			
+						<input type="text" class="form-control postcodify_jibeon_address" aria-describedby="inputSuccess5Status" id="mem_address1" name="mem_address1" maxlength="100" style="width: 300px; background: white; margin-bottom: 10px" readonly="readonly">
+						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c6"></span>																									
 					</div>									
 				</div>	
 				<div>
 					<div class="form-group" id="form-group7">						
-						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="mem_address2" name="mem_address2" maxlength="100" style="width: 300px; margin-top: 10px">
+						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="mem_address2" name="mem_address2" maxlength="100" style="width: 300px; ">
 						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c7"></span>																			
 					</div>									
 				</div>	
@@ -505,7 +506,6 @@
 				</td>	
 			</tr>		
 		</table>
-
 	</div>
 	
 	<!-- 약관 -->

@@ -1,6 +1,8 @@
 package com.hyuna.vo;
 
-public class MemberVO {
+import com.hyuna.common.vo.CommonVO;
+
+public class MemberVO extends CommonVO{
 	private int mem_no;
 	private String mem_id;
 	private String mem_pwd;
