@@ -28,10 +28,10 @@
 
 				
 		$("#login").click(function(){
-			location.href = "/member/loginform.do";
+			location.href = "/admin/adminLogin.do";
 		});
 		$("#logout").click(function(){
-			location.href = "/member/logout.do";
+			location.href = "/admin/adminLogout.do";
 		});		
 		$("#login").mouseover(function(){
 			$("#login").css("text-decoration","underline");	
@@ -56,9 +56,9 @@
                     <div class="header-right">
                         <ul class="list-unstyled list-inline" style="margin-top: 20px">                                                                                                    
                             <c:choose>
-                            	<c:when test="${not empty sessionScope.adminNo }">
+                            	<c:when test="${not empty sessionScope.admin }">
                             		<li><i class="fa fa-user"></i><span id="logout" style="cursor: pointer; "> 로그아웃</span></li>
-                            		<li>${sessionScope.adminNo } 님</li>
+                            		<li>관리자&nbsp;${sessionScope.admin } 님</li>
                             	</c:when>                            
 	                            <c:otherwise>
 	                            	<li><i class="fa fa-user"></i><span id="login" style="cursor: pointer; "> 로그인</span></li>	                            	
