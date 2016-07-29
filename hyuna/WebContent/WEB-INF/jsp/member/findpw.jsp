@@ -67,6 +67,7 @@ body{
     padding-top:50px;
 }
 .telc{width: 100px; height: 35px}
+.form-control{margin-bottom: 15px}
 </style>
 </head>
 <body>

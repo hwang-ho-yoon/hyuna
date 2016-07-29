@@ -13,21 +13,20 @@ public class OrderGroupVO {
    private String ogr_payPlan;
    private String ogr_accHold;
    private String ogr_message;
-   private int ogr_accHoldNo;
+   private String ogr_accHoldNo;
    private int ogr_approvalNo;
    private int ogr_cardNo;
-   private int ogr_invoice;
    private String ogr_state;
    private int mem_no;
 	
-   private List<OrderProductVO> OrderProductVO;
+   private List<OrderProductVO> orderProductVO;
 
 	public List<OrderProductVO> getOrderProductVO() {
-		return OrderProductVO;
+		return orderProductVO;
 	}
 
 	public void setOrderProductVO(List<OrderProductVO> orderProductVO) {
-		OrderProductVO = orderProductVO;
+		this.orderProductVO = orderProductVO;
 	}
 	
 	public int getOgr_no() {
@@ -84,17 +83,17 @@ public class OrderGroupVO {
 	public void setOgr_accHold(String ogr_accHold) {
 		this.ogr_accHold = ogr_accHold;
 	}
-	public int getOgr_accHoldNo() {
+	public String getOgr_accHoldNo() {
 		return ogr_accHoldNo;
+	}
+	public void setOgr_accHoldNo(String ogr_accHoldNo) {
+		this.ogr_accHoldNo = ogr_accHoldNo;
 	}
 	public String getOgr_message() {
 		return ogr_message;
 	}
 	public void setOgr_message(String ogr_message) {
 		this.ogr_message = ogr_message;
-	}
-	public void setOgr_accHoldNo(int ogr_accHoldNo) {
-		this.ogr_accHoldNo = ogr_accHoldNo;
 	}
 	public int getOgr_approvalNo() {
 		return ogr_approvalNo;
@@ -110,12 +109,6 @@ public class OrderGroupVO {
 	}
 	public void setOgr_cardNo(int ogr_cardNo) {
 		this.ogr_cardNo = ogr_cardNo;
-	}
-	public int getOgr_invoice() {
-		return ogr_invoice;
-	}
-	public void setOgr_invoice(int ogr_invoice) {
-		this.ogr_invoice = ogr_invoice;
 	}
 	public void setOgr_state(String ogr_state) {
 		this.ogr_state = ogr_state;

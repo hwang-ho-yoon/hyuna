@@ -133,7 +133,7 @@
          	<input type="hidden" id="ogr_message" name="ogr_message" value="">
          	<input type="hidden" id="ogr_payPlan" name="ogr_payPlan" value="">
          	<input type="hidden" id="ogr_accHold" name="ogr_accHold" value="">
-         	<input type="hidden" id="ogr_accHoldNo" name="ogr_accHoldNo" value="0">
+         	<input type="hidden" id="ogr_accHoldNo" name="ogr_accHoldNo" value="">
          	<input type="hidden" id="ogr_cardNo" name="ogr_cardNo" value="0">
 		<table class="table table-hover table-bordered" id="productTable" >
 			<tr>

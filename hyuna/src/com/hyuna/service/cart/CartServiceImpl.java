@@ -41,5 +41,14 @@ public class CartServiceImpl implements CartService {
 		result = cartDao.cartAllDelete(cvo);
 		return result;
 	}
+
+	// 장바구니 선택 삭제
+	@Override
+	public int chkDelete(Integer cart_no) {
+		int result = 0;
+		result = cartDao.chkDelete(cart_no);
+		return result;
+		
+	}
 	
 }

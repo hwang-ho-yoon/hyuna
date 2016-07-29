@@ -8,7 +8,8 @@ public interface OrderState {
 	//public static final String RECALL = "반품";
 	public static final String STANDBY_DEPOSIT = "standby_deposit";
 	public static final String COMPLETE_DEPOSIT = "complete_deposit";
-	public static final String SHIPPED = "shipped";
+	public static final String SHIPPED = "shipping";
+	public static final String COMPLETE_SHIPPED = "complete_shipped";
 	public static final String CANCEL = "cancel";
 	public static final String RECALL = "recall";
 }

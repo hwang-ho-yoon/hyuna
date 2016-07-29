@@ -57,6 +57,7 @@ body{
 .vertical-offset-100{
     padding-top:50px;
 }
+.form-control{margin-bottom: 15px}
 .telc{width: 100px; height: 35px}
 </style>
 </head>

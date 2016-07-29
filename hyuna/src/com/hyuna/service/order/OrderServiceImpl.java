@@ -1,5 +1,7 @@
 package com.hyuna.service.order;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +37,16 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public OrderGroupVO orderGroupDetail(String ogr_no) {
 		return orderDao.orderGroupDetail(ogr_no);
+	}
+
+	@Override
+	public List<OrderGroupVO>selectOrderGroups(int mem_no) {
+		return orderDao.selectOrderGroups(mem_no);
+	}
+
+	@Override
+	public List<OrderProductVO> selectOrderProducts(int orderGroup_no) {
+		return orderDao.selectOrderProducts(orderGroup_no);
 	}
 
 }

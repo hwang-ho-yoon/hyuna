@@ -227,18 +227,18 @@
 						<input type="text" class="form-control postcodify_postcode5" aria-describedby="inputSuccess5Status" id="mem_post" name="mem_post" maxlength="6" style="width: 100px;" value="${detail.mem_post }" readonly="readonly">
 						
 						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c5"></span>						
-						&nbsp;-&nbsp;<button type="button" value="우편번호" id="postcodify_search_button" class="btn btn-default " style="margin-bottom: 5px">우편번호</button><span id=post_msg></span>
+						&nbsp;-&nbsp;<button type="button" value="우편번호" id="postcodify_search_button" class="btn btn-default " style="margin-bottom: 5px; margin-top: 0px">우편번호</button><span id=post_msg></span>
 					</div>									
 				</div>
 				<div>
 					<div class="form-group" id="form-group6">						
-						<input type="text" class="form-control postcodify_jibeon_address" aria-describedby="inputSuccess5Status" id="mem_address1" name="mem_address1" maxlength="100" style="width: 300px; margin-top: 10px" value="${detail.mem_address1 }">
+						<input type="text" class="form-control postcodify_jibeon_address" aria-describedby="inputSuccess5Status" id="mem_address1" name="mem_address1" maxlength="100" style="width: 300px; margin-bottom: 10px" value="${detail.mem_address1 }">
 						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c6"></span>																			
 					</div>									
 				</div>	
 				<div>
 					<div class="form-group" id="form-group7">						
-						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="mem_address2" name="mem_address2" maxlength="100" style="width: 300px; margin-top: 10px" value="${detail.mem_address2 }">
+						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="mem_address2" name="mem_address2" maxlength="100" style="width: 300px " value="${detail.mem_address2 }">
 						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c7"></span>																			
 					</div>									
 				</div>	
@@ -298,6 +298,28 @@
 					<input type="radio" id="nocheck" class="radio" name="mem_mailCheck" value="">수신안함
 					<span id="mail_msg"></span>					
 				</td>	
+			</tr>
+			<tr>
+				<td class="tc">가입일</td>
+				<td>
+				<div>
+					<div class="form-group" id="form-group4">						
+						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="mem_answer" maxlength="50" style="width: 400px" id="mem_answer" name="mem_answer"  value="${detail.mem_registdate }" readonly="readonly">
+						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c4"></span>												
+					</div>
+				</div>			
+				</td>
+			</tr>		
+			<tr>
+				<td class="tc">마지막 수정일</td>
+				<td>
+				<div>
+					<div class="form-group" id="form-group4">						
+						<input type="text" class="form-control" aria-describedby="inputSuccess5Status" id="mem_answer" maxlength="50" style="width: 400px" id="mem_answer" name="mem_answer"  value="${detail.mem_updatedate }" readonly="readonly">
+						<span class="glyphicon form-control-feedback" aria-hidden="true" id="c4"></span>												
+					</div>
+				</div>			
+				</td>
 			</tr>		
 		</table>
 	</div>	

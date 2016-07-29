@@ -84,11 +84,11 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/froala_editor.min.js"></script>
 
 
-<script>
+<!-- <script>
 		$(function() {
 	 	$('#edit').froalaEditor()
 	     });
-</script>
+</script> -->
   <!-- 게시판 css -->
 	
     
