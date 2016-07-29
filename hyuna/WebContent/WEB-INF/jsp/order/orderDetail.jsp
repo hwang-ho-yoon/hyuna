@@ -65,9 +65,9 @@
 				<th style="padding-top: 35px">받는사람</th>
 				<td>
 					${orderGroup.ogr_reciName} <br>
-					(${orderGroup.ogr_reciZipcode}) ${orderGroup.ogr_reciAddr1} ${orderGroup.ogr_reciAddr2}<br>
+					(${orderGroup.ogr_reciZipCode}) ${orderGroup.ogr_reciAddr1} ${orderGroup.ogr_reciAddr2}<br>
 					${orderGroup.ogr_reciTel}<br>
-					배송메시지 들어갈 장소
+					${orderGroup.ogr_message}
 				</td>
 			</tr>
 		</table>
