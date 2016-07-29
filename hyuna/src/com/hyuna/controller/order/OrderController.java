@@ -1,5 +1,9 @@
 package com.hyuna.controller.order;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,8 +29,15 @@ public class OrderController {
 		return "order/orderWrite";
 	}
 	
-	@RequestMapping("/orderPay.do")
-	public String orderPay() {
+	@RequestMapping("/orderList.do")
+	public String orderList(Model model, HttpSession session) {
+		int mem_no = (int)session.getAttribute("hyunaMember");
+		List<OrderGroupVO> orderGroupsVOs = orderService.selectOrderGroups(mem_no);
+		for (int i = 0; i < orderGroupsVOs.size(); i++) {
+			OrderGroupVO orderGroupsVO = orderGroupsVOs.get(i);
+			orderGroupsVO.setOrderProductVO(orderService.selectOrderProducts(orderGroupsVO.getOgr_no()));
+		}
+		model.addAttribute("orderGroups", orderGroupsVOs);
 		return "order/orderList";
 	}
 	

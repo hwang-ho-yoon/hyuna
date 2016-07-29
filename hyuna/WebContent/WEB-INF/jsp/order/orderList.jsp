@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page trimDirectiveWhitespaces="true" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 	<div id="wrapper">
 		<div class="col-md-12" style="padding: 0"> 
 			<h3>주문 조회</h3> 
@@ -41,23 +42,40 @@
 				<th>상품 금액(수량)</th>
 				<th>주문상태</th>
 				<th>반품/취소</th>
-			</tr>	
-			<tr>
-				<td style="padding-top: 14px"><a href="/order/orderDetail.do">20160518212618</a></td>
-				<td style="padding-top: 14px"><a href="#myModal" data-toggle="modal">비비드망고 땡땡이 아크릴 패치</a></td>
-				<td style="padding-top: 14px">15,000원 (2개)</td>
-				<td style="padding-top: 14px">구매완료</td>
-				<td><button class="btn btn-default btn-sm" style="margin: 0">반품</button></td>
 			</tr>
-			<tr>
-				<td style="padding-top: 14px">20160501821234</td>
-				<td style="padding-top: 14px">갤럭시 노트 3 케이스</td>
-				<td style="padding-top: 14px">19,000원 (1개)</td>
-				<td style="padding-top: 14px">구매대기</td>
-				<td><button class="btn btn-default btn-sm" style="margin: 0">취소</button></td>
-			</tr>
+				<!-- 데이터 출력 -->
+				<c:choose>
+					<c:when test="${not empty orderGroups}">
+						<c:forEach var="orderGroup" items="${orderGroups}" varStatus="Groupstatus">
+							<c:forEach var="orderProduct" items="${orderGroup.orderProductVO}" varStatus="Productstatus">
+								<tr> 
+									<td style="padding-top: 14px" data-num="${orderGroup.ogr_no}" rowspan="${fn:length(orderGroup.orderProductVO)}">${orderGroup.ogr_no}</td>
+									<c:forEach var="orderProduct" items="${orderGroup.orderProductVO}" varStatus="status">
+										<td style="padding-top: 14px">${orderProduct.prd_d_no}</td>
+										<td style="padding-top: 14px">${orderProduct.ord_amount}</td>
+									</c:forEach>
+									<td style="padding-top: 14px" rowspan="${fn:length(orderGroup.orderProductVO)}">${orderGroup.ogr_state}</td>
+									<td rowspan="${fn:length(orderGroup.orderProductVO)}">
+										<c:choose>
+											<c:when test="${orderGroup.ogr_state eq 'standby_deposit' || orderGroup.ogr_state eq 'complete_deposit'}">
+												<button class="btn btn-default btn-sm" style="margin: 0">취소</button>
+											</c:when>
+											<c:when test="${orderGroup.ogr_state eq 'shipping' || orderGroup.ogr_state eq 'complete_shipped'}">
+												<button class="btn btn-default btn-sm" style="margin: 0">반품</button>
+											</c:when>
+										</c:choose>
+									</td>
+								</tr>
+							</c:forEach>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<tr>
+							<td colspan="4">등록된 게시물이 존재하지 않습니다.</td>
+						</tr>
+					</c:otherwise>
+				</c:choose>
 		</table>
-		
 		<div id="myModal" class="modal fade" data-backdrop="static">
 	    	<div class="modal-dialog modal-sm">
 		        <div class="modal-content">
