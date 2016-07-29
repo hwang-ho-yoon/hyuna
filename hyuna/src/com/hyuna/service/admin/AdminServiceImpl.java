@@ -15,18 +15,19 @@ public class AdminServiceImpl implements AdminService{
 	Logger logger = Logger.getLogger(AdminServiceImpl.class);
 
 	@Autowired
-	private AdminDao admindDao;
+//	private AdminDao admindDao;
 
 	@Override
 	public List<MemberVO> memberList() {
 		List<MemberVO> list = null;
-		list = admindDao.memberList();
+//		list = admindDao.memberList();
 		return list;
 	}
 
 	@Override
 	public MemberVO memberDetail(MemberVO mvo) {		
-		return admindDao.memberDetail(mvo);
+//		return admindDao.memberDetail(mvo);
+		return null;
 	}
 
 }

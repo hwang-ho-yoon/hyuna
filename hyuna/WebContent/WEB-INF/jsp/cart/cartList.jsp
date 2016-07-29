@@ -36,30 +36,27 @@
 			location.href="/cart/cartInsert.do";
 		});		
 		
-		/* 삭제버튼 클릭 시 이벤트 */
+		/* 장바구니 비우기 버튼 클릭 시 이벤트 */
 		$("#allDelete").click(function() {
-			var cart_no = $(this).parents("li").attr("mem_no");
-			console.log("cart_no : " + cart_no);
 			
 			if(confirm('장바구니를 비우겠습니까?')) {
 				$.ajax({
-					type : 'delete',
-					url : '/cart/' + cart_no + ".do",
-					headers : {
-						"Content-Type":"application/json",
-						"X-HTTP-Method-Override":"DELETE"
-					},
+					type : 'POST',
+					url : "/cart/cartDelete.do",
 					dataType : 'text',
+					error : function() {
+						alert('시스템 오류 입니다. 관리자에게 문의하세요.')
+					},
 					success : function(result) {
 						console.log("result : " + result);
 						if(result == 'SUCCESS') {
 							alert("비우기 완료");
-							listAll(cart_no);
+							location.href="/cart/cartList.do";
 						}
 					}
 				});
 			}
-		});		
+		});
 	});
 
 </script>
