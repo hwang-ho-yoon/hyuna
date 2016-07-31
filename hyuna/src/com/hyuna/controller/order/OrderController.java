@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hyuna.service.order.OrderService;
 import com.hyuna.util.OrderState;
+import com.hyuna.util.RecallCancel;
 import com.hyuna.vo.OrderGroupVO;
+import com.hyuna.vo.OrderRecallCancelVO;
 
 @Controller
 @RequestMapping(value="/order")
@@ -46,6 +48,24 @@ public class OrderController {
 		OrderGroupVO ogv = orderService.orderGroupDetail(ogr_no);
 		model.addAttribute("orderGroup", ogv);
 		return "order/orderDetail";
+	}
+	
+	@RequestMapping("/orderCancel.do")
+	public String orderCancel(@ModelAttribute OrderRecallCancelVO recallCancel) {
+		logger.info("주문취소 호출");
+		recallCancel.setRnc_gbn(OrderState.CANCEL);
+		orderService.orderGroupUpdate(recallCancel);
+		orderService.orderCancelRecallInsert(recallCancel);
+		return "redirect:"+"/order/orderList.do";
+	}
+	
+	@RequestMapping("/orderRecall.do")
+	public String orderRecall(@ModelAttribute OrderRecallCancelVO recallCancel) {
+		logger.info("주문반품 호출");
+		recallCancel.setRnc_gbn(OrderState.RECALL);
+		orderService.orderGroupUpdate(recallCancel);
+		orderService.orderCancelRecallInsert(recallCancel);
+		return "redirect:"+"/order/orderList.do";
 	}
 	
 	@RequestMapping("/orderInsert.do")

@@ -20,4 +20,12 @@
 	<select id="selectOrderProducts" parameterType="int" resultType="orderProduct">
 		select ord_no, ord_amount, ogr_no, prd_d_no from orderProduct where ogr_no = #{ogr_no} 
 	</select>
+	
+	<insert id="orderCancelRecallInsert" parameterType="orderRecallCancel">
+		insert into recallcancel(rnc_no, rnc_desc, rnc_gbn, ogr_no) values(recallcancelSeq.nextval, #{rnc_desc}, #{rnc_gbn}, #{ogr_no})
+	</insert>
+	
+	<update id="orderGroupUpdate" parameterType="orderRecallCancel">
+		update orderGroup set ogr_state = #{rnc_gbn} where ogr_no = #{ogr_no}
+	</update>
 </mapper>

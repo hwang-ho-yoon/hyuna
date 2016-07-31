@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hyuna.dao.order.OrderDao;
 import com.hyuna.vo.OrderGroupVO;
 import com.hyuna.vo.OrderProductVO;
+import com.hyuna.vo.OrderRecallCancelVO;
 
 @Service
 @Transactional
@@ -47,6 +48,16 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public List<OrderProductVO> selectOrderProducts(int orderGroup_no) {
 		return orderDao.selectOrderProducts(orderGroup_no);
+	}
+
+	@Override
+	public int orderCancelRecallInsert(OrderRecallCancelVO recallCancel) {
+		return orderDao.orderCancelRecallInsert(recallCancel);
+	}
+
+	@Override
+	public int orderGroupUpdate(OrderRecallCancelVO recallCancel) {
+		return orderDao.orderGroupUpdate(recallCancel);
 	}
 
 }
