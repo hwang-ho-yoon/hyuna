@@ -2,6 +2,25 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <!-- Latest jQuery form server -->
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    
+    <!-- Bootstrap JS form CDN -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    
+    <!-- jQuery sticky menu -->
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.sticky.js"></script>
+    
+    <!-- jQuery easing -->
+    <script src="js/jquery.easing.1.3.min.js"></script>
+    
+    <!-- Main Script -->
+    <script src="js/main.js"></script>
+    
+    <!-- Slider -->
+    <script type="text/javascript" src="js/bxslider.min.js"></script>
+	<script type="text/javascript" src="js/script.slider.js"></script>
 <script type="text/javascript">		
 	$(function(){
 		$("#my").click(function(){
@@ -133,7 +152,7 @@
 	                            <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">갤럭시</a></li>
+                                <li><a href="/product/prdMainList.do">갤럭시</a></li>
                                 <li><a href="#">노트</a></li>
                                 <li><a href="#">보급</a></li>
                             </ul>
@@ -164,6 +183,7 @@
                         <li><a href="/board/qna/qnaList.do">Q&A</a></li>
                         <li><a href="/board/faq/faqList.do">FAQ</a></li>
 						<li><a href="/board/review/reviewList.do">review</a></li>
+						<li><a href="/product/prdRgtList.do">상품등록</a></li>
 						 
 <!-- 						 <button type="button" class="btn btn-info">PHP</button>
 						 <button type="button" class="btn btn-info">Blogger</button>
