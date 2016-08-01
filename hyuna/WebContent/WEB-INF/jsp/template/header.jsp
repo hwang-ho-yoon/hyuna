@@ -2,25 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- <!-- Latest jQuery form server -->
-    <script src="https://code.jquery.com/jquery.min.js"></script>
-    
-    <!-- Bootstrap JS form CDN -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    
-    <!-- jQuery sticky menu -->
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.sticky.js"></script>
-    
-    <!-- jQuery easing -->
-    <script src="js/jquery.easing.1.3.min.js"></script>
-    
-    <!-- Main Script -->
-    <script src="js/main.js"></script>
-    
-    <!-- Slider -->
-    <script type="text/javascript" src="js/bxslider.min.js"></script>
-	<script type="text/javascript" src="js/script.slider.js"></script>
+
 <script type="text/javascript">		
 	$(function(){
 		$("#my").click(function(){
@@ -214,7 +196,16 @@
 		            <div class="modal-body form-inline">
 		            <form id="pwd_form">
 		            <input type="hidden" name="mem_no" value="${sessionScope.hyunaMember }">
-		                  비밀번호:&nbsp;&nbsp;<input type="password" name="mem_pwd" id="mem_pwd" maxlength="16" class="form-control" style="width: 150px">
+		            <table>
+		            	<tr>
+			            	<td>
+			            		 비밀번호 : &nbsp;&nbsp;
+			            	</td>
+		            		<td>
+		                 		<input type="password" name="mem_pwd" id="mem_pwd" maxlength="16" class="form-control" style="width: 150px">
+		                 	</td>		                 
+		                 </tr>
+		            </table>		                 
 		            </form>		            	
 		         	</div>
 		           <div class="modal-footer">
