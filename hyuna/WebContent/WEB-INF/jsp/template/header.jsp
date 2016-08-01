@@ -1,6 +1,98 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <!-- Latest jQuery form server -->
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    
+    <!-- Bootstrap JS form CDN -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    
+    <!-- jQuery sticky menu -->
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.sticky.js"></script>
+    
+    <!-- jQuery easing -->
+    <script src="js/jquery.easing.1.3.min.js"></script>
+    
+    <!-- Main Script -->
+    <script src="js/main.js"></script>
+    
+    <!-- Slider -->
+    <script type="text/javascript" src="js/bxslider.min.js"></script>
+	<script type="text/javascript" src="js/script.slider.js"></script>
+<script type="text/javascript">		
+	$(function(){
+		$("#my").click(function(){
+			$("#myModal").modal('show');			
+		});
+		$("#pwdchkBtn").click(function(){
+			$.ajax({
+				url : "/member/pwdCheck.do",
+			    type : "post",
+			    data : $("#pwd_form").serialize(),
+			    error : function(){
+					alert("실패");
+			    },
+			    success : function(resultData){			     
+				    if(resultData==1){	
+				      	location.href = "/member/membermenu.do";
+				    }else{
+				      	alert("틀림");			      	
+					}    
+				}
+			});			
+		});
+		
+		$("#mem_pwd").keydown(function(evt){
+			if(evt.keyCode==13)
+				return false;			
+		});
+				
+		$("#login").click(function(){
+			location.href = "/member/loginform.do";
+		});
+		$("#logout").click(function(){
+			location.href = "/member/logout.do";
+		});
+		$("#memberjoin").click(function(){
+			location.href = "/member/memberjoin.do";
+		});
+		$("#cart").click(function(){			
+			location.href = "/cart/cart.do";
+		});
+		$("#my").mouseover(function(){
+			$("#my").css("text-decoration","underline");	
+		});
+		$("#my").mouseout(function(){
+			$("#my").css("text-decoration","none");	
+		});
+		$("#login").mouseover(function(){
+			$("#login").css("text-decoration","underline");	
+		});
+		$("#login").mouseout(function(){
+			$("#login").css("text-decoration","none");	
+		});
+		$("#logout").mouseover(function(){
+			$("#logout").css("text-decoration","underline");	
+		});
+		$("#logout").mouseout(function(){
+			$("#logout").css("text-decoration","none");	
+		});
+		$("#memberjoin").mouseover(function(){
+			$("#memberjoin").css("text-decoration","underline");	
+		});
+		$("#memberjoin").mouseout(function(){
+			$("#memberjoin").css("text-decoration","none");	
+		});
+		$("#cart").mouseover(function(){
+			$("#cart").css("text-decoration","underline");	
+		});
+		$("#cart").mouseout(function(){
+			$("#cart").css("text-decoration","none");	
+		});
+	});
+</script>
     <div class="header-area">
         <div class="container">
             <div class="row">
@@ -8,11 +100,19 @@
                 </div>
                 <div class="col-md-5">
                     <div class="header-right">
-                        <ul class="list-unstyled list-inline">
-                          <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
-                            <li><a href="/cart/cart.do"><i class="fa fa-user"></i> My Cart</a></li>
-                            <li><a href="/member/loginform.do"><i class="fa fa-user"></i> Login</a></li>
-                            <li><a href="/member/memberjoin.do"><i class="fa fa-user"></i> Join</a></li>
+                        <ul class="list-unstyled list-inline" style="margin-top: 20px">                                                
+                          <li><i class="fa fa-user"></i><span id="my" style="cursor: pointer; "> 나의정보</span></li>
+                            <li><i class="fa fa-user"></i><span id="cart" style="cursor: pointer; "> My Cart</span></li>
+                            <c:choose>
+                            	<c:when test="${not empty sessionScope.hyunaMember }">
+                            		<li><i class="fa fa-user"></i><span id="logout" style="cursor: pointer; "> 로그아웃</span></li>
+                            		<li>${sessionScope.hyunaname } 님</li>
+                            	</c:when>                            
+	                            <c:otherwise>
+	                            	<li><i class="fa fa-user"></i><span id="login" style="cursor: pointer; "> 로그인</span></li>
+	                            	<li><i class="fa fa-user"></i><span id="memberjoin" style="cursor: pointer; "> 회원가입</span></li>
+	                            </c:otherwise>
+                            </c:choose>                            
                         </ul>
                     </div>
                 </div>
@@ -52,7 +152,7 @@
 	                            <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">갤럭시</a></li>
+                                <li><a href="/product/prdMainList.do">갤럭시</a></li>
                                 <li><a href="#">노트</a></li>
                                 <li><a href="#">보급</a></li>
                             </ul>
@@ -80,9 +180,10 @@
                             </ul>
 						</li>
                         <li><a href="/order/orderWrite.do">주문조회</a></li>
-                        <li><a href="#">Q&A</a></li>
-                        <li><a href="/board/faqList.do">FAQ</a></li>
-						 
+                        <li><a href="/board/qna/qnaList.do">Q&A</a></li>
+                        <li><a href="/board/faq/faqList.do">FAQ</a></li>
+						<li><a href="/board/review/reviewList.do">review</a></li>
+						<li><a href="/product/prdRgtList.do">상품등록</a></li>
 						 
 <!-- 						 <button type="button" class="btn btn-info">PHP</button>
 						 <button type="button" class="btn btn-info">Blogger</button>
@@ -102,3 +203,24 @@
             </div>
         </div>
     </div> <!-- End mainmenu area -->
+    		
+    		<div id="myModal" class="modal fade" data-backdrop="static">
+	    	<div class="modal-dialog modal-sm">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                <h4 class="modal-title">비밀번호 입력</h4>
+		            </div>
+		            <div class="modal-body form-inline">
+		            <form id="pwd_form">
+		            <input type="hidden" name="mem_no" value="${sessionScope.hyunaMember }">
+		                  비밀번호:&nbsp;&nbsp;<input type="password" name="mem_pwd" id="mem_pwd" maxlength="16" class="form-control" style="width: 150px">
+		            </form>		            	
+		         	</div>
+		           <div class="modal-footer">
+		                <button type="button" class="btn btn-primary btn-sm" id="pwdchkBtn">확인</button>
+		                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">취소</button>
+            	   </div>
+	         	</div>
+         	</div>
+         </div>

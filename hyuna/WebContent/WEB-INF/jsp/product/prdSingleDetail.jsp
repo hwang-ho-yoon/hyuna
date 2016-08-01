@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true" %>
 <div id="wrapper">
 	<div class="single-product-area">
 		<div class="container">
@@ -10,18 +11,20 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-6 ">
-						<div class="product-images">
+						<div class="product-images" >
 							<!-- style="height: auto; width: 100%; border:1px solid gold;"   div 영역표시하기.-->
-							<div class="product-main-img">
-								<img src="/include/image/product-2.jpg" alt=""
-									class="center-block">
+							<div class="product-main-img"   >
+							<!-- <img src="/include/image/product-2.jpg" alt=""class="center-block">-->
+								<img src="/main${detail.img_1 }" alt="" class="center-block" style="height: auto; width: 40%; ">
+								<img src="/main/${detail.img_1 }" alt="" class="center-block" style="height: auto; width: 40%; ">
+									
 							</div>
 						</div>
 					</div>
 					<div class="product-inner">
-						<h2 class="product-name">Sony Smart TV - 2015</h2>
+						<h2 class="product-name">${detail.prd_name}</h2>
 						<div class="product-inner-price">
-							<ins>$700.00</ins>
+							<ins>${detail.prd_saleprice}</ins>
 							<del>$100.00</del>
 						</div>
 						<form action="" class="cart">
@@ -67,8 +70,8 @@
 							</ul>
 							<div class="tab-content">
 								<div role="tabpanel" class="tab-pane fade in active" id="home">
-									<h2>Product Description</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+									<!-- <h2>Product Description</h2> -->
+									<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 										Nam tristique, diam in consequat iaculis, est purus iaculis
 										mauris, imperdiet facilisis ante ligula at nulla. Quisque
 										volutpat nulla risus, id maximus ex aliquet ut. Suspendisse
@@ -83,7 +86,9 @@
 										fringilla ex. Nulla facilisi. Etiam scelerisque tincidunt quam
 										facilisis lobortis. In malesuada pulvinar neque a consectetur.
 										Nunc aliquam gravida purus, non malesuada sem accumsan in.
-										Morbi vel sodales libero.</p>
+										Morbi vel sodales libero.</p> -->
+										<img src="/detail/${detail.img_3 }" class="center-block"/>
+										<img src="/detail${detail.img_3 }" class="center-block"/>
 								</div>
 								<!-- review 부분 -->
 								<div role="tabpanel" class="tab-pane fade" id="profile">

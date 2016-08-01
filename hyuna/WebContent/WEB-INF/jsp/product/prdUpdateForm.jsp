@@ -10,51 +10,77 @@ $(function() {
 		if(this.checked)"Y"
 		else"N"
 	});
+	$("#optionadd").click(function() {
+		var add = $("#model option:selected").text();
+		var add_no = $("#model").val();
+		console.log(add_no+" :"+add);
+		
+		var color = $("#color option:selected").text();
+		var color_no = $("#color").val();
+		console.log(color_no+" :"+color);
+		
+		
+		 var table = document.getElementById("tb_option");
+		var tablerows = table.getElementsByTagName("tr").length;
+		var prd_no=${detail.prd_no};
+		
+
+		if (!tableChk(add, color, "이미 입력되어 있는 옵셥입니다."))
+			return;
+		else {
+			$.ajax({//ajax 최상위 , = jquery.ajax()
+				url : "/product/prdOptAdd.do",//전송URL
+				type : "POST",//전송시 method방식
+				dataType : "text",//응답문서의 형식
+				data:JSON.stringify({
+					prd_no:prd_no,
+					prd_d_display:$("#open").val(),
+					prd_d_stock:$("#prdStockNum").val(),
+					color_no:$("#color").val(),
+					model_no:$("#model").val()
+				}),
+				error : function() {//실행시 오류가 발생 하엿을 경우
+					alert('시스템오류 입니다. 관리자에게 문의하세요.');
+				}, 
+				success : function(resultData) {//정상실행되엇을경우 (결과를 담을 수 있는 변수로서 다른이름도 관ㄱㅖ없다.) 
+					if(result=="SUCCESS"){
+	                     alert("옵션추가완료");
+	                     
+	                  }
+				}
+
+			});
+		} 
+	});
 });
 function prdUpdate(prd_no){
-	<%--if ($("#file").val().indexOf(".") > -1) {
-		if (chkfile()) {
-		$("input:checkbox").each(function(){
-			if(this.checked)"Y"
-			else"N"
-		});--%>
-		if(!$("#file1").val().indexOf(".") > -1){
-			$("#file1").val('');
-		}
-		if(!$("#file2").val().indexOf(".") > -1){
-			$("#file2").val('');
-		}
-		if(!$("#file3").val().indexOf(".") > -1){
-			$("#file3").val('');
-		}
-		
-		
-		      
-		
-		<%--var chk=$("#prd_display").val();
-		console.log(chk);
-		
-		if(chk==true){
-			document.forms["prd_update"]["prd_display"].value='Y';
-		}--%>
-		
-		$("#prd_update").attr({
+			$("#prd_update").attr({
 			"method" : "post",
 			"action" : "/product/prdUpdate.do"
 		});
 		$("#prd_update").submit();
-		<%--		} else
-			return;
-
+		
+}
+function tableChk(add1, add2, str) {
+	//var model=$(".opt_tr").children(0).css('background','red');
+	var tf = true;
+	if (document.getElementById("tb_option").getElementsByTagName("tr").length > 1) {
+		for (var start = 0; start < document.getElementById("tb_option").getElementsByTagName("tr").length - 1; start++) {
+			var model = $(".tac:eq(" + start + ")").children('td:eq(2)').text();
+			var color = $(".tac:eq(" + start + ")").children('td:eq(3)').text();
+			console.log(model + "   " + color);
+			if (add1 == model && add2 == color) {
+				alert(str);
+				tf = false;
+				return;
+			} else {
+				tf = true;
+			}
+		}
 	} else {
-		$("#f_writeForm").attr({
-			"method" : "post",
-			"action" : "/board/boardUpdate.do"
-		});
-		$("#f_writeForm").submit();
-
-	}--%>
-	
+		tf = true;
+	}
+	return tf;
 }
 
 </script>
@@ -128,6 +154,52 @@ function prdUpdate(prd_no){
 		</div>
 		<br>
 		<div class="row">
+		<div id="optionAddDiv" class="optionAddDiv">
+		<form id="optAdd">
+			<table id="tb_option" class="table">
+				<colgroup>
+					<col width="20%" />
+					<col width="20%" />
+					<col width="25%" />
+					<col width="15%" />
+					<col width="10%" />
+					<col width="10%" />
+				</colgroup>
+				<tr id="tr_opt">
+					<th>기종</th>
+					<th>color</th>
+					<th>재고</th>
+					<th>공개</th>
+					<th>추가</th>
+				</tr>
+				<tr id="tr_opt">
+					<td>
+					<select id="model">
+						<option value="1">아이폰6/6S</option>
+						<option value="2">아이폰6플러스</option>
+						<option value="3">아이폰SE/5/5S</option>
+						<option value="4">아이폰4/4S</option>
+					</select></td>
+					<td>
+					<select id="color">
+						<option value="1">빨강</option>
+						<option value="2">노랑</option>
+						<option value="3">파랑</option>
+					</select>
+					</td>
+					<td><input type="number" step='5' min='0' id="prdStockNum"/></td>
+					<td>
+					<select id="open">
+						<option value="Y">Y</option>
+						<option value="N">N</option>
+					</select>
+					</td>
+					<td><button type='button' id='optionadd' class='optionadd'>+</button></td>
+				</tr>
+			</table>
+		</form>	
+		</div>
+		
 			<div id="optiontable" class="optiontable">
 				<c:choose>
 					<c:when test="${not empty optList }">
@@ -141,9 +213,9 @@ function prdUpdate(prd_no){
 							</colgroup>
 							<tr id="tr_opt">
 								<th>옵션번호</th>
-								<th>Color</th>
 								<th>Brand</th>
 								<th>기종</th>
+								<th>Color</th>
 								<th>표시여부</th>
 							</tr>
 
@@ -151,8 +223,9 @@ function prdUpdate(prd_no){
 							<c:forEach var="opt" items="${optList }" varStatus="status">
 								<tr class="tac" data-num="${opt.prd_d_no }">
 									<td>${opt.prd_d_no }</td>
-									<td>${opt.color_detail }</td>
+									<td>${opt.model_brand }</td>
 									<td>${opt.model_machine }</td>
+									<td>${opt.color_detail }</td>
 									<td>${opt.prd_d_display }</td>
 								</tr>
 							</c:forEach>
