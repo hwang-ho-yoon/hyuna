@@ -9,103 +9,97 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(function(){
-		if($("#rm").is(":checked")){				
-			$("#td_ph").hide();				
-			$("#td_tel").hide();			
+/* 		if($("#rm").is(":checked")){				
+			$("#teltxt").hide();				
+			$("#teltxt").hide();			
 		}
 		$("#rm").click(function(){			
-			$("#td_ph").hide();				
-			$("#td_tel").hide();
-			$("#td_mail").show();				
-			$("#td_email").show();
+			$("#teltxt").hide();				
+			$("#teltxt").hide();
+			$("#mailtxt").show();				
+			$("#mailtxt").show();
 		});
 		$("#rp").click(function(){			
-			$("#td_mail").hide();				
-			$("#td_email").hide();
-			$("#td_ph").show();				
-			$("#td_tel").show();
-		});
+			$("#mailtxt").hide();				
+			$("#mailtxt").hide();
+			$("#teltxt").show();				
+			$("#teltxt").show();
+		}); */
 		
 		$("#okBtn").click(function(){
-			$.ajax({
+ 			$.ajax({
 				url : "/member/findidOk.do",
 			    type : "post",
 			    data : $("#findid_form").serialize(),
 			    error : function(){
 					alert("실패");
 			    },
-			    success : function(resultData){
-			    alert(resultData); 
-			    if(resultData=='success'){
-			    	$("#id").text(" 회원님의 아이디는 <c:out value='${vo.mem_id}'/>").css("color","red");			      	
-			    	//alert("${vo.mem_id}");			      	
-			    }else{
-			      	alert("실패");			      
-				}    
+			    success : function(resultData){				    	
+				    if(resultData=='Failed'){
+				    	alert("존재하지않는 정보입니다 확인후 다시 시도하세요.");				    					    	
+				    }else if(resultData!=null){
+				    	alert("회원님의 아이디는 "+resultData+" 입니다.");
+				    	location.href = "/member/loginform.do";
+					}     
 				}
 			});
+
 		});
 	});
 </script>
+<style type="text/css">
+body{
+    background: url(http://mymaplist.com/img/parallax/back.png);
+	background-color: #444;
+    background: url(http://mymaplist.com/img/parallax/pinlayer2.png),url(http://mymaplist.com/img/parallax/pinlayer1.png),url(http://mymaplist.com/img/parallax/back.png);    
+}
+
+.vertical-offset-100{
+    padding-top:50px;
+}
+.form-control{margin-bottom: 15px}
+.telc{width: 100px; height: 35px}
+</style>
 </head>
 <body>
-	<form id="findid_form">
-	<div id="wrapper" style="margin-bottom: 20px">
-		<h4>아이디 찾기</h4>
-		<div>
-			<div class="row" style="background: #ddd;">
-			  <div class="col-xs-6 col-sm-4"></div>
-			  <div class="col-xs-6 col-sm-4" style="padding-top: 100px; padding-bottom: 100px; padding-left: 50px">
-			  	<table>
-			  	
-			  	<thead>
-			  		<tr align="center">
-			  			<th style="text-align: center; padding-bottom: 20px">아이디찾기</th>
-			  		</tr>
-			  	</thead>
-			  	<tbody>	
-			  		<tr>
-			  			<td>			  			
-			  				<input type="radio" name="radio" checked="checked" id="rm">이메일
-			  				<input type="radio" name="radio" id="rp">휴대폰			  				
-			  			</td>
-			  		</tr>
-			  		<tr>
-			  			<td>이름</td>
-			  		</tr>
-			  		<tr>
-			  			<td><input type="text" id="mem_name" name="mem_name"></td>
-			  		</tr>
-			  		<tr>
-			  			<td id="td_mail">이메일</td>
-			  		</tr>
-			  		<tr>
-			  			<td id="td_email"><input type="email" id="mem_mail" name="mem_mail"></td>
-			  		</tr>
-			  		<tr>
-			  			<td id="td_ph">휴대폰</td>
-			  		</tr>
-			  		<tr>
-			  			<td id="td_tel">
-			  				<input type="text" id="tel1" name="tel1" maxlength="3" style="width: 55px">&nbsp;-
-			  				<input type="text" id="tel2" name="tel2" maxlength="4" style="width: 55px">&nbsp;-
-			  				<input type="text" id="tel3" name="tel3" maxlength="4" style="width: 55px">
-			  			</td>
-			  		</tr>
-			  		<tr>
-			  			<td><button type="button" class="btn btn-default" id="okBtn">확인</button>
-			  		</tr>
-			  		<tr>
-			  			<td><span id="id"></span></td>			  			
-			  		</tr>			  		
-			  	</tbody>	
-			  	</table>
-			  </div>
-
-			  <div class="col-xs-6 col-sm-4"></div>
+<div class="container">
+    <div class="row vertical-offset-100">
+    	<div class="col-md-4 col-md-offset-4">
+    		<div class="panel panel-default">
+			  	<div class="panel-heading">
+			    	<h3 class="panel-title">아이디 찾기</h3>
+			 	</div>
+			  	<div class="panel-body">
+			    	<form accept-charset="UTF-8" role="form" id="findid_form">
+                    <fieldset>
+                    	<!-- <div class="form-group">                    	
+			    		    <input name="mem_radio" id="rm" type="radio" value="mail" checked="checked">&nbsp;이메일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    		    <input name="mem_radio" id="rp" type="radio" value="ph">&nbsp;휴대폰			    		
+			    		</div>
+			    		<hr> -->
+			    	  	<div class="form-group">
+			    		    <input class="form-control" placeholder="이름" name="mem_name" id="mem_name" type="text">
+			    		</div>
+			    		<div class="form-group" id="mailtxt">
+			    			<input class="form-control" placeholder="이메일 주소" name="mem_mail" id="mem_mail" type="email" >
+			    		</div>
+			    		<div class="form-group" style="margin-bottom: 0px">
+			    		휴대폰 번호
+			    		</div>			    		
+			    		<div class="form-group" id="teltxt">
+			    			<input class="telc" name="tel1" type="text" maxlength="3">&nbsp;-
+			    			<input class="telc" name="tel2" type="text" maxlength="4">&nbsp;-
+			    			<input class="telc" name="tel3" type="text" maxlength="4">
+			    		</div>			    		
+			    	    <div class="form-inline" align="center">
+			    		<input class="btn btn-lg btn-success btn-block" type="button" value="확인" id="okBtn">
+						</div>
+			    	</fieldset>
+			      	</form>
+			    </div>
 			</div>
 		</div>
 	</div>
-	</form>
+</div>
 </body>
 </html>

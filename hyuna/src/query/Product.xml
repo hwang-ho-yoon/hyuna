@@ -48,8 +48,23 @@
 	<select id="prdMainList" resultType="prd" parameterType="prd">
 		select m.prd_no, prd_name, nvl(prd_desc,'') as prd_desc, prd_saleprice, nvl(img.img_1,'') as img_1 from prd_master m
 		  left join prd_img img on m.prd_no = img.prd_no
-         where prd_display ='on' or prd_display ='Y' order by prd_no desc
+		  <if test ="model_machine != ''">
+		   left join prd_detail d on m.prd_no = d.prd_no 
+		  </if>
+         where 1=1 
+          <if test ="model_machine != ''">
+		   and d.model_no = (
+           select model_no from model where model_machine like '% #{model_machine} %')
+		  </if>        
+         and prd_display ='on' or prd_display ='Y' order by prd_no desc
 	</select>
+	<!-- <select id="prdMainList" resultType="prd" parameterType="prd">
+		select m.prd_no, prd_name, nvl(prd_desc,'') as prd_desc, prd_saleprice, nvl(img.img_1,'') as img_1 from prd_master m
+		  left join prd_img img on m.prd_no = img.prd_no
+         where prd_display ='on' or prd_display ='Y' order by prd_no desc
+	</select> -->
+	
+	
 	<select id="prdSingleDetail" resultType="prd" parameterType="prd">
 		select m.prd_no, prd_name, prd_desc, prd_saleprice, nvl(img.img_1,'') as img_1, nvl(img.img_3,'') as img_3 from prd_master m
 		  left join prd_img img on m.prd_no = img.prd_no

@@ -9,18 +9,18 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     
     <!-- jQuery sticky menu -->
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.sticky.js"></script>
+    <script src="/include/js/owl.carousel.min.js"></script>
+    <script src="/include/js/jquery.sticky.js"></script>
     
     <!-- jQuery easing -->
-    <script src="js/jquery.easing.1.3.min.js"></script>
+    <script src="/include/js/jquery.easing.1.3.min.js"></script>
     
     <!-- Main Script -->
-    <script src="js/main.js"></script>
+    <script src="/include/js/main.js"></script>
     
     <!-- Slider -->
-    <script type="text/javascript" src="js/bxslider.min.js"></script>
-	<script type="text/javascript" src="js/script.slider.js"></script>
+    <script type="text/javascript" src="/include/js/bxslider.min.js"></script>
+	<script type="text/javascript" src="/include/js/script.slider.js"></script>   
 <script type="text/javascript">		
 	$(function(){
 		$("#my").click(function(){
@@ -91,7 +91,16 @@
 		$("#cart").mouseout(function(){
 			$("#cart").css("text-decoration","none");	
 		});
+		$("#prd").bind('click',function(){
+			var link=$(this).attr('href');
+			alert(link);
+		})
+		
 	});
+	
+	/* function goSearch(keyword){
+		location.href = "/product/prdMainList.do?model_machine=+"keyword;
+	} */
 </script>
     <div class="header-area">
         <div class="container">
@@ -152,9 +161,9 @@
 	                            <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="/product/prdMainList.do">갤럭시</a></li>
-                                <li><a href="#">노트</a></li>
-                                <li><a href="#">보급</a></li>
+                                <li><a href="javascript:goSearch('갤럭시');" id="prd">갤럭시</a></li>
+                                <li><a href="javascript:goSearch('노트');" id="prd">노트</a></li>
+                                <!-- <li><a href="#">보급</a></li> -->
                             </ul>
 						</li>
                         <li class="dropdown dropdown-small">
@@ -163,9 +172,10 @@
 	                            <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">5S</a></li>
-                                <li><a href="#">6S</a></li>
-                                <li><a href="#">7S</a></li>
+                            	<li><a href="4S" id="prd">4S</a></li>
+                                <li><a href="5S" id="prd">5S</a></li>
+                                <li><a href="6S" id="prd">6S</a></li>
+                                <!-- <li><a href="#">7S</a></li> -->
                             </ul>
 						</li>
                         <li class="dropdown dropdown-small">

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page trimDirectiveWhitespaces="true" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 	<div id="wrapper">
 		<div class="col-md-12" style="padding: 0"> 
@@ -14,7 +15,18 @@
 			</tr>
 			<tr>
 				<th>결제방법</th>
-				<td>신용카드</td>
+				<td>
+					<c:choose>
+						<c:when test="${orderGroup.ogr_payPlan == 'card'}">
+							카드결제							
+						</c:when>
+						<c:otherwise>
+							무통장
+						</c:otherwise>
+					</c:choose>
+					
+					
+				</td>
 			</tr>
 		</table>
 		<div class="col-md-12" style="padding: 0"> 
@@ -52,10 +64,10 @@
 			<tr>
 				<th style="padding-top: 35px">받는사람</th>
 				<td>
-					황호윤<br>
-					(420-101) 경기도 부천시 원미구 역곡 1동 한양수자인 1차 아파트 101동 701호<br>
-					010-5663-9227<br>
-					부재시 경비실에 맡겨주세요
+					${orderGroup.ogr_reciName} <br>
+					(${orderGroup.ogr_reciZipCode}) ${orderGroup.ogr_reciAddr1} ${orderGroup.ogr_reciAddr2}<br>
+					${orderGroup.ogr_reciTel}<br>
+					${orderGroup.ogr_message}
 				</td>
 			</tr>
 		</table>

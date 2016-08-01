@@ -16,6 +16,7 @@ a:focus { outline: 0px solid }
 img {
     max-width: 100%;
     height: auto;
+    
 }
 .fix { overflow: hidden }
 h1,
@@ -806,9 +807,9 @@ input[type="submit"]:hover, button[type=submit]:hover {background-color: #222}
     margin-right: 15px;
 }
 .quantity input[type="number"] {
-    border: 1px solid #5a88ca;
+    /* border: 1px solid #5a88ca; */
     padding: 5px;
-    width: 30%;
+    width: 50px;
 }
 .add_to_cart_button {
     background: none repeat scroll 0 0 #5a88ca;
@@ -893,6 +894,26 @@ text-transform: uppercase;}
 }
 
 
+/* ㅈㅂㄱㄴ*/
+/* td.product-quantity.cartCount {
+    background-color: red;
+    width: 150px;
+}
+button.btn.btn-default {
+    float: right;
+} */
+
+
+
+input.form-control {
+    float: left;
+}
+
+.quantity.buttons_added {
+    width: 120px;
+}
+
+
 
 table.shop_table {
     border-bottom: 1px solid #ddd;
@@ -927,8 +948,9 @@ div.quantity input.plus, div.quantity input.minus {
     width: 25px;
 }
 td.product-quantity div.quantity {
-    float: none;
-    margin: 0;
+  	float: none;
+    /* width : 200px; */
+    margin: auto;
 }
 td.actions div.coupon {
     float: left;
@@ -1140,8 +1162,4 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
 }
 .btn_group2 {
 	float : right;
-}
-.quantityNum {
-	position : relative;
-	min-height : 1px;
 }

@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page trimDirectiveWhitespaces="true"%>
 <script type="text/javascript">
-<%-- $(function() {
+$(function() {
 var file="<c:out value='${prdMainList.img_1}'/>";
 console.log(file);
 if(file!=""){
