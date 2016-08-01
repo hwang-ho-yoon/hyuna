@@ -99,14 +99,32 @@
 										</c:if>
 									</c:forEach>
 								</td>
-								<td style="padding-top: 14px">${orderGroup.ogr_state}</td>
+								<td style="padding-top: 14px">
+									<c:choose>
+										<c:when test="${orderGroup.ogr_state == 'standby_deposit'}">
+											입금대기
+										</c:when>
+										<c:when test="${orderGroup.ogr_state == 'complete_deposit'}">
+											입금완료
+										</c:when>
+										<c:when test="${orderGroup.ogr_state == 'standby_shipping'}">
+											배송중
+										</c:when>
+										<c:when test="${orderGroup.ogr_state == 'complete_shipped'}">
+											배송완료
+										</c:when>
+										<c:otherwise>
+											알수없는 상태입니다.
+										</c:otherwise>
+									</c:choose>
+								</td>
 								<td>
 									<c:choose>
 										<c:when test="${orderGroup.ogr_state eq 'standby_deposit' || orderGroup.ogr_state eq 'complete_deposit'}">
 											<button class="btn btn-default btn-sm ogr_cancel" style="margin: 0">취소</button>
 										</c:when>
-										<c:when test="${orderGroup.ogr_state eq 'shipping' || orderGroup.ogr_state eq 'complete_shipped'}">
-											<button class="btn btn-default btn-sm  ogr_recall" style="margin: 0">반품</button>
+										<c:when test="${orderGroup.ogr_state eq 'standby_shipping' || orderGroup.ogr_state eq 'complete_shipped'}">
+											<button class="btn btn-default btn-sm ogr_recall" style="margin: 0">반품</button>
 										</c:when>
 									</c:choose>
 								</td>

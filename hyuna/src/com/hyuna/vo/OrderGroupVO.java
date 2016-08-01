@@ -14,8 +14,8 @@ public class OrderGroupVO {
    private String ogr_accHold;
    private String ogr_message;
    private String ogr_accHoldNo;
-   private int ogr_approvalNo;
-   private int ogr_cardNo;
+   private String ogr_approvalNo;
+   private String ogr_cardNo;
    private String ogr_state;
    private int mem_no;
 	
@@ -95,19 +95,19 @@ public class OrderGroupVO {
 	public void setOgr_message(String ogr_message) {
 		this.ogr_message = ogr_message;
 	}
-	public int getOgr_approvalNo() {
+	public String getOgr_approvalNo() {
 		return ogr_approvalNo;
 	}
-	public void setOgr_approvalNo(int ogr_approvalNo) {
+	public void setOgr_approvalNo(String ogr_approvalNo) {
 		this.ogr_approvalNo = ogr_approvalNo;
 	}
 	public String getOgr_state() {
 		return ogr_state;
 	}
-	public int getOgr_cardNo() {
+	public String getOgr_cardNo() {
 		return ogr_cardNo;
 	}
-	public void setOgr_cardNo(int ogr_cardNo) {
+	public void setOgr_cardNo(String ogr_cardNo) {
 		this.ogr_cardNo = ogr_cardNo;
 	}
 	public void setOgr_state(String ogr_state) {

@@ -31,6 +31,9 @@ public class OrderServiceImpl implements OrderService{
 			OrderProductVO productVO = orderGroupVO.getOrderProductVO().get(i);
 			productVO.setOgr_no(orderGroupVO.getOgr_no());
 			productVO.setPrd_d_no(1);
+//			OrderProductVO productVO = orderGroupVO.getOrderProductVO().get(i);
+//			productVO.setOgr_no(orderGroupVO.getOgr_no());
+//			result = orderDao.orderProductInsert(productVO);
 			result = orderDao.orderProductInsert(productVO);
 		}
 		return result;

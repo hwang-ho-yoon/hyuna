@@ -40,9 +40,9 @@
 			group_no = $(this).parents("tr").children().eq(0).attr("data-num");
 			var url = "/order/all/" + group_no + ".do";
 			$.getJSON(url, function(data){
-				$("#ogr_no").val("${data.ogr_no}");
-				$("#rnc_date").val("${data.rnc_date}");
-				$("#rnc_desc").val("${data.rnc_desc}");
+				$("#ogr_no").val(data.ogr_no);
+				$("#rnc_date").val(data.rnc_date);
+				$("#rnc_desc").val(data.rnc_desc);
 				$('#rncDetailModal').modal('show');
 			}).fail(function() {
 				alert("시스템 오류 입니다. 관리자에게 문의 하세요");
@@ -111,9 +111,27 @@
 										</c:if>
 									</c:forEach>
 								</td>
-								<td style="padding-top: 14px">${orderGroup.ogr_state}</td>
-								<td>
-									<button type="button" class="btn btn-primary btn-sm rncDetail">상세보기</button>
+								<td style="padding-top: 14px">
+									<c:choose>
+										<c:when test="${orderGroup.ogr_state == 'standby_cancel'}">
+											취소대기
+										</c:when>
+										<c:when test="${orderGroup.ogr_state == 'complete_cancel'}">
+											취소완료
+										</c:when>
+										<c:when test="${orderGroup.ogr_state == 'standby_recall'}">
+											반품대기
+										</c:when>
+										<c:when test="${orderGroup.ogr_state == 'complete_recall'}">
+											반품완료
+										</c:when>
+										<c:otherwise>
+											알수없는 상태입니다.
+										</c:otherwise>
+									</c:choose>
+								</td>
+								<td align="center">
+									<button class="btn btn-default btn-sm rncDetail" style="margin: 0">상세보기</button>
 								</td>
 							</tr>
 						</c:forEach>
@@ -135,12 +153,18 @@
 		            <div class="modal-body" style="padding-bottom: 0px">
             			<form id="cancelFrm">
 							<div class='form-group'>
-								<label>주문 번호</label>
-								<input type="text" class="form-control input-sm" id="ogr_no" readonly="readonly" style="background: white;"/>
-								<label>날짜</label>
-								<input type="text" class="form-control input-sm" id="rnc_date"  readonly="readonly" style="background: white;"/>
-								<label for='rnc_desc'>취소 사유</label>
-								<textarea class='form-control input-sm' rows='5' id="rnc_desc" readonly="readonly" style='resize: none; background: white;'> </textarea>
+								<div>
+									<label>주문 번호</label>
+									<input type="text" class="form-control input-sm" id="ogr_no" readonly="readonly" style="background: white;"/>
+								</div>
+								<div>
+									<label>날짜</label>
+									<input type="text" class="form-control input-sm" id="rnc_date"  readonly="readonly" style="background: white;"/>
+								</div>
+								<div>
+									<label for='rnc_desc'>사유</label>
+									<textarea class='form-control input-sm' rows='5' id="rnc_desc" readonly="readonly" style='resize: none; background: white;'> </textarea>
+								</div>
 							</div>
 						</form>
 		            </div>

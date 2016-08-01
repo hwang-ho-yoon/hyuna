@@ -6,14 +6,13 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hyuna.service.member.MemberService;
 import com.hyuna.service.order.OrderService;
@@ -49,7 +48,7 @@ public class OrderController {
 		orderVO.setMem_no(mem_no);
 		orderVO.setOgr_state1(OrderState.STANDBY_DEPOSIT);
 		orderVO.setOgr_state2(OrderState.COMPLETE_DEPOSIT);
-		orderVO.setOgr_state3(OrderState.STANDBY_SHIPPED);
+		orderVO.setOgr_state3(OrderState.STANDBY_SHIPPING);
 		orderVO.setOgr_state4(OrderState.COMPLETE_SHIPPED);
 		List<OrderGroupVO> orderGroupsVOs = orderService.selectOrderGroups(orderVO);
 		for (int i = 0; i < orderGroupsVOs.size(); i++) {
@@ -80,6 +79,7 @@ public class OrderController {
 	
 	/*댓글 글목록 구현하기*/
 	@RequestMapping(value = "/all/{group_no}.do")
+	@ResponseBody
 	public OrderRecallCancelVO orderRncDetail(@PathVariable("group_no") int group_no) {
 		OrderRecallCancelVO orderRecallCancelVO = orderService.selectOrderRecallCancel(group_no);
 		return orderRecallCancelVO;
