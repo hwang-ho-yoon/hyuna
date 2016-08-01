@@ -17,7 +17,7 @@ public class PagingTag extends TagSupport{
 	private int page = 1;
 	private int total = 1;
 	private int list_size = 2;
-	private int page_size = 5;
+	private int page_size = 5;	
 	
 	@Override
 	public int doStartTag() throws JspException{
@@ -59,7 +59,7 @@ public class PagingTag extends TagSupport{
 		int currentlast = ((page-1)/page_size) * page_size + page_size;
 		
 		//nextFirst는 3
-		int nextFIrst = (((page-1)-page_size)+1) * page_size + 1;
+		int nextFIrst = (((page-1)/page_size)+1) * page_size + 1;
 		
 		//prevFirst는 -1
 		int prevFirst = (((page-1)/page_size)-1) * page_size + 1;
@@ -71,64 +71,65 @@ public class PagingTag extends TagSupport{
 		//currentlast가 lastPage(총 페이지수)보다 크면 마지막 페이지
 		currentlast = (currentlast>lastPage)?lastPage:currentlast;
 		
-		ret += "<nav><ul class='pagination'>";
+		ret += "<div>";
 		if(page>1){
-			/*ret += " <a href=\"javascript:goPage('1')\">"
+			ret += " <a href=\"javascript:goPage('1')\">"
 					+"<span><img src='../images/common/"
 					+"btn_paginate_first.gif' alt='처음'/></span>"
-					+"</a>";*/
-			ret += "<li class='active'><a href=\"javascript:goPage('1')\" aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
+					+"</a>";
+			//ret += "<li class='active'><a href=\"javascript:goPage('1')\" aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
 					
 		}else{
-			/*ret += "<span><img src='../images/common/"
-					+"btn_paginate_first.gif' alt='처음'/></span>";*/
-			ret += "<li class='disabled'><span aria-hidden='true'></span></a></li>";
+			ret += "<span><img src='../images/common/"
+					+"btn_paginate_first.gif' alt='처음'/></span>";
+			//ret += "<li class='disabled'><a href='#' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
 					
 					
 		}
 		if(prevFirst > 0){
-			/*ret += " <a href=\"javascript:goPage('"+prevFirst+"');\">"
+			ret += " <a href=\"javascript:goPage('"+prevFirst+"');\">"
 					+"<span><img src='../images/common/"
-					+"btn_paginate_prev.gif' alt='이전'/></span></a>";*/
-			ret += "<li class='active'><a href=\"javascript:goPage('"+prevFirst+"');\"><span class='sr-only'></span></a></li>";
+					+"btn_paginate_prev.gif' alt='이전'/></span></a>";
+			//ret += "<li class='active'><a href=\"javascript:goPage('"+prevFirst+"');\">이전<span class='sr-only'></span></a></li>";
 		}else{
-			/*ret += "<span><img src='../images/common/"
-					+"btn_paginate_prev.gif' alt='이전'/></span>";*/
-			//ret += "<li class='disabled'><span aria-hidden='true'></span></a></li>";
+			ret += "<span><img src='../images/common/"
+					+"btn_paginate_prev.gif' alt='이전'/></span>";
+			//ret += "<li class='disabled'><span aria-hidden='true'>이전</span></a></li>";
 		}
 		for(int j=currentFirst; j<currentFirst+page_size&&j<=lastPage; j++){
 			if(j<=currentlast){
 				if(j==page){
 					ret += " <a href='#' class='on textAn'>"+j+"</a>";
+					//ret += " <li class='active'><a href='#'><span class='sr-only'>"+j+"</span></a></li>";
 				}else{
-					/*ret += " <a href=\"javascript:goPage('"+j+"');\""
-							+ " class='active'>"+j+"</a>";*/
-					ret += "<li class='active'><a href=\"javascript:goPage('"+j+"');\"><span class='sr-only'>(</span></a></li>";
+					ret += " <a href=\"javascript:goPage('"+j+"');\""
+							+ " class='active'>"+j+"</a>";
+					//ret += "<li class='active'><a href=\"javascript:goPage('"+j+"')\"><span aria-hidden='true'></span></a></li>";
 				}
 			}
 
 		}
 		if(nextFIrst <= lastPage){
-			/*ret += " <a href=\"javascript:goPage('"+nextFIrst+"')\">"
+			ret += " <a href=\"javascript:goPage('"+nextFIrst+"')\">"
 					+ "<span><img src='../images/common/"
-					+ "btn_paginate_next.gif' alt='다음'/></span></a>";*/
+					+ "btn_paginate_next.gif' alt='다음'/></span></a>";
 			//ret += "<li class='active'><a href=\"javascript:goPage('"+nextFIrst+"')\"><span class='sr-only'></span></a></li>";
 		}else{
-			/*ret += "<span><img src='../images/common/"
-					+ "btn_paginate_next.gif' alt='다음'/></span>";*/
+			ret += "<span><img src='../images/common/"
+					+ "btn_paginate_next.gif' alt='다음'/></span>";
 			//ret += "<li class='disabled'><span aria-hidden='true'></span></a></li>";
 		}
 		if(page<lastPage){
-			/*ret += " <a href=\"javascript:goPage('"+lastPage+"')\">"
+			ret += " <a href=\"javascript:goPage('"+lastPage+"')\">"
 					+ "<span><img src='../images/common/"
-					+ "btn_paginate_last.gif' alt='마지막'/></span></a>";*/
-			ret += "<li class='active'><a href=\"javascript:goPage('"+lastPage+"')\" aria-label='Next'><span aria-hidden='true'>&laquo;</span></a></li>";
+					+ "btn_paginate_last.gif' alt='마지막'/></span></a>";
+			//ret += "<li class='active'><a href=\"javascript:goPage('"+lastPage+"')\" aria-label='Next'><span aria-hidden='true'>&laquo;</span></a></li>";
 		}else{
-			/*ret += "<span><img src='../images/common/"
-					+ "btn_paginate_last.gif' alt='마지막'/></span>";*/
-			ret += "<li class='disabled'><span aria-hidden='true'></span></a></li>";
+			ret += "<span><img src='../images/common/"
+					+ "btn_paginate_last.gif' alt='마지막'/></span>";
+			//ret += "<li class='disabled'><span aria-hidden='true'></span></a></li>";
 		}
-		ret += "</ul></nav>";
+		ret += "</div>";
 		return ret;
 	}
 }

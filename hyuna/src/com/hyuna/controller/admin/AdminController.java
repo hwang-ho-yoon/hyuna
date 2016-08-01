@@ -37,16 +37,25 @@ public class AdminController {
 	//회원목록 테이블
 	@RequestMapping("/memberList")
 	public String memberList(@ModelAttribute MemberVO mvo, Model model){
-		logger.info("멤버리스트 호출");
-		
+		logger.info("멤버리스트 호출");		
 		if(mvo.getOrder_by()==null)mvo.setOrder_by("mem_no");
 		if(mvo.getOrder_sc()==null)mvo.setOrder_sc("DESC");
 
 		Paging.setPage(mvo);
 		
 		int total = adminService.memberListCnt(mvo);
-
 		List<MemberVO> list = adminService.memberList(mvo);
+		int memTotal = adminService.memberTotal();
+		int today = adminService.memberToday();
+		int yesterday = adminService.memberYesterday();
+		int week = adminService.memberWeek();
+		int month = adminService.memberMonth();		
+		
+		model.addAttribute("month", month);
+		model.addAttribute("week", week);
+		model.addAttribute("yesterday", yesterday);
+		model.addAttribute("today", today);
+		model.addAttribute("memTotal", memTotal);
 		model.addAttribute("memberList", list);		
 		model.addAttribute("total", total);		
 		model.addAttribute("data", mvo);		
@@ -94,6 +103,7 @@ public class AdminController {
 		if(vo!=null){
 			str = "success";
 			session.setAttribute("admin", vo.getAdm_name());
+			session.setAttribute("adminId", vo.getAdm_id());
 		}
 		
 		return str;
@@ -104,5 +114,22 @@ public class AdminController {
 	public String adminLogout(HttpSession session){			
 		session.removeAttribute("admin");
 		return "admin/adminLogin";
+	}
+	
+	//비밀번호 체크
+	@RequestMapping("/pwdChange")
+	@ResponseBody
+	public String pwdChange(@ModelAttribute AdminVO avo, @RequestParam("adm_pwd1") String adm_pwd1){
+		logger.info("비밀번호체크 호출");	
+		
+		int result = 0;
+		int val = 0;
+		result = adminService.pwdChange(avo);
+		if(result==1){
+			avo.setAdm_pwd(adm_pwd1);
+			val = adminService.pwdChange2(avo);
+		}
+		return val+"";
+
 	}
 }

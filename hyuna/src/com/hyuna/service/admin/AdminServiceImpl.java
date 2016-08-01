@@ -42,4 +42,40 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.memberListCnt(mvo);
 	}
 
+	@Override
+	public int pwdChange(AdminVO avo) {		
+		return adminDao.pwdChange(avo);
+	}
+
+	@Override
+	public int pwdChange2(AdminVO avo) {		 
+		return adminDao.pwdChange2(avo);
+	}
+
+	@Override
+	public int memberTotal() {
+		return adminDao.memberTotal();
+		
+	}
+
+	@Override
+	public int memberToday() {		
+		return adminDao.memberToday();
+	}
+
+	@Override
+	public int memberYesterday() {		
+		return adminDao.memberYesterday();
+	}
+
+	@Override
+	public int memberWeek() {		
+		return adminDao.memberWeek();
+	}
+
+	@Override
+	public int memberMonth() {		
+		return adminDao.memberMonth();
+	}
+
 }
