@@ -7,7 +7,7 @@ public class OrderGroupVO {
    private String ogr_date;
    private String ogr_reciName;
    private String ogr_reciTel;
-   private int ogr_reciZipCode;      
+   private String ogr_reciZipCode;      
    private String ogr_reciAddr1; 
    private String ogr_reciAddr2;
    private String ogr_payPlan;
@@ -53,10 +53,10 @@ public class OrderGroupVO {
 	public void setOgr_reciTel(String ogr_reciTel) {
 		this.ogr_reciTel = ogr_reciTel;
 	}
-	public int getOgr_reciZipCode() {
+	public String getOgr_reciZipCode() {
 		return ogr_reciZipCode;
 	}
-	public void setOgr_reciZipCode(int ogr_reciZipCode) {
+	public void setOgr_reciZipCode(String ogr_reciZipCode) {
 		this.ogr_reciZipCode = ogr_reciZipCode;
 	}
 	public String getOgr_reciAddr1() {

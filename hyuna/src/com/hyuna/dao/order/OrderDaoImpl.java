@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.hyuna.vo.OrderGroupVO;
 import com.hyuna.vo.OrderProductVO;
 import com.hyuna.vo.OrderRecallCancelVO;
+import com.hyuna.vo.OrderVO;
 @Repository
 public class OrderDaoImpl implements OrderDao{
 
@@ -31,8 +32,8 @@ public class OrderDaoImpl implements OrderDao{
 	}
 
 	@Override
-	public List<OrderGroupVO> selectOrderGroups(int mem_no) {
-		return session.selectOne("selectOrderGroups", mem_no);
+	public List<OrderGroupVO> selectOrderGroups(OrderVO orderVO) {
+		return session.selectOne("selectOrderGroups", orderVO);
 	}
 
 	@Override
@@ -42,13 +43,17 @@ public class OrderDaoImpl implements OrderDao{
 
 	@Override
 	public int orderCancelRecallInsert(OrderRecallCancelVO recallCancel) {
-		
 		return session.insert("orderCancelRecallInsert", recallCancel);
 	}
 
 	@Override
 	public int orderGroupUpdate(OrderRecallCancelVO recallCancel) {
 		return session.update("orderGroupUpdate", recallCancel);
+	}
+
+	@Override
+	public OrderRecallCancelVO selectOrderRecallCancel(int group_no) {
+		return session.selectOne("selectOrderRecallCancel", group_no);
 	}
 
 }

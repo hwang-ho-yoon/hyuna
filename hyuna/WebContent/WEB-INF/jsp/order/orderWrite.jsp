@@ -62,13 +62,40 @@
 		});
 		$(".beasong").click(function() {
 			if ($(this).val() == "sameMember") {
+				$("#reciName").val("${member.mem_name}");
+				$("#reciTel").val("${member.mem_tel}");
+				$("#reciZipCode").val("${member.mem_post}");
+				$("#reciAddr1").val("${member.mem_address1}");
+				$("#reciAddr2").val("${member.mem_address2}");
+				$("#message").val("");
+				
+				$("#reciName").attr("readonly" , true);
+				$("#reciTel").attr("readonly" , true);
+				$("#reciZipCode").attr("readonly" , true);
+				$("#reciAddr1").attr("readonly" , true);
+				$("#reciAddr2").attr("readonly" , true);
+				$("#postcodify_search_button").attr("disabled", true);
+				
+				$("#reciName").css("background" , "white");
+				$("#reciTel").css("background" , "white");
+				$("#reciZipCode").css("background" , "white");
+				$("#reciAddr1").css("background" , "white");
+				$("#reciAddr2").css("background" , "white");
+				
 			} else if ($(this).val() == "newBeasong") {
-				$("#ogr_reciName").val("");
-				$("#ogr_reciTel").val("");
-				$("#ogr_reciZipCode").val("");
-				$("#ogr_reciAddr1").val("");
-				$("#ogr_reciAddr2").val("");
-				$("#ogr_message").val("");
+				$("#reciName").val("");
+				$("#reciTel").val("");
+				$("#reciZipCode").val("");
+				$("#reciAddr1").val("");
+				$("#reciAddr2").val("");
+				$("#message").val("");
+				
+				$("#reciName").attr("readonly" , false);
+				$("#reciTel").attr("readonly" , false);
+				$("#reciZipCode").attr("readonly" , false);
+				$("#reciAddr1").attr("readonly" , false);
+				$("#reciAddr2").attr("readonly" , false);
+				$("#postcodify_search_button").attr("disabled", false);
 			}
 		});
 		
@@ -188,19 +215,19 @@
 		<table class="table table-hover table-bordered">
 			<tr>
 				<td style="padding-top: 12px">성명</td>
-				<td><input type="text" class="form-control input-sm" id="reciName" name="reciName"></td>
+				<td><input type="text" class="form-control input-sm" id="reciName" name="reciName" readonly="readonly" style="background: white;" value="${member.mem_name} "></td>
 				<td style="padding-top: 12px">연락처</td>
-				<td><input type="text" class="form-control input-sm" id="reciTel" name="reciTel"></td>
+				<td><input type="text" class="form-control input-sm" id="reciTel" name="reciTel" readonly="readonly" style="background: white;" value="${member.mem_tel} "></td>
 			</tr>
 			<tr>
 				<td style="padding-top: 12px">우편번호</td>
-				<td><div class="form-inline"> <input type="text" class="form-control input-sm postcodify_postcode5" readonly="readonly" style="background: white;" id="reciZipCode" name="reciZipCode"><button id="postcodify_search_button" class="btn btn-default btn-sm" style="margin: 0">검색</button></div></td>
+				<td><div class="form-inline"> <input type="text" class="form-control input-sm postcodify_postcode5" readonly="readonly" style="background: white;" id="reciZipCode" name="reciZipCode" value="${member.mem_post} "><button id="postcodify_search_button" class="btn btn-default btn-sm" style="margin: 0" disabled="disabled">검색</button></div></td>
 				<td style="padding-top: 12px">기본주소</td>
-				<td><input type="text" class="form-control input-sm postcodify_jibeon_address" readonly="readonly" style="background: white;" id="reciAddr1" name="reciAddr1"></td>
+				<td><input type="text" class="form-control input-sm postcodify_jibeon_address" readonly="readonly" style="background: white;" id="reciAddr1" name="reciAddr1" value="${member.mem_address1} "></td>
 			</tr>
 			<tr>
 				<td style="padding-top: 12px">상세주소</td>
-				<td colspan="3"><input type="text" class="form-control input-sm postcodify_details" id="reciAddr2" name="reciAddr2"></td>
+				<td colspan="3"><input type="text" class="form-control input-sm postcodify_details" id="reciAddr2" name="reciAddr2" readonly="readonly" style="background: white;" value="${member.mem_address2}"></td>
 			</tr>
 			<tr>
 				<td style="padding-top: 12px">메시지</td>
