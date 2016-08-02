@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <script type="text/javascript">		
 	$(function(){
 		$("#my").click(function(){
@@ -72,28 +73,8 @@
 		$("#cart").mouseout(function(){
 			$("#cart").css("text-decoration","none");	
 		});
-		$("#prd").bind('click',function(){
-			//var link=$(this).attr('href');
-			//alert(link);
-			//location.href = "/product/prdMainList.do?model_machine=+"$(this).attr('href');
-			location.href = "/product/prdMainList.do";
-		})
-		
 	});
-	
-	 function goSearch(keyword){
-		 $("#model_machine").val(keyword);
-			$("#search").attr({
-				"method":"get","action":"/product/prdMainList.do"	
-			
-			});
-			$("#search").submit();
-		//location.href = "/product/prdMainList.do?model_machine=+"keyword;
-	} 
 </script>
-<form id="search" name="search">
-	<input type="hidden" id="model_machine" name="model_machine">
-</form>
     <div class="header-area">
         <div class="container">
             <div class="row">
@@ -153,9 +134,9 @@
 	                            <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="javascript:goSearch('겔럭시');" id="prd">갤럭시</a></li>
-                                <li><a href="노트" id="prd">노트</a></li>
-                                <!-- <li><a href="#">보급</a></li> -->
+                                <li><a href="/product/prdMainList.do">갤럭시</a></li>
+                                <li><a href="#">노트</a></li>
+                                <li><a href="#">보급</a></li>
                             </ul>
 						</li>
                         <li class="dropdown dropdown-small">
@@ -164,10 +145,9 @@
 	                            <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                            	<li><a href="/product/prdMainList.do?model_machine=4S" id="prd">4S</a></li>
-                                <li><a href="5S" id="prd">5S</a></li>
-                                <li><a href="6S" id="prd">6S</a></li>
-                                <!-- <li><a href="#">7S</a></li> -->
+                                <li><a href="#">5S</a></li>
+                                <li><a href="#">6S</a></li>
+                                <li><a href="#">7S</a></li>
                             </ul>
 						</li>
                         <li class="dropdown dropdown-small">
@@ -186,6 +166,20 @@
                         <li><a href="/board/faq/faqList.do">FAQ</a></li>
 						<li><a href="/board/review/reviewList.do">review</a></li>
 						<li><a href="/product/prdRgtList.do">상품등록</a></li>
+						 
+<!-- 						 <button type="button" class="btn btn-info">PHP</button>
+						 <button type="button" class="btn btn-info">Blogger</button>
+						 <div class="btn-group">
+							 <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+							 	Android <span class="caret"></span>
+							 </button>
+						 
+							 <ul class="dropdown-menu" role="menu">
+								 <li><a href="#">Android Studio</a></li>
+								 <li><a href="#">Eclipse</a></li>
+								 <li><a href="#">Basics</a></li>
+							 </ul>
+						 </div> -->
                     </ul>
                 </div>  
             </div>
@@ -202,7 +196,16 @@
 		            <div class="modal-body form-inline">
 		            <form id="pwd_form">
 		            <input type="hidden" name="mem_no" value="${sessionScope.hyunaMember }">
-		                  비밀번호:&nbsp;&nbsp;<input type="password" name="mem_pwd" id="mem_pwd" maxlength="16" class="form-control" style="width: 150px">
+		            <table>
+		            	<tr>
+			            	<td>
+			            		 비밀번호 : &nbsp;&nbsp;
+			            	</td>
+		            		<td>
+		                 		<input type="password" name="mem_pwd" id="mem_pwd" maxlength="16" class="form-control" style="width: 150px">
+		                 	</td>		                 
+		                 </tr>
+		            </table>		                 
 		            </form>		            	
 		         	</div>
 		           <div class="modal-footer">
