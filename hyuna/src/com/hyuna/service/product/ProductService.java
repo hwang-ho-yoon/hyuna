@@ -21,6 +21,7 @@ public interface ProductService {
 	
 	public List<ProductVO> prdListLatest(ProductVO pvo);
 	public List<ProductVO> prdListBest(ProductVO pvo);
+	public int prdImageInsert(ProductVO pvo);
 	
 }
 

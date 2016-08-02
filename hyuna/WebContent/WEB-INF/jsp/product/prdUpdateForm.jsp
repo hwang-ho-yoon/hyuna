@@ -54,10 +54,10 @@ $(function() {
 					alert('시스템오류 입니다. 관리자에게 문의하세요.');
 				}, 
 				success : function(resultData) {//정상실행되엇을경우 (결과를 담을 수 있는 변수로서 다른이름도 관ㄱㅖ없다.) 
-					if(result=="SUCCESS"){
+					//if(result=="SUCCESS"){
 	                     alert("옵션추가완료");
-	                     
-	                  }
+	                  //}
+	                     prdUpdateForm();
 				}
 
 			});
@@ -69,6 +69,14 @@ $(function() {
 	 	}
 	});
 });
+function prdUpdateForm(){
+	$("#lookUpdate").attr({
+		"method" : "post",
+		"action" : "/product/prdUpdateForm.do"
+	});
+	$("#lookUpdate").submit();
+}
+
 function prdUpdate(prd_no){
 			$("#prd_update").attr({
 			"method" : "post",
@@ -101,6 +109,9 @@ function tableChk(add1, add2, str) {
 
 </script>
 <div id="wrapper">
+<form name="lookUpdate" id="lookUpdate">
+	<input type="hidden" name="prd_no" id="prd_no" value="${detail.prd_no }"/>
+</form>
 	<div class="container">
 	
 		<div class="row">
@@ -215,7 +226,7 @@ function tableChk(add1, add2, str) {
 			</table>
 		</form>	
 		</div>
-		
+			
 			<div id="optiontable" class="optiontable">
 				<c:choose>
 					<c:when test="${not empty optList }">
@@ -242,7 +253,12 @@ function tableChk(add1, add2, str) {
 									<td>${opt.model_brand }</td>
 									<td>${opt.model_machine }</td>
 									<td>${opt.color_detail }</td>
-									<td>${opt.prd_d_display }</td>
+									<td>
+									<select id="open">
+										<option value="Y">Y</option>
+										<option value="N">N</option>
+									</select>
+									&nbsp;&nbsp;&nbsp;${opt.prd_d_display }</td>
 									<td><input type="button" id="displayConfirm" name="displayConfirm" value="확인"/></td>
 								</tr>
 							</c:forEach>

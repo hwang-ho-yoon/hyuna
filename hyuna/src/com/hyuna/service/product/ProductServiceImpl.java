@@ -171,6 +171,12 @@ public class ProductServiceImpl implements ProductService {
 		return prdListBest;
 	}
 
+
+	@Override
+	public int prdImageInsert(ProductVO pvo) {
+		return productDao.productImageInsert(pvo);
+	}
+
 	
 	
 	

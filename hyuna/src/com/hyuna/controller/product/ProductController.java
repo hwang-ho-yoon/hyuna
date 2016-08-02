@@ -196,7 +196,11 @@ public class ProductController {
 			
 			result=productService.prdUpdate(pvo);
 			if(!img_1.equals("")||!img_2.equals("")||!img_3.equals("")){
+				
 			imgResult=productService.prdImageUpdate(pvo);
+				if(imgResult<1){
+					imgResult=productService.prdImageInsert(pvo);
+				}
 			}
 			if(result==1){
 				page="product/prdRgtList";
@@ -207,9 +211,9 @@ public class ProductController {
 			return page;
 		}
 		
+		//public String prdUpdateForm(@RequestBody ProductVO pvo){
 		@RequestMapping(value="/prdOptAdd.do",  method = RequestMethod.POST)
 		public ResponseEntity<String> list(@RequestBody ProductVO pvo){
-			
 			logger.info("prdOptAdd호출 성공");
 			String url="";
 			ResponseEntity<String> entity = null;
@@ -225,6 +229,7 @@ public class ProductController {
 				e.printStackTrace();
 				entity=new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
+			
 			return entity;
 		}
 		

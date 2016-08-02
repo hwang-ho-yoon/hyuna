@@ -42,7 +42,8 @@
 	
 	<select id="prdRgtList" resultType="prd" parameterType="prd">
 		select prd_no, prd_name, prd_desc, prd_display, prd_saleprice, to_char(prd_inputdate,'YYYY-MM-DD')prd_inputdate from prd_master 
-		where prd_display ='on' or prd_display ='Y' order by prd_no desc
+		where 1=1 
+		order by prd_no desc
 	</select>
 	
 	<select id="prdMainList" resultType="prd" parameterType="prd">
