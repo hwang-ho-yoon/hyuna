@@ -127,9 +127,9 @@
 	                            <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">5S</a></li>
-                                <li><a href="#">6S</a></li>
-                                <li><a href="#">7S</a></li>
+                                 <li><a href="/product/prdMainList.do?model_machine=4S" id="prd">4S</a></li>
+                                <li><a href="5S" id="prd">5S</a></li>
+                                <li><a href="6S" id="prd">6S</a></li>
                             </ul>
 						</li>
                         <li class="dropdown dropdown-small">
