@@ -6,6 +6,7 @@
 
 <script type="text/javascript">
 $(function() {
+	var prd_no="<c:out value='${detail.prd_no}'/>";
 	$("input:checked").each(function(){
 		if(this.checked)"Y"
 		else"N"
@@ -24,20 +25,30 @@ $(function() {
 		var tablerows = table.getElementsByTagName("tr").length;
 		var prd_no=${detail.prd_no};
 		
-
+		var prd_d_display= $("#open").val();
+		var prd_d_stock= $("#prdStockNum").val();
+		if(prd_d_stock==null){
+			prd_d_stock=0;
+		}
+		console.log(prd_d_display+" :"+prd_d_stock);
+		
 		if (!tableChk(add, color, "이미 입력되어 있는 옵셥입니다."))
 			return;
 		else {
 			$.ajax({//ajax 최상위 , = jquery.ajax()
 				url : "/product/prdOptAdd.do",//전송URL
 				type : "POST",//전송시 method방식
+				headers:{
+					"content-Type":"application/json",
+					"X-HTTP-Method-Overide":"POST"
+				},
 				dataType : "text",//응답문서의 형식
 				data:JSON.stringify({
 					prd_no:prd_no,
-					prd_d_display:$("#open").val(),
-					prd_d_stock:$("#prdStockNum").val(),
-					color_no:$("#color").val(),
-					model_no:$("#model").val()
+					prd_d_display:prd_d_display,
+					prd_d_stock:prd_d_stock,
+					color_no:color_no,
+					model_no:add_no
 				}),
 				error : function() {//실행시 오류가 발생 하엿을 경우
 					alert('시스템오류 입니다. 관리자에게 문의하세요.');
@@ -50,7 +61,12 @@ $(function() {
 				}
 
 			});
-		} 
+		}  
+	});
+	$("#discardOpt").click(function() {
+	 	if(confirm("아래옵션을 보이지 않게 하시겠습니까?")){
+	 		
+	 	}
 	});
 });
 function prdUpdate(prd_no){
@@ -172,7 +188,7 @@ function tableChk(add1, add2, str) {
 					<th>공개</th>
 					<th>추가</th>
 				</tr>
-				<tr id="tr_opt">
+				<tr id="tr_opt" data-num="${detail.prd_no}">
 					<td>
 					<select id="model">
 						<option value="1">아이폰6/6S</option>
@@ -187,7 +203,7 @@ function tableChk(add1, add2, str) {
 						<option value="3">파랑</option>
 					</select>
 					</td>
-					<td><input type="number" step='5' min='0' id="prdStockNum"/></td>
+					<td><input type="number" step='5' min='0' id="prdStockNum"  value="0"/></td>
 					<td>
 					<select id="open">
 						<option value="Y">Y</option>
@@ -227,6 +243,7 @@ function tableChk(add1, add2, str) {
 									<td>${opt.model_machine }</td>
 									<td>${opt.color_detail }</td>
 									<td>${opt.prd_d_display }</td>
+									<td><input type="button" id="displayConfirm" name="displayConfirm" value="확인"/></td>
 								</tr>
 							</c:forEach>
 						</table>

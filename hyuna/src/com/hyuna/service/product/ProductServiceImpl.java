@@ -155,6 +155,22 @@ public class ProductServiceImpl implements ProductService {
 		return result;
 	}
 
+
+	@Override
+	public List<ProductVO> prdListLatest(ProductVO pvo) {
+		List<ProductVO> prdListLatest=null;
+		prdListLatest=productDao.prdListLatest(pvo);
+		return prdListLatest;
+	}
+
+
+	@Override
+	public List<ProductVO> prdListBest(ProductVO pvo) {
+		List<ProductVO> prdListBest=null;
+		prdListBest=productDao.prdListBest(pvo);
+		return prdListBest;
+	}
+
 	
 	
 	

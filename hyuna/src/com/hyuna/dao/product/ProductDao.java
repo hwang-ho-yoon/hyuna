@@ -30,4 +30,8 @@ public interface ProductDao {
 	public int prdImageUpdate(ProductVO pvo);
 
 	public int prdOptAdd(ProductVO pvo);
+
+	public List<ProductVO> prdListLatest(ProductVO pvo);
+
+	public List<ProductVO> prdListBest(ProductVO pvo);
 }

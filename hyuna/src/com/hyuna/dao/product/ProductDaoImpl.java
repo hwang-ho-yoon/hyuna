@@ -56,7 +56,11 @@ public class ProductDaoImpl implements ProductDao {
 		// TODO Auto-generated method stub
 		return session.update("prdImageUpdate");
 	}
-	
+	@Override
+	public int prdOptAdd(ProductVO pvo) {
+		// TODO Auto-generated method stub
+		return session.insert("prdOptAdd");
+	}
 	
 	
 	
@@ -74,10 +78,16 @@ public class ProductDaoImpl implements ProductDao {
 		return session.selectOne("prdSingleDetail");
 	}
 	@Override
-	public int prdOptAdd(ProductVO pvo) {
+	public List<ProductVO> prdListLatest(ProductVO pvo) {
 		// TODO Auto-generated method stub
-		return session.insert("optionInsert");
+		return session.selectList("prdListLatest");
 	}
+	@Override
+	public List<ProductVO> prdListBest(ProductVO pvo) {
+		// TODO Auto-generated method stub
+		return session.selectList("prdListBest");
+	}
+	
 	
 
 	

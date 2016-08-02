@@ -29,8 +29,8 @@
 		(#{img_no}, #{img_1}, #{img_2}, #{img_3}, #{prd_no})		
 	</insert>	
 	
-	<insert id="optionInsert" parameterType="prd">
-		/* optionInsert */
+	<insert id="prdOptAdd" parameterType="prd">
+		/* prdOptAdd */
 		<selectKey keyProperty="prd_d_no" resultType="int" order="BEFORE">
 			select prd_detail_seq.nextval from dual
 		</selectKey>
@@ -54,7 +54,7 @@
          where 1=1 
           <if test ="model_machine != ''">
 		   and d.model_no = (
-           select model_no from model where model_machine like '% #{model_machine} %')
+           select model_no from model where model_machine like '%'||#{model_machine}||'%')
 		  </if>        
          and prd_display ='on' or prd_display ='Y' order by prd_no desc
 	</select>
@@ -119,5 +119,15 @@
 			 </set>			 					
 		 where prd_no=#{prd_no}					
 	</update>
+	<select id="prdListBest" resultType="prd" parameterType="prd">
+		select m.prd_no, prd_name, nvl(prd_desc,'') as prd_desc, prd_saleprice, nvl(img.img_1,'') as img_1 from prd_master m
+		  left join prd_img img on m.prd_no = img.prd_no
+         where 1=1 and prd_event = 'B' and (prd_display ='on' or prd_display ='Y') order by prd_no desc
+	</select>
+	<select id="prdListLatest" resultType="prd" parameterType="prd">
+		select m.prd_no, prd_name, nvl(prd_desc,'') as prd_desc, prd_saleprice, nvl(img.img_1,'') as img_1 from prd_master m
+		  left join prd_img img on m.prd_no = img.prd_no
+         where 1=1 and prd_event = 'L' and (prd_display ='on' or prd_display ='Y') order by prd_no desc
+	</select>
 	
 	</mapper>

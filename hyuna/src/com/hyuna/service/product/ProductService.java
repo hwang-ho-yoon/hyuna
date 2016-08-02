@@ -19,4 +19,8 @@ public interface ProductService {
 	public List<ProductVO> prdMainList(ProductVO pvo);	
 	public ProductVO prdSingleDetail(ProductVO pvo);
 	
+	public List<ProductVO> prdListLatest(ProductVO pvo);
+	public List<ProductVO> prdListBest(ProductVO pvo);
+	
 }
+

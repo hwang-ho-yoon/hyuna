@@ -4,7 +4,7 @@
 <tiles-definitions>
 	<definition name="main" template="/WEB-INF/jsp/template/mainLayout.jsp">
 		<put-attribute name="header" value="/WEB-INF/jsp/template/header.jsp"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/jsp/template/main.jsp"></put-attribute>		
+		<put-attribute name="body" value="/"></put-attribute>		
 		<put-attribute name="footer" value="/WEB-INF/jsp/template/footer.jsp"></put-attribute>
 	</definition>
 	
@@ -33,11 +33,20 @@
 	<!-- 관리자 페이지 -->
 	<definition name="admin" template="/WEB-INF/adminJsp/template/mainLayout.jsp">
 		<put-attribute name="header" value="/WEB-INF/adminJsp/template/header.jsp"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/adminJsp/template/main.jsp"></put-attribute>		
+		<put-attribute name="body" value="/"></put-attribute>		
 		<put-attribute name="footer" value="/WEB-INF/adminJsp/template/footer.jsp"></put-attribute>
 	</definition>
 	
 	 <definition name="admin/*" extends="admin">
 		<put-attribute name="body" value="/WEB-INF/adminJsp/admin/{1}.jsp"></put-attribute>
+	</definition>
+	<definition name="product/*" extends="admin">
+		<put-attribute name="body" value="/WEB-INF/jsp/product/{1}.jsp"></put-attribute>
+	</definition>
+	<definition name="door/*" extends="admin">
+		<put-attribute name="body" value="/WEB-INF/jsp/product/prdList.jsp"></put-attribute>
+	</definition>  
+	<definition name="cart/*" extends="admin">
+		<put-attribute name="body" value="/WEB-INF/jsp/cart/{1}.jsp"></put-attribute>
 	</definition>
 </tiles-definitions>

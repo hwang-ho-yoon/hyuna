@@ -7,9 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -205,15 +208,24 @@ public class ProductController {
 		}
 		
 		@RequestMapping(value="/prdOptAdd.do",  method = RequestMethod.POST)
-		public String prdOptAdd(@ModelAttribute ProductVO pvo,HttpServletRequest request) throws IllegalStateException, IOException{
+		public ResponseEntity<String> list(@RequestBody ProductVO pvo){
 			
 			logger.info("prdOptAdd호출 성공");
 			String url="";
-			int result=productService.prdOptAdd(pvo);
-			if(result==1){
-				url="/product/prdUpdateForm.do";//board
+			ResponseEntity<String> entity = null;
+			int result=0;
+			try{
+				result=productService.prdOptAdd(pvo);
+				if(result == 1){
+					entity=new ResponseEntity<>("SUCCESS",HttpStatus.OK);
+				}
+				return entity;
+				
+			}catch(Exception e){
+				e.printStackTrace();
+				entity=new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
-			return url;//movepage의 기능을 한다.  공백이 들어가면 안된다.		
+			return entity;
 		}
 		
 	
@@ -221,6 +233,7 @@ public class ProductController {
 	@RequestMapping(value="/prdMainList.do",  method = RequestMethod.GET)
 	public String prdMainList(@ModelAttribute ProductVO pvo, Model model){
 		logger.info("prdMainList호출성공");
+		logger.info("model:"+pvo.getModel_machine());
 		List<ProductVO> prdMainList = productService.prdMainList(pvo);
 		logger.info("Img_1 : "+prdMainList.get(0).getImg_1());
 		
@@ -244,5 +257,14 @@ public class ProductController {
 		return "product/prdSingleDetail";		
 	}	
 	
+	@RequestMapping(value="/prdList.do",  method = RequestMethod.GET)
+	public String prdList(@ModelAttribute ProductVO pvo, Model model){
+		logger.info("prdList호출성공");
+		List<ProductVO> prdListBest = productService.prdListBest(pvo);		
+		List<ProductVO> prdListLatest = productService.prdListLatest(pvo);		
+		model.addAttribute("prdListBest", prdListBest);
+		model.addAttribute("prdListLatest", prdListLatest);
+		return "product/prdList";
+	}
 	
 }
