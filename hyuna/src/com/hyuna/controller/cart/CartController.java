@@ -53,8 +53,8 @@ public class CartController {
 	}
 		
 	// 장바구니 등록
-	@RequestMapping(value="/cartInsert", method=RequestMethod.GET)
-	public String cartInsert(@ModelAttribute CartVO cvo, HttpSession session/*, HttpServletRequest request*/) throws IllegalStateException, IOException {
+	@RequestMapping(value="/cartInsert.do", method=RequestMethod.POST)
+	public String cartInsert(@ModelAttribute CartVO cvo, HttpSession session, HttpServletRequest request) throws IllegalStateException, IOException {
 		logger.info("cartInsert 호출 성공");
 		
 		/*CartVO cvo = new CartVO();
@@ -68,6 +68,9 @@ public class CartController {
 		
 		int result = 0;
 		String url = "";
+		
+		int detailNo=cartService.optDetailNo(cvo);
+		cvo.setPrd_d_no(detailNo);
 		cvo.setMem_no((Integer)session.getAttribute("hyunaMember"));
 		result = cartService.cartInsert(cvo);
 		if(result == 1) {

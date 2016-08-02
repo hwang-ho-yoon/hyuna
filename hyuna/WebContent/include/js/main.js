@@ -22,24 +22,6 @@ jQuery(document).ready(function($){
             }
         }
     }); 
-    /*prdList상 상품개수.*/
-    $('.product-carousel-prd').owlCarousel({
-        loop:false,
-        nav:false,
-        margin:20,
-        responsiveClass:false,
-        responsive:{
-            0:{
-                items:1,
-            },
-            600:{
-                items:3,
-            },
-            1000:{
-                items:4,
-            }
-        }
-    }); 
     
     $('.related-products-carousel').owlCarousel({
         loop:true,
@@ -90,10 +72,7 @@ jQuery(document).ready(function($){
     $('.navbar-nav li a, .scroll-to-up').bind('click', function(event) {
         var $anchor = $(this);
         var headerH = $('.header-area').outerHeight();
-        $('html, body').stop().animate({
-            scrollTop : $($anchor.attr('href')).offset().top - headerH + "px"
-        }, 1200, 'easeInOutExpo');
-
+        $('html, body').stop().animate({scrollTop : $($anchor.attr('href')).offset().top - headerH + "px"}, 1200, 'easeInOutExpo');
         event.preventDefault();
     });    
     
