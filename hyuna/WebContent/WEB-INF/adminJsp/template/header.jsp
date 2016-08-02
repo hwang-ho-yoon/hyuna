@@ -4,25 +4,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript">		
 	$(function(){
-		$("#my").click(function(){
-			$("#myModal").modal('show');			
+		$("#pwchange").click(function(){
+			$("#admModal").modal('show');			
 		});
-		$("#pwdchkBtn").click(function(){
-			$.ajax({
-				url : "/member/pwdCheck.do",
-			    type : "post",
-			    data : $("#pwd_form").serialize(),
-			    error : function(){
-					alert("실패");
-			    },
-			    success : function(resultData){			     
-				    if(resultData==1){	
-				      	location.href = "/member/membermenu.do";
-				    }else{
-				      	alert("틀림");			      	
-					}    
-				}
-			});			
+		$("#ok").click(function(){
+			if($("#adm_pwd1").val()!=$("#adm_pwd2").val()){
+				alert("비밀번호 불일치");
+				return;
+			}else{
+				$.ajax({
+					url : "/admin/pwdChange.do",
+				    type : "post",
+				    data : $("#pwd_form").serialize(),
+				    error : function(){
+						alert("실패");
+				    },				    
+				    success : function(resultData){				    	
+					    if(resultData==1){
+					    	alert("변경되었습니다");
+					      	location.href = "/admin/adminLogin.do";
+					    }else{
+					      	alert("비밀번호 틀림");			      	
+						}    
+					}
+				});	
+			}
 		});
 
 
@@ -32,7 +38,13 @@
 		});
 		$("#logout").click(function(){
 			location.href = "/admin/adminLogout.do";
-		});		
+		});	
+		$("#pwchange").mouseover(function(){
+			$("#pwchange").css("text-decoration","underline");	
+		});
+		$("#pwchange").mouseout(function(){
+			$("#pwchange").css("text-decoration","none");	
+		});
 		$("#login").mouseover(function(){
 			$("#login").css("text-decoration","underline");	
 		});
@@ -57,6 +69,7 @@
                         <ul class="list-unstyled list-inline" style="margin-top: 20px">                                                                                                    
                             <c:choose>
                             	<c:when test="${not empty sessionScope.admin }">
+                            		<li><i class="fa fa-user"></i><span id="pwchange" style="cursor: pointer; "> 비밀번호변경</span></li>
                             		<li><i class="fa fa-user"></i><span id="logout" style="cursor: pointer; "> 로그아웃</span></li>
                             		<li>관리자&nbsp;${sessionScope.admin } 님</li>
                             	</c:when>                            
@@ -96,7 +109,7 @@
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="/adminIndex.do">Home</a></li>
+                        <li><a href="index.html">Home</a></li>
                         <li class="dropdown dropdown-small">
 							<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#">
 	                            <span class="key">Samsung</span>
@@ -114,9 +127,9 @@
 	                            <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="/product/prdMainList.do?model_machine=4S" id="prd">4S</a></li>
-                                <li><a href="5S" id="prd">5S</a></li>
-                                <li><a href="6S" id="prd">6S</a></li>
+                                <li><a href="#">5S</a></li>
+                                <li><a href="#">6S</a></li>
+                                <li><a href="#">7S</a></li>
                             </ul>
 						</li>
                         <li class="dropdown dropdown-small">
@@ -155,7 +168,7 @@
         </div>
     </div> <!-- End mainmenu area -->
     		
-    		<div id="myModal" class="modal fade" data-backdrop="static">
+    		<div id="admModal" class="modal fade" data-backdrop="static">
 	    	<div class="modal-dialog modal-sm">
 		        <div class="modal-content">
 		            <div class="modal-header">
@@ -164,12 +177,37 @@
 		            </div>
 		            <div class="modal-body form-inline">
 		            <form id="pwd_form">
-		            <input type="hidden" name="mem_no" value="${sessionScope.hyunaMember }">
-		                  비밀번호:&nbsp;&nbsp;<input type="password" name="mem_pwd" id="mem_pwd" maxlength="16" class="form-control" style="width: 150px">
+		            <input type="hidden" name="adm_name" value="${sessionScope.admin }">
+		            <table>
+		            	<tr>
+		            	<td>
+		            		현재 비밀번호 : 
+		            	</td>
+		            	<td>
+		                 	<input type="password" name="adm_pwd" id="adm_pwd" maxlength="16" class="form-control" style="width: 150px">
+		                 </td>
+		                 <tr>
+		            	<tr>
+		            	<td>
+		            		바꿀 비밀번호 : 
+		            	</td>
+		            	<td>
+		                 	<input type="password" name="adm_pwd1" id="adm_pwd1" maxlength="16" class="form-control" style="width: 150px">
+		                 </td>
+		                 <tr>
+		            	<tr>
+		            	<td>
+		            		비밀번호 확인: 
+		            	</td>
+		            	<td>
+		                 	<input type="password" name="adm_pwd2" id="adm_pwd2" maxlength="16" class="form-control" style="width: 150px">
+		                 </td>
+		                 <tr>
+		            </table>
 		            </form>		            	
 		         	</div>
 		           <div class="modal-footer">
-		                <button type="button" class="btn btn-primary btn-sm" id="pwdchkBtn">확인</button>
+		                <button type="button" class="btn btn-primary btn-sm" id="ok">확인</button>
 		                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">취소</button>
             	   </div>
 	         	</div>
