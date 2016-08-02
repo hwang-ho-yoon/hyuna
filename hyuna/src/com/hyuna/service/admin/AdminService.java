@@ -16,4 +16,18 @@ public interface AdminService {
 
 	public int memberListCnt(MemberVO mvo);
 
+	public int pwdChange(AdminVO avo);
+
+	public int pwdChange2(AdminVO avo);
+
+	public int memberTotal();
+
+	public int memberToday();
+
+	public int memberYesterday();
+
+	public int memberWeek();
+
+	public int memberMonth();
+
 }

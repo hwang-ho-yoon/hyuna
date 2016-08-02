@@ -36,4 +36,40 @@ public class AdminDaoImpl implements AdminDao{
 		return session.selectOne("memberListCnt");
 	}
 
+	@Override
+	public int pwdChange(AdminVO avo) {		
+		return session.selectOne("pwdChange");
+	}
+
+	@Override
+	public int pwdChange2(AdminVO avo) {		
+		return session.update("pwdChange2");
+	}
+
+	@Override
+	public int memberTotal() {
+		return session.selectOne("memberTotal");
+		
+	}
+
+	@Override
+	public int memberToday() {		
+		return session.selectOne("memberToday");
+	}
+
+	@Override
+	public int memberYesterday() {		
+		return session.selectOne("memberYesterday");
+	}
+
+	@Override
+	public int memberWeek() {		
+		return session.selectOne("memberWeek");
+	}
+
+	@Override
+	public int memberMonth() {		
+		return session.selectOne("memberMonth");
+	}
+
 }

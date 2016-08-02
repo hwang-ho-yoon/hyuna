@@ -10,6 +10,7 @@ import com.hyuna.dao.order.OrderDao;
 import com.hyuna.vo.OrderGroupVO;
 import com.hyuna.vo.OrderProductVO;
 import com.hyuna.vo.OrderRecallCancelVO;
+import com.hyuna.vo.OrderVO;
 
 @Service
 @Transactional
@@ -30,6 +31,9 @@ public class OrderServiceImpl implements OrderService{
 			OrderProductVO productVO = orderGroupVO.getOrderProductVO().get(i);
 			productVO.setOgr_no(orderGroupVO.getOgr_no());
 			productVO.setPrd_d_no(1);
+//			OrderProductVO productVO = orderGroupVO.getOrderProductVO().get(i);
+//			productVO.setOgr_no(orderGroupVO.getOgr_no());
+//			result = orderDao.orderProductInsert(productVO);
 			result = orderDao.orderProductInsert(productVO);
 		}
 		return result;
@@ -41,8 +45,8 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public List<OrderGroupVO>selectOrderGroups(int mem_no) {
-		return orderDao.selectOrderGroups(mem_no);
+	public List<OrderGroupVO>selectOrderGroups(OrderVO orderVO) {
+		return orderDao.selectOrderGroups(orderVO);
 	}
 
 	@Override
@@ -58,6 +62,11 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public int orderGroupUpdate(OrderRecallCancelVO recallCancel) {
 		return orderDao.orderGroupUpdate(recallCancel);
+	}
+
+	@Override
+	public OrderRecallCancelVO selectOrderRecallCancel(int group_no) {
+		return orderDao.selectOrderRecallCancel(group_no);
 	}
 
 }

@@ -36,11 +36,23 @@
 			});
 			$("#recallFrm").submit();
 		});
+		$(".rncDetail").click(function() {
+			group_no = $(this).parents("tr").children().eq(0).attr("data-num");
+			var url = "/order/all/" + group_no + ".do";
+			$.getJSON(url, function(data){
+				$("#ogr_no").val(data.ogr_no);
+				$("#rnc_date").val(data.rnc_date);
+				$("#rnc_desc").val(data.rnc_desc);
+				$('#rncDetailModal').modal('show');
+			}).fail(function() {
+				alert("시스템 오류 입니다. 관리자에게 문의 하세요");
+			});
+		}) 
 	});
 </script> 
 	<div id="wrapper">
 		<div class="col-md-12" style="padding: 0"> 
-			<h3>주문 조회</h3> 
+			<h3>주문 취소/반품 조회</h3> 
 			<hr></hr>
 		</div>
 		<table class="table table-hover table-bordered">
@@ -74,9 +86,9 @@
 			<tr>
 				<th>주문번호</th>
 				<th>주문 상품 정보</th>
-				<th>상품 금액(수량)</th>
+				<th>상품 금액</th>
 				<th>주문상태</th>
-				<th>반품/취소</th>
+				<th>상세내역</th>
 			</tr>
 				<!-- 데이터 출력 -->
 				<c:choose>
@@ -101,32 +113,25 @@
 								</td>
 								<td style="padding-top: 14px">
 									<c:choose>
-										<c:when test="${orderGroup.ogr_state == 'standby_deposit'}">
-											입금대기
+										<c:when test="${orderGroup.ogr_state == 'standby_cancel'}">
+											취소대기
 										</c:when>
-										<c:when test="${orderGroup.ogr_state == 'complete_deposit'}">
-											입금완료
+										<c:when test="${orderGroup.ogr_state == 'complete_cancel'}">
+											취소완료
 										</c:when>
-										<c:when test="${orderGroup.ogr_state == 'standby_shipping'}">
-											배송중
+										<c:when test="${orderGroup.ogr_state == 'standby_recall'}">
+											반품대기
 										</c:when>
-										<c:when test="${orderGroup.ogr_state == 'complete_shipped'}">
-											배송완료
+										<c:when test="${orderGroup.ogr_state == 'complete_recall'}">
+											반품완료
 										</c:when>
 										<c:otherwise>
 											알수없는 상태입니다.
 										</c:otherwise>
 									</c:choose>
 								</td>
-								<td>
-									<c:choose>
-										<c:when test="${orderGroup.ogr_state eq 'standby_deposit' || orderGroup.ogr_state eq 'complete_deposit'}">
-											<button class="btn btn-default btn-sm ogr_cancel" style="margin: 0">취소</button>
-										</c:when>
-										<c:when test="${orderGroup.ogr_state eq 'standby_shipping' || orderGroup.ogr_state eq 'complete_shipped'}">
-											<button class="btn btn-default btn-sm ogr_recall" style="margin: 0">반품</button>
-										</c:when>
-									</c:choose>
+								<td align="center">
+									<button class="btn btn-default btn-sm rncDetail" style="margin: 0">상세보기</button>
 								</td>
 							</tr>
 						</c:forEach>
@@ -138,49 +143,33 @@
 					</c:otherwise>
 				</c:choose>
 		</table>
-		<div id="cancelModal" class="modal fade" data-backdrop="static">
+		<div id="rncDetailModal" class="modal fade" data-backdrop="static">
 	    	<div class="modal-dialog">
 		        <div class="modal-content">
 		            <div class="modal-header">
 		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		                <h4 class="modal-title">주문 취소</h4>
+		                <h4 class="modal-title">취소/반품 상세보기</h4>
 		            </div>
 		            <div class="modal-body" style="padding-bottom: 0px">
             			<form id="cancelFrm">
-            				<input type="hidden" id="cancel_ogr_no" name="ogr_no" value="0">
 							<div class='form-group'>
-								<label for='rnc_desc'>취소 사유를 입력해주세요</label>
-								<textarea class='form-control input-sm' rows='5' id="cancel_desc" name='rnc_desc' style='resize: none;'> </textarea>
+								<div>
+									<label>주문 번호</label>
+									<input type="text" class="form-control input-sm" id="ogr_no" readonly="readonly" style="background: white;"/>
+								</div>
+								<div>
+									<label>날짜</label>
+									<input type="text" class="form-control input-sm" id="rnc_date"  readonly="readonly" style="background: white;"/>
+								</div>
+								<div>
+									<label for='rnc_desc'>사유</label>
+									<textarea class='form-control input-sm' rows='5' id="rnc_desc" readonly="readonly" style='resize: none; background: white;'> </textarea>
+								</div>
 							</div>
 						</form>
 		            </div>
 		           <div class="modal-footer">
-		                <button type="button" class="btn btn-primary btn-sm" id="cancelBtn">저장</button>
-		                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">취소</button>
-            	   </div>
-	         	</div>
-         	</div>
-         </div>
-         
-		<div id="recallModal" class="modal fade" data-backdrop="static">
-	    	<div class="modal-dialog">
-		        <div class="modal-content">
-		            <div class="modal-header">
-		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		                <h4 class="modal-title">주문 반품</h4>
-		            </div>
-		            <div class="modal-body" style="padding-bottom: 0px">
-            			<form id="recallFrm">
-            			<input type="hidden" id="recall_ogr_no" name="ogr_no" value="0">
-							<div class='form-group'>
-								<label for='rnc_desc'>반품 사유를 입력해주세요</label>
-								<textarea class='form-control input-sm' rows='5' id="recall_desc" name='rnc_desc' style='resize: none;'> </textarea>
-							</div>
-						</form>
-		            </div>
-		           <div class="modal-footer">
-		                <button type="button" class="btn btn-primary btn-sm" id="recallBtn">저장</button>
-		                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">취소</button>
+		                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">확인</button>
             	   </div>
 	         	</div>
          	</div>

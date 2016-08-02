@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">	
-		
+	
 	$(function(){
 		$("#wrapper").hide();
 		var a = "${not empty sessionScope.admin }";
@@ -38,6 +38,8 @@
 			$("#search").val("<c:out value='${data.search}'/>");
 		}
 		
+		$("#month").val("<c:out value='${data.month}'/>");
+				
 		/* 한 페이지에 보여줄 레코드 수 조회 후 선택한 값 그대로 출력 */
 		if("<c:out value='${data.pageSize}'/>"!=""){
 			$("#pageSize").val("<c:out value='${data.pageSize}'/>");			
@@ -74,7 +76,20 @@
 		$("#pageSize").change(function(){			
 			goPage(1);
 		});
-
+		
+		$("#month").change(function(){			
+			goPage(1);
+		});
+		
+		//월별검색
+		/* $("#monthSearch").click(function(){			
+			$("#m_form").attr({
+				"method":"get",
+				"action":"/admin/memberList.do"
+			});
+			$("#m_form").submit();
+		}); */
+		
 	});
 	
 	/* 정렬 버튼 클릭시 처리함수 */
@@ -100,17 +115,25 @@
 		});
 		$("#f_search").submit();
 	}
+
 </script>
 </head>
 <body>
 <div id="wrapper">
 	<div class="contentTit" class="col-md-12"><h3>회원 리스트</h3></div>
+		<div>
+		<form id="m_form">		
+			총 회원수:${memTotal } 오늘 가입:${today } 어제 가입:${yesterday } 일주일간:${week } 한달간:${month }
+
+		</form>			
+		</div>
 		
 		<!-- 상세 페이지 이동을 위한 form -->
 		<form id="detailForm" name="detailForm">
 			<input type="hidden"  name="mem_no" id="mem_no">
 		 	<input type="hidden"  name="page" value="${data.page }">
 			<input type="hidden"  name="pageSize" value="${data.pageSize }">
+			<input type="hidden" name="month" value="${data.month }">
 		</form> 
 		
 		<!-- 검색기능 시작 -->
@@ -127,6 +150,7 @@
 								<option value="all">전체</option> 
 								<option value="mem_name">이름</option> 
 								<option value="mem_id">아이디</option>								
+								<option value="mem_registdate">아이디</option>								
 							</select>
 						</td>
 						<td>	
@@ -137,15 +161,30 @@
 						<td id="btd2" style="width: 40%">
 						<button type="button" id="excelDown" class="btn btn-default btn-sm" style="margin: 0">엑셀 다운로드</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;한페이지에						
-							<select id="pageSize" name="pageSize">
+							<select id="pageSize" name="pageSize" class="form-control input-sm" style="height: 30px; width: 80px">
 								<option value="5">5줄</option>
 								<option value="10">10줄</option>
 								<option value="15">15줄</option>
 								<option value="20">20줄</option>
 								<option value="30">30줄</option>
 								<option value="50">50줄</option>
-							</select>							
-						</td>						
+							</select>
+							<select id="month" name="month" style="height: 25px">
+								<option value="" selected="selected">-전체-</option>
+								<option value="/01/">1월</option>
+								<option value="/02/">2월</option>
+								<option value="/03/">3월</option>
+								<option value="/04/">4월</option>
+								<option value="/05/">5월</option>
+								<option value="/06/">6월</option>
+								<option value="/07/">7월</option>
+								<option value="/08/">8월</option>
+								<option value="/09/">9월</option>
+								<option value="/10/">10월</option>
+								<option value="/11/">11월</option>
+								<option value="/12/">12월</option>
+							</select>														
+						</td>
 					</tr>					
 				</table>
 			</form>
@@ -234,7 +273,7 @@
 		<!-- 글쓰기 버튼 출력 종료 -->
 		
 		<!-- 페이지 네비게이션 시작 -->
-		<div id="boardPage">
+		<div id="boardPage" align="center" style="margin-bottom: 20px">
 			 <tag:paging page="${param.page }" total="${total }" list_size="${data.pageSize }"/> 
 		</div>
 		<!-- 페이지 네비게이션 종료 -->

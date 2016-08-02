@@ -4,7 +4,8 @@ public class CommonVO {
 	private String page;		
 	private String pageSize;	
 	private String start_row;	
-	private String end_row;		
+	private String end_row;
+	
 
 	private String search = "";
 	private String keyword = "";
@@ -12,6 +13,15 @@ public class CommonVO {
 	private String order_by;
 	private String order_sc;
 	
+	//월별검색
+	private String month;
+	
+	public String getMonth() {
+		return month;
+	}
+	public void setMonth(String month) {
+		this.month = month;
+	}
 	public String getPage() {
 		return page;
 	}
